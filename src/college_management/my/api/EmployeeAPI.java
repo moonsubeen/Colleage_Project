@@ -13,7 +13,6 @@ public class EmployeeAPI {
 	
 	String LectureMake(String lecturePlan, String lectureCode) // 강의개설
 	{
-		int b = 0;
 		return null;
 	}
 }
