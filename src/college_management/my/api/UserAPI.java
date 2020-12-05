@@ -6,6 +6,11 @@ public class UserAPI {
 		return 0;
 	}
 	
+	public String pwdUpdate(String pwd) // 패스워드 변경 
+	{
+		return null;
+	}
+	
 	public String info() // 기본 정보 출력
 	{
 		return null;
