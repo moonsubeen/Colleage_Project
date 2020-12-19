@@ -100,4 +100,8 @@ public class User{
 		this.sex = sex;
 	}
 	
+	public String toString()
+	{
+		return "id" + ":" + id + ", name:" + name;
+	}
 }
