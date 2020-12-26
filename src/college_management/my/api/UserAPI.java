@@ -48,23 +48,30 @@ public class UserAPI {
     
         em.close();
         
-		return 1;
+		return 0;
 	}
 	
-	public String info() // 기본 정보 출력
+	public List<User> info() // 기본 정보 출력
 	{
 		EntityManager em = factory.createEntityManager();
 		Query query = em.createQuery("select t from User t");
 		List<User> resultList = query.getResultList();
-		for (User result : resultList) {
-//            System.out.println(result.toString());
-        }
 		em.close();
-		return null;
+		return resultList;
 	}
 	
-	public String infoUpdate() // 정보 수정
+	public static void infoUpdate() // 정보 수정
 	{
-		return null;
+		EntityManager em = factory.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		String email = "", address = "", phoneNumber = "";
+		
+		Query query_email = em.createQuery("update User t set t.email = " + email);
+		Query query_address = em.createQuery("update User t set t.address = " + address);
+		Query query_phoneNumber = em.createQuery("update User t set t.email = " + phoneNumber);
+		
+		transaction.commit();
+	    
+        em.close();
 	}
 }
