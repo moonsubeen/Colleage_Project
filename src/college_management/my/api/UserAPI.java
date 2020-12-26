@@ -27,7 +27,7 @@ public class UserAPI {
 		if(resultList.equals(id) && resultList.equals(pwd))
 			return 0;
 		else
-        	return -1;
+			return -1;
 	}
 	
 	public static void pwdUpdate(String pwd) // 패스워드 변경 
