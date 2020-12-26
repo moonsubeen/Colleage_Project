@@ -21,7 +21,7 @@ public class UserAPI {
 		//selcet
 		EntityManager em = factory.createEntityManager();
 		Query query = em.createQuery("select t from User t where id = " + id + "and pwd = " + pwd);
-        Object resultList = query.getSingleResult();
+		Object resultList = query.getSingleResult();
         em.close();
         
         if(resultList.equals(id) && resultList.equals(pwd))
@@ -30,7 +30,7 @@ public class UserAPI {
         	return -1;
 	}
 	
-	public int pwdUpdate(String pwd) // 패스워드 변경 
+	public static void pwdUpdate(String pwd) // 패스워드 변경 
 	{
 		//update
 		EntityManager em = factory.createEntityManager();
@@ -39,25 +39,31 @@ public class UserAPI {
 		{
 			pwd = "12345asd";
 		}
-		
-        transaction.begin(); 
+			
+		transaction.begin(); 
 		Query query = em.createQuery("update User t set t.pwd = " + pwd);
-        Object resultList = query.getSingleResult();
-        em.persist(resultList);
-        transaction.commit();
-    
-        em.close();
-        
-		return 0;
+		Object resultList = query.getSingleResult();
+	    em.persist(resultList);
+	    transaction.commit();
+	    
+	    em.close();
+	        
 	}
 	
-	public List<User> info() // 기본 정보 출력
+	public static void info() // 기본 정보 출력
 	{
 		EntityManager em = factory.createEntityManager();
 		Query query = em.createQuery("select t from User t");
 		List<User> resultList = query.getResultList();
 		em.close();
-		return resultList;
+	}
+	
+	public static void certainInfo(String id) // 기본 정보 특정 인원 출력
+	{
+		EntityManager em = factory.createEntityManager();
+		Query query = em.createQuery("select t from User t" + "where t = " + id);
+		List<User> resultList = query.getResultList();
+		em.close();
 	}
 	
 	public static void infoUpdate() // 정보 수정
@@ -65,13 +71,13 @@ public class UserAPI {
 		EntityManager em = factory.createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		String email = "", address = "", phoneNumber = "";
-		
+			
 		Query query_email = em.createQuery("update User t set t.email = " + email);
 		Query query_address = em.createQuery("update User t set t.address = " + address);
 		Query query_phoneNumber = em.createQuery("update User t set t.email = " + phoneNumber);
-		
+			
 		transaction.commit();
-	    
+		    
         em.close();
 	}
 }

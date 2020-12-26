@@ -18,7 +18,7 @@ public class EmployeeAPI {
 	private static final String PERSISTENCE_UNIT_NAME = "h2";
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	
-	public String studentInfo() // 학생 정보 입력
+	public static void studentInfo(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex) // 학생 정보 입력
 	{	
 		EntityManager em = factory.createEntityManager();
 		User user = new User();
@@ -26,32 +26,32 @@ public class EmployeeAPI {
 		EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
 	    transaction.begin(); 
 	    
-	    user.setId("");
+	    user.setId(id);
 	    user.getPwd();
-	    user.setName("");
-	    user.setEmail("");
-	    user.setNationality("");
-	    user.setPhoneNumber("");
-	    user.setAddress("");
-	    user.setResidentNumber("");
-	    user.setBirthdate("");
-	    user.setSex("");
+	    user.setName(name);
+	    user.setEmail(email);
+	    user.setNationality(nationality);
+	    user.setPhoneNumber(phoneNumber);
+	    user.setAddress(address);
+	    user.setResidentNumber(residentNumber);
+	    user.setBirthdate(birthdate);
+	    user.setSex(sex);
 	    
 	    em.persist(user);
 	    
 	    transaction.commit();
 	    em.close();
 	    
-		return null;
+
 	}
 	
-	public String professorInfo() // 교수 정보 입력
+	public static void professorInfo() // 교수 정보 입력
 	{
-		return null;
+
 	}
 	
-	public String lectureMake(String lecturePlan, String lectureCode) // 강의개설
+	public static void lectureMake(String lecturePlan, String lectureCode) // 강의개설
 	{
-		return null;
+		
 	}
 }

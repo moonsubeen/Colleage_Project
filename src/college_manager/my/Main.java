@@ -33,15 +33,14 @@ public class Main {
         // 트랜잭션 시작 & DB로 커밋
         EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
         transaction.begin(); 
-        Query query_update = em.createQuery("update User t set t.num = 20");
 //        query_update.setParameter("pwd2", "123456asdf");
-//        query_update.setParameter("pwd", "0000");
-        int rowUpdate = query_update.executeUpdate();
-        System.out.println(rowUpdate);
-        
+//        query_update.setParameter("pwd", "0000");  
         for(int i=0; i<userArr.length; i++) {
         	em.persist(userArr[i]);
         }
+        Query query_update = em.createQuery("update User t set t.num = 20");
+        int rowUpdate = query_update.executeUpdate();
+        System.out.println(rowUpdate);
         transaction.commit(); 
         
         // DB에서 사용자 읽기
