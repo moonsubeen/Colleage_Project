@@ -23,7 +23,6 @@ public class UserAPI {
 		Query query = em.createQuery("select t from User t where id = " + id + "and pwd = " + pwd);
 		Object resultList = query.getSingleResult();
         em.close();
-        
         if(resultList.equals(id) && resultList.equals(pwd))
         	return 0;
         else
@@ -43,11 +42,9 @@ public class UserAPI {
 		transaction.begin(); 
 		Query query = em.createQuery("update User t set t.pwd = " + pwd);
 		Object resultList = query.getSingleResult();
-	    em.persist(resultList);
-	    transaction.commit();
-	    
-	    em.close();
-	        
+		em.persist(resultList);
+		transaction.commit();
+		em.close();    
 	}
 	
 	public static void info() // 기본 정보 출력
@@ -58,7 +55,7 @@ public class UserAPI {
 		em.close();
 	}
 	
-	public static void certainInfo(String id) // 기본 정보 특정 인원 출력
+	public static void info(String id) // 기본 정보 특정 인원 출력
 	{
 		EntityManager em = factory.createEntityManager();
 		Query query = em.createQuery("select t from User t" + "where t = " + id);
