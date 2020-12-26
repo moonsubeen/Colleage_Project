@@ -48,20 +48,22 @@ public class UserAPI {
 		em.close();    
 	}
 	
-	public static void info() // 기본 정보 출력
+	public List<User> info() // 기본 정보 출력
 	{
 		EntityManager em = factory.createEntityManager();
 		Query query = em.createQuery("select t from User t");
 		List<User> resultList = query.getResultList();
 		em.close();
+		return resultList;
 	}
 	
-	public static void info(String id) // 기본 정보 특정 인원 출력
+	public User info(String id) // 기본 정보 특정 인원 출력
 	{
 		EntityManager em = factory.createEntityManager();
-		Query query = em.createQuery("select t from User t" + "where t = " + id);
+		Query query = em.createQuery("select t from User t" + "where t.id = " + id);
 		List<User> resultList = query.getResultList();
 		em.close();
+		return null;
 	}
 	
 	public static void infoUpdate(String email, String address, String phoneNumber) // 정보 수정
