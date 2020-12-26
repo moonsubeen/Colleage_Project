@@ -22,10 +22,11 @@ public class UserAPI {
 		EntityManager em = factory.createEntityManager();
 		Query query = em.createQuery("select t from User t where id = " + id + "and pwd = " + pwd);
 		Object resultList = query.getSingleResult();
-        em.close();
-        if(resultList.equals(id) && resultList.equals(pwd))
-        	return 0;
-        else
+		
+		em.close();
+		if(resultList.equals(id) && resultList.equals(pwd))
+			return 0;
+		else
         	return -1;
 	}
 	
@@ -73,7 +74,7 @@ public class UserAPI {
 		Query query_phoneNumber = em.createQuery("update User t set t.email = " + phoneNumber);
 			
 		transaction.commit();
-		    
-        em.close();
+		
+		em.close();
 	}
 }
