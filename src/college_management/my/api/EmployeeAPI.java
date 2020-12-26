@@ -24,8 +24,8 @@ public class EmployeeAPI {
 		User user = new User();
 			
 		EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
-		transaction.begin(); 
-	    
+		transaction.begin();
+		
 	    user.setId(id);
 	    user.getPwd();
 	    user.setName(name);
