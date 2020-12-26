@@ -66,12 +66,11 @@ public class UserAPI {
 		em.close();
 	}
 	
-	public static void infoUpdate() // 정보 수정
+	public static void infoUpdate(String email, String address, String phoneNumber) // 정보 수정
 	{
 		EntityManager em = factory.createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
-		String email = "", address = "", phoneNumber = "";
-			
+		
 		Query query_email = em.createQuery("update User t set t.email = " + email);
 		Query query_address = em.createQuery("update User t set t.address = " + address);
 		Query query_phoneNumber = em.createQuery("update User t set t.email = " + phoneNumber);
