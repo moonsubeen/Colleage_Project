@@ -16,9 +16,6 @@ public class User{
 	private String pwd = "0000"; // 비밀번호
 	
 	@Column
-	private int num = 0;
-	
-	@Column
 	private String name; // 이름
 	
 	@Column
@@ -53,12 +50,6 @@ public class User{
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
-	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
 	}
 	public String getName() {
 		return name;
@@ -111,6 +102,6 @@ public class User{
 	
 	public String toString()
 	{
-		return "id" + " : " + id + ", name: " + name + " pwd : " + pwd + " num : " + num;
+		return "id" + " : " + id + ", name: " + name + ", pwd : " + pwd + ", email" + " : " + email;
 	}
 }

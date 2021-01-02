@@ -20,7 +20,7 @@ public class UserAPI {
 	{
 		//selcet
 		EntityManager em = factory.createEntityManager();
-		Query query = em.createQuery("select t from User t where id = " + id + "and pwd = " + pwd);
+		Query query = em.createQuery("select t from User t where id =: " + id + "and t.pwd =: " + pwd);
 		Object resultList = query.getSingleResult();
 		
 		em.close();
@@ -60,10 +60,13 @@ public class UserAPI {
 	public User info(String id) // 기본 정보 특정 인원 출력
 	{
 		EntityManager em = factory.createEntityManager();
-		Query query = em.createQuery("select t from User t" + "where t.id = " + id);
+		Query query = em.createQuery("select t from User t" + " where t.id = " + id);
 		List<User> resultList = query.getResultList();
 		em.close();
-		return null;
+		if(resultList.size() == 1)
+			return resultList.get(0);
+		else
+			return null;
 	}
 	
 	public static void infoUpdate(String email, String address, String phoneNumber) // 정보 수정

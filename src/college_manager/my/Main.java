@@ -26,25 +26,23 @@ public class Main {
         	userArr[i] = new User();
         	userArr[i].setId(i + "");
         	userArr[i].getPwd();
-        	userArr[i].getNum();
         	userArr[i].setName("student-" + i);
         }
         
         // 트랜잭션 시작 & DB로 커밋
         EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
         transaction.begin(); 
-//        query_update.setParameter("pwd2", "123456asdf");
-//        query_update.setParameter("pwd", "0000");  
         for(int i=0; i<userArr.length; i++) {
         	em.persist(userArr[i]);
         }
-        Query query_update = em.createQuery("update User t set t.num = 20");
-        int rowUpdate = query_update.executeUpdate();
-        System.out.println(rowUpdate);
+//        Query query_update = em.createQuery("update User t set t.pwd = :pwd2");
+//        query_update.setParameter("pwd2", "123456asdf");  
+//        int rowUpdate = query_update.executeUpdate();
+//        System.out.println(rowUpdate);
         transaction.commit(); 
         
         // DB에서 사용자 읽기
-        Query query = em.createQuery("select t from User t");
+        Query query = em.createQuery("select t from User t where t.id = 2");
         List<User> resultList = query.getResultList();
         
         for (User result : resultList) {
