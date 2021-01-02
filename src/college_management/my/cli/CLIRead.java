@@ -1,6 +1,7 @@
 package college_management.my.cli;
 
 import college_management.my.api.UserAPI;
+import college_management.my.model.User;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -18,7 +19,7 @@ import picocli.CommandLine.ParentCommand;
 
 public class CLIRead implements Runnable  {
 	@Parameters(paramLabel = "Role", description = "The role")
-    private String role;
+	private String role;
 
 	@Option(names = { "-i", "--id" }, description = "The student ID", required = true)
 	private String id = "";
@@ -30,9 +31,10 @@ public class CLIRead implements Runnable  {
 		switch(role) {
 		case "student":
 			UserAPI api = new UserAPI();
-			api.info(id);
-			if(api != null)
-				parent.out.println(api.toString());
+			User user = new User();
+			user = api.info(id);
+			if(user != null)
+				parent.out.println(user.toString());
 			else
 				parent.out.printf("'%s' in not exist\n", id);
 			break;

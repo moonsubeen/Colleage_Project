@@ -1,6 +1,7 @@
 package college_management.my.cli;
 
 import college_management.my.api.EmployeeAPI;
+import college_management.my.api.UserAPI;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -36,7 +37,7 @@ public class CLIRegister implements Runnable  {
 	private String nationality = "";
 	
 	@Option(names = { "-p", "--phone" }, description = "The phone number", required = false)
-	private String phone = "";
+	private String phoneNumber = "";
 	
 	@Option(names = { "-a", "--address" }, description = "The address", required = false)
 	private String address = "";
@@ -56,8 +57,9 @@ public class CLIRegister implements Runnable  {
 	public void run() {
 		switch(role) {
 		case "student":
-			EmployeeAPI api = new EmployeeAPI();
-			boolean result = api.studentInfo(id, name, email, nationality, phone, address, residentNumber, birthdate, sex);
+//			EmployeeAPI api = new EmployeeAPI();
+			UserAPI api = new UserAPI();
+			boolean result = api.studentInfo(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex);
 			if(result) 
 				parent.out.println("register success");
 			else

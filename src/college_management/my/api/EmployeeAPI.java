@@ -17,11 +17,11 @@ import college_management.my.model.User;
 public class EmployeeAPI {	
 	private static final String PERSISTENCE_UNIT_NAME = "h2";
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+	private static EntityManager em = factory.createEntityManager();
 	
 	public boolean studentInfo(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex) // 학생 정보 입력
 	{
 		try{
-			EntityManager em = factory.createEntityManager();
 			User user = new User();
 		
 			EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
@@ -40,7 +40,6 @@ public class EmployeeAPI {
 			em.persist(user);
 			
 			transaction.commit();
-			em.close();
 		} catch(Exception e){
 			e.printStackTrace();
 			return false;

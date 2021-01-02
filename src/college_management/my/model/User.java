@@ -102,6 +102,7 @@ public class User{
 	
 	public String toString()
 	{
-		return "id" + " : " + id + ", name: " + name + ", pwd : " + pwd + ", email" + " : " + email;
+		return "id : " + id + ", name : " + name + ", pwd : " + pwd + ", email : " + email + ", nationality : " + nationality + ", phonenumber : " 
+				+ phoneNumber + ", address : " + address + ", birthdate : " + birthdate + ", residentnumber : " + residentNumber + ", sex : " + sex;
 	}
 }
