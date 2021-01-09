@@ -20,7 +20,7 @@ public class UserAPI {
 	public User login(String id, String pwd) // 로그인
 	{
 		//selcet
-		Query query = em.createQuery("select t from User t where id =: " + id + " and t.pwd =: " + pwd);
+		Query query = em.createQuery("select t from User t where id = " + id + " and pwd = " + pwd);
 		List<User> resultList = query.getResultList();
 		
 		if(resultList.size() == 1)
@@ -66,13 +66,11 @@ public class UserAPI {
 			return null;
 	}
 	
-	public boolean studentInfo(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex) // 학생 정보 입력
+	public boolean RegistInfo(String role, String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex) // 학생 정보 입력
 	{
 		try{
 			User user = new User();
-		
-			EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
-			transaction.begin();
+			user.setRole(role);
 			user.setId(id);
 			user.getPwd();
 			user.setName(name);
@@ -84,8 +82,9 @@ public class UserAPI {
 			user.setBirthdate(birthdate);
 			user.setSex(sex);
 			
+			EntityTransaction transaction = em.getTransaction(); // 트랜잭션은 작업단위
+			transaction.begin();
 			em.persist(user);
-			
 			transaction.commit();
 		} catch(Exception e){
 			e.printStackTrace();

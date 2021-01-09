@@ -14,9 +14,9 @@ public class CLILogout implements Runnable {
 		boolean isLogout = api.logout();
 		if (isLogout) {
 			CLIAuth.getInstance().logout();
-			parent.out.println("login success");
+			parent.out.println("logout success");
 		} else {
-			parent.out.println("login fail");
+			parent.out.println("logout fail");
 		}
 	}
 }

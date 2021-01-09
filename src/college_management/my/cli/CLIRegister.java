@@ -59,7 +59,7 @@ public class CLIRegister implements Runnable  {
 		case "student":
 //			EmployeeAPI api = new EmployeeAPI();
 			UserAPI api = new UserAPI();
-			boolean result = api.studentInfo(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex);
+			boolean result = api.RegistInfo(role, id, name ,email, nationality, phoneNumber, address, residentNumber, birthdate, sex);
 			if(result) 
 				parent.out.println("register success");
 			else

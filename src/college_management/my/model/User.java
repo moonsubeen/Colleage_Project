@@ -40,7 +40,7 @@ public class User{
 	private String sex; // 성별
 	
 	@Column
-	private String role;
+	private String role; // 역활
 	
 	public String getRole() {
 		return role;
@@ -109,9 +109,9 @@ public class User{
 		this.sex = sex;
 	}
 	
-	public String toString()
-	{
-		return "role : " + role + "id : " + id + ", name : " + name + ", pwd : " + pwd + ", email : " + email + ", nationality : " + nationality + 
-				", phonenumber : " + phoneNumber + ", address : " + address + ", birthdate : " + birthdate + ", residentnumber : " + residentNumber + ", sex : " + sex;
+	public String toString(){
+		return "role : " + role + " id : " + id + ", name : " + name + ", pwd : " + pwd + ", email : " + email + ", nationality : " + nationality + 
+				", phonenumber : " + phoneNumber + ", address : " + address + ", birthdate : " + birthdate + ", residentnumber : " + residentNumber +
+				", sex : " + sex;
 	}
 }
