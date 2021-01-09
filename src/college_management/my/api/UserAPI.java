@@ -93,19 +93,32 @@ public class UserAPI {
 		return true;
 	}
 	
-	public boolean infoUpdate(String id, String email, String address, String phoneNumber) // 정보 수정
+	public boolean emailUpdate(String id, String email) // 정보 수정
 	{
 		User user = em.find(User.class, id);
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
-		user.setEmail(email);
-		user.setAddress(address);
-		user.setPhoneNumber(phoneNumber);
-		
-//		Query query_email = em.createQuery("update User t set t.email = " + email);
-//		Query query_address = em.createQuery("update User t set t.address = " + address);
-//		Query query_phoneNumber = em.createQuery("update User t set t.email = " + phoneNumber);
-			
+		user.setEmail(email);		
+		transaction.commit();
+		return true;
+	}
+	
+	public boolean addressUpdate(String id, String address) // 정보 수정
+	{
+		User user = em.find(User.class, id);
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		user.setAddress(address);		
+		transaction.commit();
+		return true;
+	}
+	
+	public boolean phoneUpdate(String id, String phoneNumber) // 정보 수정
+	{
+		User user = em.find(User.class, id);
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		user.setPhoneNumber(phoneNumber);		
 		transaction.commit();
 		return true;
 	}
