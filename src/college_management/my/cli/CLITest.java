@@ -27,6 +27,7 @@ public class CLITest {
 	private static CommandLine cmd;
 	private static CliCommands commands;
 	private static DescriptionGenerator descriptionGenerator;
+	private static CLIAuth auth = CLIAuth.getInstance();
 	
 	public static void main(String[] args) {
 		AnsiConsole.systemInstall();
@@ -46,11 +47,15 @@ public class CLITest {
 			new TailTipWidgets(reader, descriptionGenerator::commandDescription, 5, TipType.COMPLETER);
 
 			// start the shell and process input until the user quits with Ctrl-D
-			String prompt = "prompt> ";
+			String prompt = "";
 			String rightPrompt = null;
 			String line;
 			while (true) {
 				try {
+					if(auth.isLogin())
+						prompt = auth.getLoginName() + "> ";
+					else
+						prompt = "prompt> ";
 					// 명령어 읽기
 					line = reader.readLine(prompt, rightPrompt, (MaskingCallback) null, null);
 					if (line.matches("^\\s*#.*")) {

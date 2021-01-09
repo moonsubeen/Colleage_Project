@@ -11,7 +11,7 @@ public class CLIPwdUpdate implements Runnable {
 	@Parameters(paramLabel = "Role", description = "The role")
 	private String role;
 
-	@Option(names = { "-i", "--id" }, description = "The student ID")
+	@Option(names = { "-i", "--id" }, description = "The student ID", required = true)
 	private String id;
 
 	@Option(names = { "-p", "--password" }, description = "The student Password")
@@ -23,8 +23,6 @@ public class CLIPwdUpdate implements Runnable {
 	public void run() {
 		switch (role) {
 		case "student":
-			if (id == "")
-				break;
 			UserAPI api = new UserAPI();
 			boolean result = api.pwdUpdate(pwd, id);
 			if (result) {

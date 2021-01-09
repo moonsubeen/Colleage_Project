@@ -17,16 +17,21 @@ public class UserAPI {
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);;
 	private static EntityManager em = factory.createEntityManager();
 	
-	public int login(String id, String pwd) // 로그인
+	public User login(String id, String pwd) // 로그인
 	{
 		//selcet
-		Query query = em.createQuery("select t from User t where id =: " + id + "and t.pwd =: " + pwd);
-		Object resultList = query.getSingleResult();
+		Query query = em.createQuery("select t from User t where id =: " + id + " and t.pwd =: " + pwd);
+		List<User> resultList = query.getResultList();
 		
-		if(resultList.equals(id) && resultList.equals(pwd))
-			return 0;
+		if(resultList.size() == 1)
+			return resultList.get(0);
 		else
-			return -1;
+			return null;
+	}
+	
+	public boolean logout()
+	{
+		return true;
 	}
 	
 	public boolean pwdUpdate(String pwd, String id) // 패스워드 변경 

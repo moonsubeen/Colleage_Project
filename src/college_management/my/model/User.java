@@ -39,6 +39,15 @@ public class User{
 	@Column
 	private String sex; // 성별
 	
+	@Column
+	private String role;
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getId() {
 		return id;
 	}
@@ -102,7 +111,7 @@ public class User{
 	
 	public String toString()
 	{
-		return "id : " + id + ", name : " + name + ", pwd : " + pwd + ", email : " + email + ", nationality : " + nationality + ", phonenumber : " 
-				+ phoneNumber + ", address : " + address + ", birthdate : " + birthdate + ", residentnumber : " + residentNumber + ", sex : " + sex;
+		return "role : " + role + "id : " + id + ", name : " + name + ", pwd : " + pwd + ", email : " + email + ", nationality : " + nationality + 
+				", phonenumber : " + phoneNumber + ", address : " + address + ", birthdate : " + birthdate + ", residentnumber : " + residentNumber + ", sex : " + sex;
 	}
 }
