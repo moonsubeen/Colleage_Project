@@ -1,7 +1,9 @@
 package college_management.my.cli;
 
 import college_management.my.api.UserAPI;
+import college_management.my.api.UserAuth;
 import college_management.my.model.User;
+
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.ParentCommand;
@@ -18,13 +20,42 @@ public class CLILogin implements Runnable {
 	CliCommands parent;
 
 	public void run() {
-		UserAPI api = new UserAPI();
-		User user = api.login(id, password);
-		if (user != null) {
-			CLIAuth.getInstance().login(user);
-			parent.out.println("login success");
-		} else {
-			parent.out.println("login fail");
+		UserAuth auth = UserAuth.getInstance();
+
+		// 로그인 확인
+		if (auth.isLogin()) {
+			parent.out.println("it's need to logout");
+			return;
 		}
+
+		// 로그인
+		if (!auth.login(id, password)) {
+			parent.out.println("fail to login");
+			return;
+		}
+		
+//		UserAuth auth = UserAuth.getInstance();
+//		if(auth.isLogin()) {
+//			parent.out.println("it's need to logout");
+//			return;
+//		}
+//		
+//		UserAPI api = new UserAPI();
+//		User user = api.login(id, password);
+//		if (user != null) {
+//			UserAuth.getInstance().login(user);
+//			parent.out.println("login success");
+//		} else {
+//			parent.out.println("login fail");
+//		}
+		
+//		UserAPI api = new UserAPI();
+//		User user = api.login(id, password);
+//		if (user != null) {
+//			CLIAuth.getInstance().login(user);
+//			parent.out.println("login success");
+//		} else {
+//			parent.out.println("login fail");
+//		}
 	}
 }

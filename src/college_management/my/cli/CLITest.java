@@ -13,6 +13,9 @@ import org.jline.terminal.TerminalBuilder;
 import org.jline.utils.AttributedStringBuilder;
 import org.jline.utils.AttributedStyle;
 
+import college_management.my.api.AdminImpl;
+import college_management.my.api.IAdmin;
+import college_management.my.api.Permission;
 import picocli.CommandLine;
 import picocli.shell.jline3.PicocliCommands;
 
@@ -45,7 +48,10 @@ public class CLITest {
 			
 			descriptionGenerator = new DescriptionGenerator(picocliCommands);
 			new TailTipWidgets(reader, descriptionGenerator::commandDescription, 5, TipType.COMPLETER);
-
+			
+			// 초기화 (Default 어드민 계정 추가)
+			Init();
+						
 			// start the shell and process input until the user quits with Ctrl-D
 			String prompt = "";
 			String rightPrompt = null;
@@ -56,6 +62,7 @@ public class CLITest {
 						prompt = auth.getLoginName() + "> ";
 					else
 						prompt = "prompt> ";
+					
 					// 명령어 읽기
 					line = reader.readLine(prompt, rightPrompt, (MaskingCallback) null, null);
 					if (line.matches("^\\s*#.*")) {
@@ -80,6 +87,16 @@ public class CLITest {
 			}
 		} catch (Throwable t) {
 			t.printStackTrace();
+		}
+	}
+	
+	private static void Init() {
+		IAdmin api = new AdminImpl();
+		boolean result = api.register("admin", "admin", "aaaa@gmail.com", "한국", "010-0000-0000", "서울", "******-*******", "19**-**-**", "남", Permission.Admin);
+		if (result) {
+			System.out.println("init success");
+		} else {
+			System.out.println("init fail");
 		}
 	}
 }

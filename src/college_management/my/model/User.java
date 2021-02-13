@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import college_management.my.api.Permission;
+
 @Entity
 @Table
 public class User{
@@ -40,12 +42,12 @@ public class User{
 	private String sex; // 성별
 	
 	@Column
-	private String role; // 역활
+	private Permission role; // 역활
 	
-	public String getRole() {
+	public Permission getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Permission role) {
 		this.role = role;
 	}
 	public String getId() {

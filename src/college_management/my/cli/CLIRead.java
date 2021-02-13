@@ -1,7 +1,10 @@
 package college_management.my.cli;
 
+import college_management.my.api.IAdmin;
 import college_management.my.api.UserAPI;
+import college_management.my.api.UserAuth;
 import college_management.my.model.User;
+
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -23,29 +26,57 @@ public class CLIRead implements Runnable  {
 //
 //	@Option(names = { "-i", "--id" }, description = "The student ID", required = true)
 //	private String id = "";
-//	
+	
+	@Option(names = { "-a", "--all" }, description = "The All Users")
+	private boolean isAll;
+	
 	@ParentCommand
 	CliCommands parent;
 
 	public void run() {
-		CLIAuth auth = CLIAuth.getInstance();
-		if(!auth.isLogin())
-		{
-			parent.out.println("It's need to login");
+		UserAuth auth = UserAuth.getInstance();
+
+		// 로그인 확인
+		if (!auth.isLogin()) {
+			parent.out.println("it's need to login");
 			return;
 		}
-		
-		User user = CLIAuth.getInstance().getUser();
-		
-		switch(user.getRole()) {
-		case "student":
-			parent.out.println(user.toString());
-			break;
-		case "professor":
-			break;
-		case "employee":
-			break;
+
+		if (isAll) {
+			if (auth.hasAdminPermission()) {
+				// 모든 사용자 정보 출력
+				for (User user : ((IAdmin) auth.getUserAPI()).readAll()) {
+					parent.out.println(user.toString());
+				}
+			} else {
+				parent.out.println("it's denided");
+			}
+			return;
 		}
+
+		// 사용자 정보 출력
+		User user = auth.getUser();
+		parent.out.println(user.toString());
+		
+//		CLIAuth auth = CLIAuth.getInstance();
+//		if(!auth.isLogin())
+//		{
+//			parent.out.println("It's need to login");
+//			return;
+//		}
+//		
+//		User user = CLIAuth.getInstance().getUser();
+//		
+//		switch(user.getRole()) {
+//		case "student":
+//			parent.out.println(user.toString());
+//			break;
+//		case "professor":
+//			break;
+//		case "employee":
+//			break;
+//		}
+		
 //		switch(Role) {
 //		case "student":
 //			UserAPI api = new UserAPI();
