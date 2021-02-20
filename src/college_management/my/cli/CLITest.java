@@ -16,6 +16,7 @@ import org.jline.utils.AttributedStyle;
 import college_management.my.api.AdminImpl;
 import college_management.my.api.IAdmin;
 import college_management.my.api.Permission;
+import college_management.my.api.UserAuth;
 import picocli.CommandLine;
 import picocli.shell.jline3.PicocliCommands;
 
@@ -30,7 +31,7 @@ public class CLITest {
 	private static CommandLine cmd;
 	private static CliCommands commands;
 	private static DescriptionGenerator descriptionGenerator;
-	private static CLIAuth auth = CLIAuth.getInstance();
+	private static UserAuth auth = UserAuth.getInstance();
 	
 	public static void main(String[] args) {
 		AnsiConsole.systemInstall();
