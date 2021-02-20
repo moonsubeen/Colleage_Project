@@ -7,22 +7,9 @@ abstract public class UserImpl implements IUser {
 	protected static UserDatabase db = UserDatabase.getInstance();
 
 	@Override
-	public boolean pwdupdate(String id,  String pwd) {
-		return db.pwdupdate(id, pwd);
+	public boolean update(String id,  String pwd, String name, String email ,String address, String phoneNumber) {
+		return db.update(id, pwd, name, email, address, phoneNumber);
 	}
-	
-	public boolean addressUpdate(String id, String address) {
-		return db.pwdupdate(id, address);
-	}
-	
-	public boolean emailUpdate(String id, String email) {
-		return db.pwdupdate(id, email);
-	}
-	
-	public boolean phoneUpdate(String id, String phoneNumber) {
-		return db.pwdupdate(id, phoneNumber);
-	}
-	
 	@Override
 	public User read(String id) {
 		return db.read(id);

@@ -54,11 +54,10 @@ public class UserDatabase{
 		return true;
 	}
 	
-	public boolean sregister(String major, String campus) {
+	public boolean sregister(String id, String major, String campus) {
 		try {
-			User user = new User();
-			Student student = new Student();
-			student.setStudentCode(user.getId());
+			Student student = (Student) em.find(User.class, id);
+			student.setStudentCode(id);
 			student.setMajor(major);
 			student.setCampus(campus);
 			
@@ -93,64 +92,29 @@ public class UserDatabase{
 			return null;
 	}
 	
-	public boolean pwdupdate(String id, String pwd) {
+	public boolean update(String id, String pwd, String name, String email, String address, String phoneNumber) {
 		try {
 			User user = em.find(User.class, id);
-			if(pwd.length() < 8) {
-				System.out.println("It must be at least 8 digits");
-				return false;
+			EntityTransaction transaction = em.getTransaction();
+		
+			if(pwd != null) {
+				if(pwd.length() < 8) {
+					System.out.println("It must be at least 8 digits");
+					return false;
+				}
+				user.setPwd(pwd);
 			}
-			EntityTransaction transaction = em.getTransaction();
+			if(name != null)
+				user.setName(name);
+			if(email != null)
+				user.setEmail(email);
+			if(address != null)
+				user.setAddress(address);
+			if(phoneNumber != null)
+				user.setPhoneNumber(phoneNumber);
+			
 			transaction.begin();
-			user.setPwd(pwd);
-			transaction.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-	
-	public boolean addressUpdate(String id, String address) {
-		try {
-			User user = em.find(User.class, id);
-
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			user.setAddress(address);
-			transaction.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-	
-	public boolean emailUpdate(String id, String email) {
-		try {
-			User user = em.find(User.class, id);
-
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			user.setEmail(email);
-			transaction.commit();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-	
-	public boolean phoneUpdate(String id, String phoneNumber) {
-		try {
-			User user = em.find(User.class, id);
-
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			user.setPhoneNumber(phoneNumber);
+			em.persist(user);
 			transaction.commit();
 
 		} catch (Exception e) {

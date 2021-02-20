@@ -15,7 +15,7 @@ import picocli.CommandLine.Command;
 		description = {"Example interactive shell with completion. Hit @|magenta <TAB>|@ to see available commands. Type `@|bold,yellow keymap ^[s tailtip-toggle|@`, " + "then hit @|magenta ALT-S|@ to toggle tailtips.", "" }, 
 		footer = { "", "Press Ctl-D to exit." }, 
 		subcommands = { PrintInfo.class, ClearScreen.class, CommandLine.HelpCommand.class, CLIRegister.class, CLIRead.class, 
-						CLIPwdUpdate.class, CLIEmailUpdate.class, CLIAddressUpdate.class, CLIPhoneUpdate.class,CLILogin.class, CLILogout.class})
+						CLIUpdate.class, CLILogin.class, CLILogout.class})
 
 public class CliCommands implements Runnable {
 	LineReaderImpl reader;
