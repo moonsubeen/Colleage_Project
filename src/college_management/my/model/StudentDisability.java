@@ -1,6 +1,6 @@
 package college_management.my.model;
 
-public class StudentDisability {
+public class StudentDisability extends Student{ 
 	private String disability; // 장애유무
 	private String document; // 증빙서류
 	

@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 
 import college_management.my.api.Permission;
 
-public class UserDatabase {
+public class UserDatabase{
 	private static final String PERSISTENCE_UNIT_NAME = "h2";
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	protected static final EntityManager em = factory.createEntityManager();
@@ -46,6 +46,25 @@ public class UserDatabase {
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
 			em.persist(user);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean sregister(String major, String campus) {
+		try {
+			User user = new User();
+			Student student = new Student();
+			student.setStudentCode(user.getId());
+			student.setMajor(major);
+			student.setCampus(campus);
+			
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+			em.persist(student);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

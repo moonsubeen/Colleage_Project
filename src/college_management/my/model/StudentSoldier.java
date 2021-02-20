@@ -1,6 +1,7 @@
 package college_management.my.model;
 
-public class StudentSoldier {
+public class StudentSoldier extends Student{
+	private boolean state; // 군입대 유무
 	private String soldierNumber; // 군번
 	private String militatySpecific; // 군별
 	private String militayspecifies; // 역종
@@ -11,6 +12,12 @@ public class StudentSoldier {
 	private String dischageDate; // 전역일자
 	private String militaryServiceDate; // 복무일자
 	
+	public boolean isState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
+	}
 	public String getSoldierNumber() {
 		return soldierNumber;
 	}
