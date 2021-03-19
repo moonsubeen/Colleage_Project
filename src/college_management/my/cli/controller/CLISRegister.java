@@ -1,7 +1,8 @@
-package college_management.my.cli.controller;
+	package college_management.my.cli.controller;
 
 import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
+import college_management.my.db.model.User;
 import college_management.my.service.StudentService;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -19,6 +20,9 @@ public class CLISRegister implements Runnable{
 //	@Parameters(paramLabel = "Role", description = "The role")
 //    private String role;
 	
+	@Option(names = { "-i", "--id" }, description = "The student id", required = true)
+	private String id = "";
+	
 	@Option(names = { "-m", "--major" }, description = "The student Major", required = true)
 	private String major = "";
 	
@@ -28,7 +32,7 @@ public class CLISRegister implements Runnable{
 	@ParentCommand
 	CliCommands parent;
 
-	private StudentService subjectService = StudentService.getInstance();
+	private StudentService studentService = StudentService.getInstance();
 	
 	public void run() {
 		UserAuth auth = UserAuth.getInstance();
@@ -44,13 +48,8 @@ public class CLISRegister implements Runnable{
 			parent.out.println("your account have not register permission");
 			return;
 		}
-
-		//id 확인
-		String id = auth.getUser().getId();
 		
-		// 정보 추가
-		boolean result = subjectService.sregister(major, campus);
-		if (result) {
+		if(studentService.sregister(id, major, campus)) {
 			parent.out.println("register success");
 		} else {
 			parent.out.println("register fail");

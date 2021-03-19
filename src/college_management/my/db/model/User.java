@@ -8,40 +8,40 @@ import javax.persistence.Table;
 import college_management.my.api.config.Permission;
 
 @Entity
-@Table
+@Table(name = "user")
 public class User{
 	@Id
 	@Column(name = "id")
 	private String id; // 아이디
 	
-	@Column
+	@Column(name = "password")
 	private String pwd = "0000"; // 비밀번호
 	
-	@Column
+	@Column(name = "name")
 	private String name; // 이름
 	
-	@Column
+	@Column(name = "residentNumber")
 	private String residentNumber; // 주민번호
 	
-	@Column
+	@Column(name = "birthdate")
 	private String birthdate; // 생년월일
 	
-	@Column
+	@Column(name = "address")
 	private String address; // 주소
 	
-	@Column
+	@Column(name = "email")
 	private String email; // 이메일
 	
-	@Column
+	@Column(name = "phoneNumber")
 	private String phoneNumber; // 전화번호
 	
-	@Column
+	@Column(name = "nationality")
 	private String nationality; // 국적
 	
-	@Column
+	@Column(name ="sex")
 	private String sex; // 성별
 	
-	@Column
+	@Column(name = "role")
 	private Permission role; // 역활
 	
 	public Permission getRole() {

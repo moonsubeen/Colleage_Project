@@ -2,6 +2,7 @@ package college_management.my.cli.controller;
 
 import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
+import college_management.my.db.model.User;
 import college_management.my.service.UserService;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -69,16 +70,15 @@ public class CLIRegister implements Runnable  {
 			return;
 		}
 
-		// 입력 내용 확인
-		Permission p = Permission.valueOfType(role);
-		if (p == null) {
-			parent.out.println("role is wrong");
-			return;
-		}
+//		// 입력 내용 확인
+//		Permission p = Permission.valueOfType(role);
+//		if (p == null) {
+//			parent.out.println("role is wrong");
+//			return;
+//		}
 
 		// 사용자 추가
-		boolean result = userService.register(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex, p);
-		if (result) {
+		if(userService.register(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex, role)) {
 			parent.out.println("register success");
 		} else {
 			parent.out.println("register fail");

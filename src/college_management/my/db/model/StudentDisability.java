@@ -1,7 +1,15 @@
 package college_management.my.db.model;
 
-public class StudentDisability extends Student{ 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Table
+public class StudentDisability{ 
+	@Column(name = "disability")
 	private String disability; // 장애유무
+	
+	@Column(name = "document")
 	private String document; // 증빙서류
 	
 	public String getDisability() {

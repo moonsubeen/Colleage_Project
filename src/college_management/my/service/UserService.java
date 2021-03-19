@@ -17,8 +17,14 @@ public class UserService {
 		return instance;
 	}
 	
-	public boolean register(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex, Permission role) {
-		return db.register(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex, role);
+	public boolean register(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex, String role) {
+		Permission p = Permission.valueOfType(role);
+		if(p == null)
+			return false;
+		User user =  db.register(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex, p);
+		if(user == null)
+			return false;
+		return true;
 	}
 	
 	public boolean update(String id,  String pwd, String name, String email ,String address, String phoneNumber) {

@@ -25,7 +25,7 @@ public class UserDB extends BaseDB{
 		return instance;
 	}
 	
-	public boolean register(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex, Permission role) {
+	public User register(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex, Permission role) {
 		try {
 			User user = new User();
 			user.setId(id);
@@ -44,11 +44,12 @@ public class UserDB extends BaseDB{
 			transaction.begin();
 			em.persist(user);
 			transaction.commit();
+			
+			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
 	}
 	
 	public User login(String id, String pwd) {

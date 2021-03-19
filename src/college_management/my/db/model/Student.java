@@ -17,24 +17,14 @@ public class Student implements Serializable{
 	@Id
 	@OneToOne
 	@JoinColumn(name="id", referencedColumnName="id")
-	private User user;; // 학번
+	private User user; // 학번
 	
-//	@ManyToOne
-//	@JoinColumn(name="id", referencedColumnName="id")
-//	private User user;
+	@Column(name = "major")
+	private String major; // 학과
 	
-	@Column
-	private String major; // 학적
-	
-	@Column
+	@Column(name = "campus")
 	private String campus; // 캠퍼스
 	
-//	public String getStudentCode() {
-//		return studentCode;
-//	}
-//	public void setStudentCode(String studentCode) {
-//		this.studentCode = studentCode;
-//	}
 	public User getUser() {
 		return user;
 	}

@@ -97,7 +97,7 @@ public class CLIApp {
 		if(userService.read("admin") != null)
 			return;
 		
-		boolean result = userService.register("admin", "admin", "aaaa@gmail.com", "한국", "010-0000-0000", "서울", "******-*******", "19**-**-**", "남", Permission.Admin);
+		boolean result = userService.register("admin", "admin", "aaaa@gmail.com", "한국", "010-0000-0000", "서울", "******-*******", "19**-**-**", "남", "admin");
 		if (result) {
 			System.out.println("init success");
 		} else {

@@ -1,34 +1,47 @@
 package college_management.my.db.model;
 
-public class Professor extends User{
-	private String professorCode;; // 교수 코드
-	private String undergraduate; // 학부
-	private String major; // 학적
-	private String lecturePlan; // 강의 계획서
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "professr")
+public class Professor implements Serializable{
+	@Id
+	@OneToOne
+	@JoinColumn(name="id", referencedColumnName="id")
+	private User user; // 교수 코드
 	
-	public String getProfessorCode() {
-		return professorCode;
-	}
-	public void setProfessorCode(String professorCode) {
-		this.professorCode = professorCode;
-	}
-	public String getUndergraduate() {
-		return undergraduate;
-	}
-	public void setUndergraduate(String undergraduate) {
-		this.undergraduate = undergraduate;
-	}
-	public String getMajor() {
-		return major;
-	}
-	public void setMajor(String major) {
-		this.major = major;
-	}
-	public String getLecturePlan() {
-		return lecturePlan;
-	}
-	public void setLecturePlan(String lecturePlan) {
-		this.lecturePlan = lecturePlan;
-	}
+	@Column(name = "faculty")
+	private String faculty; // 학부
 	
+	@Column(name = "department")
+	private String department; // 학적
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public String getFaculty() {
+		return faculty;
+	}
+	public void setFaculty(String faculty) {
+		this.faculty = faculty;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 }

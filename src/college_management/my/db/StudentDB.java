@@ -3,6 +3,7 @@ package college_management.my.db;
 import javax.persistence.EntityTransaction;
 
 import college_management.my.db.model.Student;
+import college_management.my.db.model.User;
 
 public class StudentDB extends BaseDB{
 	private static StudentDB instance;
@@ -14,9 +15,11 @@ public class StudentDB extends BaseDB{
 		return instance;
 	}
 	
-	public boolean sregister(String major, String campus) {
+	public Student sregister(String id, String major, String campus) {
 		try {
 			Student student = new Student();
+			User user = em.find(User.class, id);
+			student.setUser(user);
 			student.setMajor(major);
 			student.setCampus(campus);
 			
@@ -24,10 +27,11 @@ public class StudentDB extends BaseDB{
 			transaction.begin();
 			em.persist(student);
 			transaction.commit();
+			
+			return student;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
 	}
 }

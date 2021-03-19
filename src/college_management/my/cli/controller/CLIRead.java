@@ -30,6 +30,9 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-a", "--all" }, description = "The All Users")
 	private boolean isAll;
 	
+	@Option(names = { "-s", "--student" }, description = "The Student Users")
+	private boolean st;
+	
 	@ParentCommand
 	CliCommands parent;
 	
@@ -58,6 +61,18 @@ public class CLIRead implements Runnable  {
 		
 		// 사용자 정보 출력
 		User user = auth.getUser();
+		
+		if(st) {
+			if(auth.hasStudentPermission()) {
+				Student student = auth.getStudent();
+				parent.out.println(student.toString());
+			}
+			else {
+				parent.out.println("it's denied");
+				return;
+			}
+		}
+		
 		parent.out.println(user.toString());
 		
 //		CLIAuth auth = CLIAuth.getInstance();

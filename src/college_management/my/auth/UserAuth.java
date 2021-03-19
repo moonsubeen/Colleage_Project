@@ -3,12 +3,15 @@ package college_management.my.auth;
 import college_management.my.api.config.Permission;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
+import college_management.my.db.StudentDB;
 import college_management.my.db.UserDB;
 
 public class UserAuth {
 	private static UserAuth instance;
 	private User user;
+	private Student student;
 	private static UserDB db = UserDB.getInstance();
+	private static StudentDB dbs = StudentDB.getInstance();
 	
 	// Singleton Pattern
 	public static UserAuth getInstance() {
@@ -40,6 +43,22 @@ public class UserAuth {
 		}
 		return false;
 	}
+	
+	public boolean hasProfessorPermission() {
+		Permission role = user.getRole();
+		if (Permission.Professor.equals(role)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean hasStudentPermission() {
+		Permission role = user.getRole();
+		if (Permission.Student.equals(role)) {
+			return true;
+		}
+		return false;
+	}
 
 	public String getLoginName() {
 		return user.getRole() + ":" + user.getId() + "(" + user.getName() + ")";
@@ -48,7 +67,11 @@ public class UserAuth {
 	public User getUser() {
 		return user;
 	}
-
+	
+	public Student getStudent() {
+		return student;
+	}
+	
 	public boolean logout() {
 		user = null;
 		return true;
