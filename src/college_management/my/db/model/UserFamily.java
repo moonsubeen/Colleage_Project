@@ -6,15 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name="studentfamily")
-public class StudentFamily{
-//	@Id
-//	@OneToOne
-//	@JoinColumn(name="id", referencedColumnName="id")
-//	private User user; // 유저 아이디
+public class UserFamily implements Serializable{
+	@ManyToOne
+	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	private User user; // 유저 아이디
 	
 	@Column(name="realtion")
 	private String relation; // 가족관계
@@ -25,12 +25,12 @@ public class StudentFamily{
 	@Column(name="phonenumber")
 	private String phoneNumber; // 전화번호
 	
-//	public User getUser() {
-//		return user;
-//	}
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getRelation() {
 		return relation;
 	}

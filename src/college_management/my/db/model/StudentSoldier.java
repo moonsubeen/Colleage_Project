@@ -1,15 +1,38 @@
 package college_management.my.db.model;
 
-public class StudentSoldier extends Student{
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+@Table(name="soldier")
+public class StudentSoldier{
+	@Column(name="state")
 	private boolean state; // 군입대 유무
+	
+	@Column(name="solider_number")
 	private String soldierNumber; // 군번
+	
+	@Column(name="specific")
 	private String militatySpecific; // 군별
+	
+	@Column(name="specifies")
 	private String militayspecifies; // 역종
+	
+	@Column(name="speciality")
 	private String militatySpeciality; // 군대주특기
+	
+	@Column(name="servicesite")
 	private String militaryServiceSite; // 병적지
+	
+	@Column(name="rakj")
 	private String rank; // 계급
+	
+	@Column(name="enlistdate")
 	private String enlistDate; // 입대일자
+	
+	@Column(name="dischangedate")
 	private String dischageDate; // 전역일자
+	
+	@Column(name="servicedate")
 	private String militaryServiceDate; // 복무일자
 	
 	public boolean isState() {

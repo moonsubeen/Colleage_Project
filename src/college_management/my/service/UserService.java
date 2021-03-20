@@ -5,6 +5,7 @@ import java.util.List;
 import college_management.my.api.config.Permission;
 import college_management.my.db.UserDB;
 import college_management.my.db.model.User;
+import college_management.my.db.model.UserFamily;
 
 public class UserService {
 	private static UserService instance;
@@ -23,6 +24,13 @@ public class UserService {
 			return false;
 		User user =  db.register(id, name, email, nationality, phoneNumber, address, residentNumber, birthdate, sex, p);
 		if(user == null)
+			return false;
+		return true;
+	}
+	
+	public boolean fregister(String id, String name, String relation, String phonenumber) {
+		UserFamily family = db.fregister(id, relation, name, phonenumber);
+		if(family == null)
 			return false;
 		return true;
 	}

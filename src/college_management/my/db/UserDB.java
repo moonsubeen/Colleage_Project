@@ -13,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import college_management.my.api.config.Permission;
+import college_management.my.db.model.UserFamily;
 import college_management.my.db.model.User;
 
 public class UserDB extends BaseDB{
@@ -46,6 +47,27 @@ public class UserDB extends BaseDB{
 			transaction.commit();
 			
 			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public UserFamily fregister(String id, String relation, String name, String phonenumber) {
+		try {
+			User user = em.find(User.class, id);
+			UserFamily family = new UserFamily();
+			family.setUser(user);
+			family.setName(name);
+			family.setRelation(relation);
+			family.setPhoneNumber(phonenumber);
+			
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+			em.persist(family);
+			transaction.commit();
+			
+			return family;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -129,6 +151,21 @@ public class UserDB extends BaseDB{
 		
 		Query query = em.createQuery(cQuery);
 		List<User> resultList = query.getResultList();
+
+		if (resultList.size() > 0)
+			return resultList;
+		else
+			return null;
+	}
+	
+	public List<UserFamily> freadAll() {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		
+		CriteriaQuery<UserFamily> cQuery = criteriaBuilder.createQuery(UserFamily.class);
+		cQuery.from(UserFamily.class);
+		
+		Query query = em.createQuery(cQuery);
+		List<UserFamily> resultList = query.getResultList();
 
 		if (resultList.size() > 0)
 			return resultList;
