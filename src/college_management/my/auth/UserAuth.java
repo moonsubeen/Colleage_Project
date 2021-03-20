@@ -9,9 +9,7 @@ import college_management.my.db.UserDB;
 public class UserAuth {
 	private static UserAuth instance;
 	private User user;
-	private Student student;
 	private static UserDB db = UserDB.getInstance();
-	private static StudentDB dbs = StudentDB.getInstance();
 	
 	// Singleton Pattern
 	public static UserAuth getInstance() {
@@ -66,10 +64,6 @@ public class UserAuth {
 
 	public User getUser() {
 		return user;
-	}
-	
-	public Student getStudent() {
-		return student;
 	}
 	
 	public boolean logout() {

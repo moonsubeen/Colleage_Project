@@ -36,26 +36,4 @@ public class ProfessorDB extends BaseDB{
 			return null;
 		}
 	}
-	
-	public Lecture lregister(String id, String code, String name, int point, String plan) {
-		try {
-			Lecture lecture = new Lecture();
-			User user = em.find(User.class, id);
-			lecture.setUser(user);
-			lecture.setLectureCode(code);
-			lecture.setName(name);
-			lecture.setPoint(point);
-			lecture.setLecturePlan(plan);
-			
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			em.persist(lecture);
-			transaction.commit();
-			
-			return lecture;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 }

@@ -53,27 +53,6 @@ public class UserDB extends BaseDB{
 		}
 	}
 	
-	public UserFamily fregister(String id, String relation, String name, String phonenumber) {
-		try {
-			User user = em.find(User.class, id);
-			UserFamily family = new UserFamily();
-			family.setUser(user);
-			family.setName(name);
-			family.setRelation(relation);
-			family.setPhoneNumber(phonenumber);
-			
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			em.persist(family);
-			transaction.commit();
-			
-			return family;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
 	public User login(String id, String pwd) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		
@@ -158,18 +137,4 @@ public class UserDB extends BaseDB{
 			return null;
 	}
 	
-	public List<UserFamily> freadAll() {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		
-		CriteriaQuery<UserFamily> cQuery = criteriaBuilder.createQuery(UserFamily.class);
-		cQuery.from(UserFamily.class);
-		
-		Query query = em.createQuery(cQuery);
-		List<UserFamily> resultList = query.getResultList();
-
-		if (resultList.size() > 0)
-			return resultList;
-		else
-			return null;
-	}
 }

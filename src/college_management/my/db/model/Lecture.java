@@ -18,8 +18,8 @@ public class Lecture implements Serializable{
 	private String lectureCode; // 강의 코드 
 	
 	@ManyToOne
-	@JoinColumn(name = "id", insertable = false, updatable = false)
-	private User user; // 교수 번호
+	@JoinColumn(name = "professor_id", insertable = false, updatable = false)
+	private Professor professor; // 교수 번호
 	
 	@Column(name = "lecure_name")
 	private String name; // 강의명
@@ -36,11 +36,11 @@ public class Lecture implements Serializable{
 	public void setLectureCode(String lectureCode) {
 		this.lectureCode = lectureCode;
 	}
-	public User getUser() {
-		return user;
+	public Professor getProfessor() {
+		return professor;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 	public String getName() {
 		return name;

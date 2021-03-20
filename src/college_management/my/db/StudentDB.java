@@ -1,6 +1,14 @@
 package college_management.my.db;
 
+import java.util.List;
+
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
@@ -33,5 +41,23 @@ public class StudentDB extends BaseDB{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Student read(String id) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		
+		CriteriaQuery<Student> cQuery = criteriaBuilder.createQuery(Student.class);
+		Root<Student> from = cQuery.from(Student.class);
+		Join<Student, User> join = from.join("user");
+		Predicate where = criteriaBuilder.equal(join.get("id"), id);
+		cQuery.where(where);
+		
+		Query query = em.createQuery(cQuery);
+		List<Student> resultList = query.getResultList();
+
+		if (resultList.size() == 1)
+			return resultList.get(0);
+		else
+			return null;
 	}
 }

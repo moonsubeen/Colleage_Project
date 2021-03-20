@@ -4,13 +4,15 @@ import java.util.List;
 
 import college_management.my.api.config.Permission;
 import college_management.my.db.UserDB;
+import college_management.my.db.UserFamilyDB;
 import college_management.my.db.model.User;
 import college_management.my.db.model.UserFamily;
 
 public class UserService {
 	private static UserService instance;
 	protected static UserDB db = UserDB.getInstance();
-
+	protected static UserFamilyDB fdb = UserFamilyDB.getInstance();
+	
 	public static UserService getInstance() {
 		if (instance == null) {
 			instance = new UserService();
@@ -29,7 +31,7 @@ public class UserService {
 	}
 	
 	public boolean fregister(String id, String name, String relation, String phonenumber) {
-		UserFamily family = db.fregister(id, relation, name, phonenumber);
+		UserFamily family = fdb.fregister(id, relation, name, phonenumber);
 		if(family == null)
 			return false;
 		return true;
@@ -45,5 +47,9 @@ public class UserService {
 	
 	public List<User> readAll() {
 		return db.readAll();
+	}
+	
+	public List<UserFamily> freadAll() {
+		return fdb.readAll();
 	}
 }

@@ -4,6 +4,7 @@ import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
+import college_management.my.service.StudentService;
 import college_management.my.service.UserService;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -37,6 +38,7 @@ public class CLIRead implements Runnable  {
 	CliCommands parent;
 	
 	private UserService userService = UserService.getInstance();
+	private StudentService studentService = StudentService.getInstance();
 	
 	public void run() {
 		UserAuth auth = UserAuth.getInstance();
@@ -64,8 +66,9 @@ public class CLIRead implements Runnable  {
 		
 		if(st) {
 			if(auth.hasStudentPermission()) {
-				Student student = auth.getStudent();
+				Student student = studentService.read(user.getId());
 				parent.out.println(student.toString());
+				return;
 			}
 			else {
 				parent.out.println("it's denied");

@@ -22,4 +22,8 @@ public class StudentService {
 			return false;
 		return true;
 	}
+	
+	public Student read(String id) {
+		return db.read(id);
+	}
 }
