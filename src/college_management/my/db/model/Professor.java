@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Professor implements Serializable{
 	@Id
 	@OneToOne
-	@JoinColumn(name="id", referencedColumnName="id")
+	@JoinColumn(name="professor_id", referencedColumnName="id")
 	private User user; // 교수 코드
 	
 	@Column(name = "faculty")

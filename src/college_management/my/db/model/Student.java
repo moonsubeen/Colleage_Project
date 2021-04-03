@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Student implements Serializable{
 	@Id
 	@OneToOne
-	@JoinColumn(name="id", referencedColumnName="id")
+	@JoinColumn(name="student_id", referencedColumnName="id")
 	private User user; // 학번
 	
 	@Column(name = "major")

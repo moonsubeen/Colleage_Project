@@ -15,8 +15,8 @@ public class ProfessorService {
 		return instance;
 	}
 	
-	public boolean pregister(String id, String faculty, String department) {
-		Professor professor = db.pregister(id, faculty, department);
+	public boolean register(String id, String faculty, String department) {
+		Professor professor = db.register(id, faculty, department);
 		if(professor == null)
 			return false;
 		return true;

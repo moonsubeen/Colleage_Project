@@ -4,16 +4,24 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
+@Entity
 @Table(name="studentfamily")
 public class UserFamily implements Serializable{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer no;
+	
 	@ManyToOne
-	@JoinColumn(name = "user_id", insertable = false, updatable = false)
+	@JoinColumn(name = "id", referencedColumnName="id")
 	private User user; // 유저 아이디
 	
 	@Column(name="realtion")
@@ -49,5 +57,7 @@ public class UserFamily implements Serializable{
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+	public String toString() {
+		return "이름 : " + name + ", 관계 : " + relation + ", 전화번호 : " + phoneNumber; 
+	}
 }

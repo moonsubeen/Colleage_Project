@@ -6,7 +6,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
+import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 import college_management.my.db.model.UserFamily;
 
@@ -20,10 +24,10 @@ public class UserFamilyDB extends BaseDB{
 		return instance;
 	}
 	
-	public UserFamily fregister(String id, String relation, String name, String phonenumber) {
+	public UserFamily register(String id, String relation, String name, String phonenumber) {
 		try {
-			User user = em.find(User.class, id);
 			UserFamily family = new UserFamily();
+			User user = em.find(User.class, id);
 			family.setUser(user);
 			family.setName(name);
 			family.setRelation(relation);
@@ -41,11 +45,14 @@ public class UserFamilyDB extends BaseDB{
 		}
 	}
 	
-	public List<UserFamily> readAll() {
+	public List<UserFamily> readAll(String id) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		
 		CriteriaQuery<UserFamily> cQuery = criteriaBuilder.createQuery(UserFamily.class);
-		cQuery.from(UserFamily.class);
+		Root<UserFamily> from = cQuery.from(UserFamily.class);
+		Join<UserFamily, User> join = from.join("user");
+		Predicate where = criteriaBuilder.equal(join.get("id"), id);
+		cQuery.where(where);
 		
 		Query query = em.createQuery(cQuery);
 		List<UserFamily> resultList = query.getResultList();

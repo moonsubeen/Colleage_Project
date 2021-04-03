@@ -17,7 +17,7 @@ public class ProfessorDB extends BaseDB{
 		return instance;
 	}
 	
-	public Professor pregister(String id, String faculty, String department) {
+	public Professor register(String id, String faculty, String department) {
 		try {
 			Professor professor = new Professor();
 			User user = em.find(User.class, id);

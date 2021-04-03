@@ -30,8 +30,8 @@ public class UserService {
 		return true;
 	}
 	
-	public boolean fregister(String id, String name, String relation, String phonenumber) {
-		UserFamily family = fdb.fregister(id, relation, name, phonenumber);
+	public boolean register(String id, String name, String relation, String phonenumber) {
+		UserFamily family = fdb.register(id, relation, name, phonenumber);
 		if(family == null)
 			return false;
 		return true;
@@ -49,7 +49,7 @@ public class UserService {
 		return db.readAll();
 	}
 	
-	public List<UserFamily> freadAll() {
-		return fdb.readAll();
+	public List<UserFamily> readAll(String id) {
+		return fdb.readAll(id);
 	}
 }

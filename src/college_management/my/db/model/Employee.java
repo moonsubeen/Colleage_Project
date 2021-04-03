@@ -1,33 +1,40 @@
 package college_management.my.db.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
+@Entity
 @Table(name="employee")
-public class Employee {
-	
+public class Employee implements Serializable{ 
 	@Id
-	@Column(name=" employee_code")
-	private String employeeCode; // 직원 코드
+	@OneToOne
+	@JoinColumn(name="id", referencedColumnName="id")
+	private User user; // 직원 코드
 	
 	@Column(name="departments")
-	private String depatemets; // 부서
+	private String departments; // 부서
 	
 	@Column(name="team")
 	private String team; // 팀
 	
-	public String getEmployeeCode() {
-		return employeeCode;
+	public User getUser() {
+		return user;
 	}
-	public void setEmployeeCode(String employeeCode) {
-		this.employeeCode = employeeCode;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getDepatemets() {
-		return depatemets;
+		return departments;
 	}
-	public void setDepatemets(String depatemets) {
-		this.depatemets = depatemets;
+	public void setDepatemets(String departments) {
+		this.departments = departments;
 	}
 	public String getTeam() {
 		return team;

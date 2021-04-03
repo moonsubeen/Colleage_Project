@@ -14,8 +14,8 @@ import javax.persistence.Table;
 @Table(name = "lecture")
 public class Lecture implements Serializable{
 	@Id
-	@Column(name="lecture_code")
-	private String lectureCode; // 강의 코드 
+	@Column(name="code")
+	private String code; // 강의 코드 
 	
 	@ManyToOne
 	@JoinColumn(name = "professor_id", insertable = false, updatable = false)
@@ -27,14 +27,59 @@ public class Lecture implements Serializable{
 	@Column(name = "point")
 	private int point; // 학점 
 	
+	@Column(name = "year")
+	private int year; // 년도
+	
+	@Column(name = "semester")
+	private int semester; // 학기
+	
+	@Column(name = "day")
+	private String day; // 요일
+	
+	@Column(name = "time")
+	private String time; // 시간
+	
+	@Column(name = "count")
+	private int count; // 인원 수
+	
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getSemester() {
+		return semester;
+	}
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	@Column(name = "lecture_plan")
 	private String lecturePlan; // 강의 계획서
 	
-	public String getLectureCode() {
-		return lectureCode;
+	public String getCode() {
+		return code;
 	}
-	public void setLectureCode(String lectureCode) {
-		this.lectureCode = lectureCode;
+	public void setCode(String lectureCode) {
+		this.code = lectureCode;
 	}
 	public Professor getProfessor() {
 		return professor;
@@ -59,5 +104,10 @@ public class Lecture implements Serializable{
 	}
 	public void setLecturePlan(String lecturePlan) {
 		this.lecturePlan = lecturePlan;
+	}
+	public String toString() {
+		return "강의 코드 : " + code + "담당 교수 : " + professor.getUser().getName() + "강의명 : " + name +
+				"년도 : " + year + "년도, 학기 : " + semester + ", 요일 : " + day + ", 시간 : " + time +
+				", 인원 수  : " + count + "명";
 	}
 }

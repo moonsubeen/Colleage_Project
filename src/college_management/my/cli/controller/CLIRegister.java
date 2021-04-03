@@ -3,6 +3,7 @@ package college_management.my.cli.controller;
 import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
 import college_management.my.db.model.User;
+import college_management.my.service.InfoService;
 import college_management.my.service.LectureService;
 import college_management.my.service.ProfessorService;
 import college_management.my.service.StudentService;
@@ -25,10 +26,7 @@ import picocli.CommandLine.ParentCommand;
 public class CLIRegister implements Runnable  {
 	@Parameters(paramLabel = "Info", description = "The Info")
     private String info;
-	
-//	@Parameters(paramLabel = "Role", description = "The Role")
-//    private String role;
-	
+
 	@Option(names = { "-r", "--role" }, description = "The user role", required = false)
 	private String role = "";
 	
@@ -59,13 +57,10 @@ public class CLIRegister implements Runnable  {
 	@Option(names = { "-s", "--sex" }, description = "The sex", required = false)
 	private String sex= "";
 	
-//	@Option(names = { "-info"}, description = "The info", required = false)
-//	private String info= ""; // register student -info {"major", "computer", "campus", "center"}
-	
 	@Option(names = { "-m", "--major" }, description = "The student Major", required = false)
 	private String major = "";
 	
-	@Option(names = { "-c", "--campus" }, description = "The student Campus", required = false)
+	@Option(names = { "-ca", "--campus" }, description = "The student Campus", required = false)
 	private String campus = "";
 	
 	@Option(names = { "-f", "--faculty" }, description = "The student faculty", required = false)
@@ -86,6 +81,51 @@ public class CLIRegister implements Runnable  {
 	@Option(names = { "-rl", "--relation" }, description = "The relation", required = false)
 	private String relation = "";
 	
+	@Option(names = {"-st"})
+	private boolean state;
+	
+	@Option(names = {"-di"})
+	private String disability = "";
+	
+	@Option(names = {"-do"})
+	private String document = "";
+	
+	@Option(names = {"-mn"})
+	private String militaryNumber = "";
+	
+	@Option(names = {"-t"})
+	private String type = "";
+	
+	@Option(names = {"-cl"})
+	private String classification = "";
+	
+	@Option(names = {"-br"})
+	private String branch = "";
+	
+	@Option(names = {"-ra"})
+	private String rank = "";
+	
+	@Option(names = {"-jd"})
+	private String joinDate = "";
+	
+	@Option(names = {"-dd"})
+	private String dischageDate = "";
+	
+	@Option(names = {"-y"})
+	private int year;
+	
+	@Option(names = {"-se"})
+	private int semester;
+	
+	@Option(names = {"-da"})
+	private String day = "";
+	
+	@Option(names = {"-ti"})
+	private String time;
+	
+	@Option(names = {"-co"})
+	private int count;
+	
 	@ParentCommand
 	CliCommands parent;
 	
@@ -93,6 +133,7 @@ public class CLIRegister implements Runnable  {
 	private StudentService studentService = StudentService.getInstance();
 	private ProfessorService professorService = ProfessorService.getInstance();
 	private LectureService lectureService = LectureService.getInstance();
+	private InfoService infoService = InfoService.getInstance();
 	
 	public void run() {
 		UserAuth auth = UserAuth.getInstance();
@@ -115,7 +156,7 @@ public class CLIRegister implements Runnable  {
 				break;
 			case "student":
 				auth();
-				if(studentService.sregister(id, major, campus)) {
+				if(studentService.register(id, major, campus)) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");
@@ -123,14 +164,14 @@ public class CLIRegister implements Runnable  {
 				break;
 			case "professor":
 				auth();
-				if(professorService.pregister(id, faculty, department)) {
+				if(professorService.register(id, faculty, department)) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");
 				}
 				break;
 			case "family":
-				if(userService.fregister(id, name, relation, phoneNumber)) {
+				if(userService.register(id, name, relation, phoneNumber)) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");
@@ -138,12 +179,27 @@ public class CLIRegister implements Runnable  {
 				break;
 			case "lecture":
 				pauth();
-				if(lectureService.lregister(id, code, name, point, plan)) {
+				if(lectureService.register(id, code, name, year, semester, day, time, count, point, plan)) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");
 				}
 				break;
+			case "info":
+				auth();
+				if(infoService.register(id, state, disability, document)) {
+					parent.out.println("register success");
+				} else {
+					parent.out.println("register fail");
+				}
+				break;
+			case "info2":
+				auth();
+				if(infoService.register(id, state, militaryNumber, type, classification, branch, rank, joinDate, dischageDate)) {
+					parent.out.println("register success");
+				} else {
+					parent.out.println("register fail");
+				}
 			default:
 				break;
 		}

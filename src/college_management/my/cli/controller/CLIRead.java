@@ -3,7 +3,11 @@ package college_management.my.cli.controller;
 import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
 import college_management.my.db.model.Student;
+import college_management.my.db.model.UserDisability;
+import college_management.my.db.model.UserSoldier;
 import college_management.my.db.model.User;
+import college_management.my.db.model.UserFamily;
+import college_management.my.service.InfoService;
 import college_management.my.service.StudentService;
 import college_management.my.service.UserService;
 import picocli.CommandLine;
@@ -34,11 +38,21 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-s", "--student" }, description = "The Student Users")
 	private boolean st;
 	
+	@Option(names = { "-f", "--family" }, description = "The Users Family")
+	private boolean f;
+	
+	@Option(names = { "-sd", "--sodier" }, description = "The Student sodier")
+	private boolean sd;
+	
+	@Option(names = { "-da", "--disabilty" }, description = "The Student sodier")
+	private boolean da;
+	
 	@ParentCommand
 	CliCommands parent;
 	
 	private UserService userService = UserService.getInstance();
 	private StudentService studentService = StudentService.getInstance();
+	private InfoService infoService = InfoService.getInstance();
 	
 	public void run() {
 		UserAuth auth = UserAuth.getInstance();
@@ -76,44 +90,25 @@ public class CLIRead implements Runnable  {
 			}
 		}
 		
+		if(f) {
+			for(UserFamily family : userService.readAll(user.getId())) {
+				parent.out.println(family.toString());
+			};
+			return;
+		}
+		
+		if(da) {
+			UserDisability disability = infoService.read(user.getId());
+			parent.out.println(disability.toString());
+			return;
+		}
+		
+		if(sd) {
+			UserSoldier sodier = infoService.sread(user.getId());
+			parent.out.println(sodier.toString());
+			return;
+		}
+		
 		parent.out.println(user.toString());
-		
-//		CLIAuth auth = CLIAuth.getInstance();
-//		if(!auth.isLogin())
-//		{
-//			parent.out.println("It's need to login");
-//			return;
-//		}
-//		
-//		User user = CLIAuth.getInstance().getUser();
-//		
-//		switch(user.getRole()) {
-//		case "student":
-//			parent.out.println(user.toString());
-//			break;
-//		case "professor":
-//			break;
-//		case "employee":
-//			break;
-//		}
-		
-//		switch(Role) {
-//		case "student":
-//			UserAPI api = new UserAPI();
-//			User user = new User();
-//			user = api.info(id);
-//			if(user != null)
-//				parent.out.println(user.toString());
-//			else
-//				parent.out.printf("'%s' in not exist\n", id);
-//			break;
-//		case "professor":
-//			break;
-//		case "employee":
-//			break;
-//		default:
-//			parent.out.printf("'%s' is not supprt\n", role);
-//			break;
-//		}
 	}
 }
