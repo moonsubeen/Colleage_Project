@@ -28,8 +28,8 @@ public class LectureHistoryDB extends BaseDB{
 			Lecture lecture = em.find(Lecture.class, code);
 			Student student = em.find(Student.class, id);
 			LectureHistory history = new LectureHistory(); 
-			history.setLecture(lecture);
-			history.setStudent(student);
+//			history.setLecture(lecture);
+//			history.setStudent(student);
 			history.setGrade(grade);
 			history.setRank(rank);
 			history.setProblem(problem);

@@ -77,7 +77,7 @@ public class LectureDB extends BaseDB{
 		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
 		Root<Lecture> from = cQuery.from(Lecture.class);
 		Join<Lecture, Professor> join = from.join("professor");
-		Predicate where = criteriaBuilder.equal(join.get("id"), id);
+		Predicate where = criteriaBuilder.equal(join.get("professor_id"), id);
 		cQuery.where(where);
 		
 		Query query = em.createQuery(cQuery);

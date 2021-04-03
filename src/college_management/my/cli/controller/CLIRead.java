@@ -1,13 +1,19 @@
 package college_management.my.cli.controller;
 
+import java.util.List;
+
 import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
+import college_management.my.db.model.Lecture;
+import college_management.my.db.model.Professor;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.UserDisability;
 import college_management.my.db.model.UserSoldier;
 import college_management.my.db.model.User;
 import college_management.my.db.model.UserFamily;
 import college_management.my.service.InfoService;
+import college_management.my.service.LectureService;
+import college_management.my.service.ProfessorService;
 import college_management.my.service.StudentService;
 import college_management.my.service.UserService;
 import picocli.CommandLine;
@@ -36,16 +42,23 @@ public class CLIRead implements Runnable  {
 	private boolean isAll;
 	
 	@Option(names = { "-s", "--student" }, description = "The Student Users")
-	private boolean st;
+	private boolean student;
 	
 	@Option(names = { "-f", "--family" }, description = "The Users Family")
-	private boolean f;
+	private boolean family;
 	
 	@Option(names = { "-sd", "--sodier" }, description = "The Student sodier")
-	private boolean sd;
+	private boolean sodier;
 	
 	@Option(names = { "-da", "--disabilty" }, description = "The Student sodier")
-	private boolean da;
+	private boolean disabilty;
+	
+	@Option(names = { "-p", "--professor" }, description = "The Student sodier")
+	private boolean professor;
+	
+	@Option(names = { "-l", "--lecture" }, description = "The Student sodier")
+	private boolean lecture;
+	
 	
 	@ParentCommand
 	CliCommands parent;
@@ -53,6 +66,8 @@ public class CLIRead implements Runnable  {
 	private UserService userService = UserService.getInstance();
 	private StudentService studentService = StudentService.getInstance();
 	private InfoService infoService = InfoService.getInstance();
+	private ProfessorService professorService = ProfessorService.getInstance();
+	private LectureService lectureService = LectureService.getInstance();
 	
 	public void run() {
 		UserAuth auth = UserAuth.getInstance();
@@ -78,7 +93,7 @@ public class CLIRead implements Runnable  {
 		// 사용자 정보 출력
 		User user = auth.getUser();
 		
-		if(st) {
+		if(student) {
 			if(auth.hasStudentPermission()) {
 				Student student = studentService.read(user.getId());
 				parent.out.println(student.toString());
@@ -90,22 +105,35 @@ public class CLIRead implements Runnable  {
 			}
 		}
 		
-		if(f) {
+		if(family) {
 			for(UserFamily family : userService.readAll(user.getId())) {
 				parent.out.println(family.toString());
 			};
 			return;
 		}
 		
-		if(da) {
+		if(disabilty) {
 			UserDisability disability = infoService.read(user.getId());
 			parent.out.println(disability.toString());
 			return;
 		}
 		
-		if(sd) {
+		if(sodier) {
 			UserSoldier sodier = infoService.sread(user.getId());
 			parent.out.println(sodier.toString());
+			return;
+		}
+		
+		if(professor) {
+			Professor professor = professorService.read(user.getId());
+			parent.out.println(professor.toString());
+			return;
+		}
+		
+		if(lecture) {
+			for(Lecture lecture : lectureService.readAll(user.getId())) {;
+				parent.out.println(lecture.toString());
+			}
 			return;
 		}
 		

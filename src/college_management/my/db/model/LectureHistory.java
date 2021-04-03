@@ -19,14 +19,14 @@ public class LectureHistory implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer no;
 	
-	@ManyToOne
-	@JoinColumn(name="lecture_code", referencedColumnName="code")
-	private Lecture lecture; // 강의 코드 
-	
-	@ManyToOne
-	@JoinColumn(name = "student_id", referencedColumnName="id")
-	private Student student; // 학생 번호
-	
+//	@ManyToOne
+//	@JoinColumn(name="lecture_code", referencedColumnName="code")
+//	private Lecture lecture; // 강의 코드 
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "student_id", referencedColumnName="id")
+//	private Student student; // 학생 번호
+//	
 	@Column(name = "grade")
 	private int grade; // 성적
 	
@@ -58,21 +58,21 @@ public class LectureHistory implements Serializable{
 		this.no = no;
 	}
 
-	public Lecture getLecture() {
-		return lecture;
-	}
-
-	public void setLecture(Lecture lecture) {
-		this.lecture = lecture;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+//	public Lecture getLecture() {
+//		return lecture;
+//	}
+//
+//	public void setLecture(Lecture lecture) {
+//		this.lecture = lecture;
+//	}
+//
+//	public Student getStudent() {
+//		return student;
+//	}
+//
+//	public void setStudent(Student student) {
+//		this.student = student;
+//	}
 
 	public int getGrade() {
 		return grade;
@@ -106,7 +106,7 @@ public class LectureHistory implements Serializable{
 		this.evaluation = evaluation;
 	}
 	public String toString() {
-		return "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() + ", 성적 : " + grade
+		return "강의 : " + /*lecture.getName()*/  ", 학생 이름 : " + /*student.getUser().getName() + */ ", 성적 : " + grade
 				+ ", 등급 : " + rank + ", 평가 : " + evaluation + ", 이의 제기 : " + problem + "강의 인원 수 : " + count; 
 	}
 	

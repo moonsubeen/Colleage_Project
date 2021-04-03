@@ -44,4 +44,7 @@ public class Professor implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+	public String toString() {
+		return "교수 코드 : " + user.getId() + ", 학부 : " + faculty + ", 학과 : " + department;
+	}
 }

@@ -18,7 +18,7 @@ public class Lecture implements Serializable{
 	private String code; // 강의 코드 
 	
 	@ManyToOne
-	@JoinColumn(name = "professor_id", insertable = false, updatable = false)
+	@JoinColumn(name = "professor_id", referencedColumnName="professor_id", insertable = false, updatable = false)
 	private Professor professor; // 교수 번호
 	
 	@Column(name = "lecure_name")

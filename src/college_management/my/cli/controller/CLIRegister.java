@@ -185,7 +185,7 @@ public class CLIRegister implements Runnable  {
 					parent.out.println("register fail");
 				}
 				break;
-			case "info":
+			case "disabilityinfo":
 				auth();
 				if(infoService.register(id, state, disability, document)) {
 					parent.out.println("register success");
@@ -193,7 +193,7 @@ public class CLIRegister implements Runnable  {
 					parent.out.println("register fail");
 				}
 				break;
-			case "info2":
+			case "soldierinfo":
 				auth();
 				if(infoService.register(id, state, militaryNumber, type, classification, branch, rank, joinDate, dischageDate)) {
 					parent.out.println("register success");

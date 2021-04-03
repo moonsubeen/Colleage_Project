@@ -1,6 +1,14 @@
 package college_management.my.db;
 
+import java.util.List;
+
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.Professor;
@@ -35,5 +43,23 @@ public class ProfessorDB extends BaseDB{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Professor read(String id) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		
+		CriteriaQuery<Professor> cQuery = criteriaBuilder.createQuery(Professor.class);
+		Root<Professor> from = cQuery.from(Professor.class);
+		Join<Professor, User> join = from.join("user");
+		Predicate where = criteriaBuilder.equal(join.get("id"), id);
+		cQuery.where(where);
+		
+		Query query = em.createQuery(cQuery);
+		List<Professor> resultList = query.getResultList();
+
+		if (resultList.size() == 1)
+			return resultList.get(0);
+		else
+			return null;
 	}
 }

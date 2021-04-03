@@ -22,8 +22,8 @@ public class LectureAttendanceDB extends BaseDB{
 			Lecture lecture = em.find(Lecture.class, code);
 			Student student = em.find(Student.class, id);
 			LectureAttendance attendances = new LectureAttendance();
-			attendances.setLecture(lecture);
-			attendances.setStudent(student);
+//			attendances.setLecture(lecture);
+//			attendances.setStudent(student);
 			attendances.setAttendance(attendance);
 			
 			EntityTransaction transaction = em.getTransaction();
