@@ -3,30 +3,31 @@ package college_management.my.db.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "lecturehistory")
 public class LectureHistory implements Serializable{
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer no;
+	@EmbeddedId
+	private LectureHistoryID id;
 	
 //	@ManyToOne
-//	@JoinColumn(name="lecture_code", referencedColumnName="code")
+//	@JoinColumn(name="lecture_code", referencedColumnName="code", insertable = false, updatable = false)
 //	private Lecture lecture; // 강의 코드 
 //	
 //	@ManyToOne
-//	@JoinColumn(name = "student_id", referencedColumnName="id")
+//	@JoinColumn(name = "student_id", referencedColumnName="id", insertable = false, updatable = false)
 //	private Student student; // 학생 번호
-//	
+	
 	@Column(name = "grade")
 	private int grade; // 성적
 	
@@ -50,13 +51,13 @@ public class LectureHistory implements Serializable{
 		this.count = count;
 	}
 
-	public Integer getNo() {
-		return no;
-	}
-
-	public void setNo(Integer no) {
-		this.no = no;
-	}
+//	public Integer getNo() {
+//		return no;
+//	}
+//
+//	public void setNo(Integer no) {
+//		this.no = no;
+//	}
 
 //	public Lecture getLecture() {
 //		return lecture;

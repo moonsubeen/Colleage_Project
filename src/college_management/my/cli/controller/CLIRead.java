@@ -35,8 +35,8 @@ public class CLIRead implements Runnable  {
 //	@Parameters(paramLabel = "Role", description = "The role")
 //	private String role;
 //
-//	@Option(names = { "-i", "--id" }, description = "The student ID", required = true)
-//	private String id = "";
+	@Option(names = { "-i", "--id" }, description = "The identification")
+	private String id = "";
 	
 	@Option(names = { "-a", "--all" }, description = "The All Users")
 	private boolean isAll;
@@ -59,6 +59,8 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-l", "--lecture" }, description = "The Student sodier")
 	private boolean lecture;
 	
+	@Option(names = { "-la", "--lecture all" }, description = "The Student sodier")
+	private boolean lectureAll;
 	
 	@ParentCommand
 	CliCommands parent;
@@ -131,10 +133,16 @@ public class CLIRead implements Runnable  {
 		}
 		
 		if(lecture) {
-			for(Lecture lecture : lectureService.readAll(user.getId())) {;
+			Lecture lecture = lectureService.read(id);
 				parent.out.println(lecture.toString());
-			}
 			return;
+		}
+		
+		if(lectureAll) {
+			for(Lecture lecture : lectureService.readAll(id)) {
+				parent.out.println(lecture.toString());
+				return;
+			}
 		}
 		
 		parent.out.println(user.toString());
