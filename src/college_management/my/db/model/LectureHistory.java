@@ -20,13 +20,15 @@ public class LectureHistory implements Serializable{
 	@EmbeddedId
 	private LectureHistoryID id;
 	
-//	@ManyToOne
-//	@JoinColumn(name="lecture_code", referencedColumnName="code", insertable = false, updatable = false)
-//	private Lecture lecture; // 강의 코드 
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "student_id", referencedColumnName="id", insertable = false, updatable = false)
-//	private Student student; // 학생 번호
+	@ManyToOne
+	@MapsId("lecture")
+	@JoinColumn(name="lecture_code", referencedColumnName="code", insertable = false, updatable = false)
+	private Lecture lecture; // 강의 코드 
+	
+	@ManyToOne
+	@MapsId("student")
+	@JoinColumn(name = "student_id", referencedColumnName="student_id", insertable = false, updatable = false)
+	private Student student; // 학생 번호
 	
 	@Column(name = "grade")
 	private int grade; // 성적
@@ -43,6 +45,15 @@ public class LectureHistory implements Serializable{
 	@Column(name = "count")
 	private int count; // 신청자 수
 	
+	
+	public LectureHistoryID getId() {
+		return id;
+	}
+
+	public void setId(LectureHistoryID id) {
+		this.id = id;
+	}
+
 	public int getCount() {
 		return count;
 	}
@@ -51,29 +62,21 @@ public class LectureHistory implements Serializable{
 		this.count = count;
 	}
 
-//	public Integer getNo() {
-//		return no;
-//	}
-//
-//	public void setNo(Integer no) {
-//		this.no = no;
-//	}
+	public Lecture getLecture() {
+		return lecture;
+	}
 
-//	public Lecture getLecture() {
-//		return lecture;
-//	}
-//
-//	public void setLecture(Lecture lecture) {
-//		this.lecture = lecture;
-//	}
-//
-//	public Student getStudent() {
-//		return student;
-//	}
-//
-//	public void setStudent(Student student) {
-//		this.student = student;
-//	}
+	public void setLecture(Lecture lecture) {
+		this.lecture = lecture;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 
 	public int getGrade() {
 		return grade;
@@ -107,7 +110,7 @@ public class LectureHistory implements Serializable{
 		this.evaluation = evaluation;
 	}
 	public String toString() {
-		return "강의 : " + /*lecture.getName()*/  ", 학생 이름 : " + /*student.getUser().getName() + */ ", 성적 : " + grade
+		return "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() +  ", 성적 : " + grade
 				+ ", 등급 : " + rank + ", 평가 : " + evaluation + ", 이의 제기 : " + problem + "강의 인원 수 : " + count; 
 	}
 	

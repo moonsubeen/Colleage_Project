@@ -49,7 +49,7 @@ public class CLISRegister implements Runnable{
 			return;
 		}
 		
-		if(studentService.sregister(id, major, campus)) {
+		if(studentService.register(id, major, campus)) {
 			parent.out.println("register success");
 		} else {
 			parent.out.println("register fail");

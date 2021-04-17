@@ -5,6 +5,7 @@ import java.util.List;
 import college_management.my.api.config.Permission;
 import college_management.my.auth.UserAuth;
 import college_management.my.db.model.Lecture;
+import college_management.my.db.model.LectureHistory;
 import college_management.my.db.model.Professor;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.UserDisability;
@@ -58,6 +59,9 @@ public class CLIRead implements Runnable  {
 	
 	@Option(names = { "-l", "--lecture" }, description = "The Student sodier")
 	private boolean lecture;
+	
+	@Option(names = { "-lh", "--lecture" }, description = "The Student sodier")
+	private boolean lecturehistory;
 	
 	@Option(names = { "-la", "--lecture all" }, description = "The Student sodier")
 	private boolean lectureAll;
@@ -138,8 +142,14 @@ public class CLIRead implements Runnable  {
 			return;
 		}
 		
+		if(lecturehistory) {
+			LectureHistory lecturehistory = lectureService.hread(id);
+				parent.out.println(lecturehistory.toString());
+			return;
+		}
+		
 		if(lectureAll) {
-			for(Lecture lecture : lectureService.readAll(id)) {
+			for(Lecture lecture : lectureService.readAll(user.getId())) {
 				parent.out.println(lecture.toString());
 				return;
 			}

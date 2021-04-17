@@ -27,7 +27,7 @@ public class LectureDB extends BaseDB{
 	}
 	
 	public Lecture register(String id, String code, String name, int year, int semester, String day, 
-			String time, int count, int point, String plan) {
+			String time, int max_count, int point, String plan) {
 		try {
 			Lecture lecture = new Lecture();
 			Professor professor = em.find(Professor.class, id);
@@ -38,7 +38,7 @@ public class LectureDB extends BaseDB{
 			lecture.setSemester(semester);
 			lecture.setDay(day);
 			lecture.setTime(time);
-			lecture.setCount(count);
+			lecture.setMax_count(max_count);
 			lecture.setPoint(point);
 			lecture.setLecturePlan(plan);
 			
@@ -57,12 +57,13 @@ public class LectureDB extends BaseDB{
 	public Lecture read(String code) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		
-		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
-		Root<Lecture> from = cQuery.from(Lecture.class);
-		Predicate where = criteriaBuilder.equal(from.get("code"), code);
-		cQuery.where(where);
-		
-		Query query = em.createQuery(cQuery);
+//		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
+//		Root<Lecture> from = cQuery.from(Lecture.class);
+//		Predicate where = criteriaBuilder.equal(from.get("code"), code);
+//		cQuery.where(where);
+//		
+//		Query query = em.createQuery(cQuery);
+		Query query = em.createQuery("select m from Lecture m where m.code = '" + code + "'");
 		List<Lecture> resultList = query.getResultList();
 
 		if (resultList.size() == 1)
@@ -79,9 +80,9 @@ public class LectureDB extends BaseDB{
 //		Join<Lecture, Professor> join = from.join("professor");
 //		Predicate where = criteriaBuilder.equal(join.get("professor_id"), id);
 //		cQuery.where(where);
-		
+//		
 //		Query query = em.createQuery(cQuery);
-		Query query = em.createQuery("Select m from Lecture m Join Professor t WHERE m.professor_id = " + id);
+		Query query = em.createQuery("select m from Lecture m where m.professor.user.id=" + id);
 		List<Lecture> resultList = query.getResultList();
 
 		if (resultList.size() > 0)

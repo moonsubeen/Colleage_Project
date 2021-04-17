@@ -15,6 +15,7 @@ import college_management.my.db.model.Student;
 
 public class LectureHistoryDB extends BaseDB{
 	private static LectureHistoryDB instance;
+	int count = 0;
 	
 	public static LectureHistoryDB getInstance() {
 		if (instance == null) {
@@ -23,16 +24,56 @@ public class LectureHistoryDB extends BaseDB{
 		return instance;
 	}
 	
-	public LectureHistory register(String code, String id, int grade, String rank, String problem, String evaluation, String count) {
+	public LectureHistory register(String code, String id, int grade, String rank) {
 		try {
 			Lecture lecture = em.find(Lecture.class, code);
 			Student student = em.find(Student.class, id);
 			LectureHistory history = new LectureHistory(); 
-//			history.setLecture(lecture);
-//			history.setStudent(student);
+			count++;
+			history.setLecture(lecture);
+			history.setStudent(student);
 			history.setGrade(grade);
 			history.setRank(rank);
+			history.setCount(count);
+			history.setProblem(null);
+			history.setEvaluation(null);
+			
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+			em.persist(history);
+			transaction.commit();
+			
+			return history;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public LectureHistory problem(String code, String id, String problem) {
+		try {
+			Lecture lecture = em.find(Lecture.class, code);
+			Student student = em.find(Student.class, id);
+			LectureHistory history = new LectureHistory();
 			history.setProblem(problem);
+			
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+			em.persist(history);
+			transaction.commit();
+			
+			return history;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public LectureHistory evaluation(String code, String id, String evaluation) {
+		try {
+			Lecture lecture = em.find(Lecture.class, code);
+			Student student = em.find(Student.class, id);
+			LectureHistory history = new LectureHistory();
 			history.setEvaluation(evaluation);
 			
 			EntityTransaction transaction = em.getTransaction();
@@ -47,15 +88,25 @@ public class LectureHistoryDB extends BaseDB{
 		}
 	}
 	
-	public LectureHistory read(String id) {
+	public boolean check(String id, String code) {
+			Lecture lecture = em.find(Lecture.class, code);
+			Student student = em.find(Student.class, id);
+			LectureHistory history = new LectureHistory();
+			if(history.getEvaluation() == null)
+				return false;
+			return true;
+	}
+	
+	public LectureHistory read(String code) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		
 		CriteriaQuery<LectureHistory> cQuery = criteriaBuilder.createQuery(LectureHistory.class);
 		Root<LectureHistory> from = cQuery.from(LectureHistory.class);
-		Predicate where = criteriaBuilder.equal(from.get("id"), id);
+		Predicate where = criteriaBuilder.equal(from.get("code"), code);
 		cQuery.where(where);
 		
 		Query query = em.createQuery(cQuery);
+//		Query query = em.createQuery("select m from LectureHistory m where m.lecture.code = '" + code + "'");
 		List<LectureHistory> resultList = query.getResultList();
 
 		if (resultList.size() == 1)

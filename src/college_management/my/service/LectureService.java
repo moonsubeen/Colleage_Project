@@ -31,8 +31,9 @@ public class LectureService {
 		return true;
 	}
 	
-	public boolean register(String code, String id, int grade, String rank, String problem, String evaluation, 
+	public boolean register(String code, String id, int grade, String evaluation, 
 			String count) {
+		String rank;
 		if(grade >= 95)
 			rank = "A+";
 		else if(grade >= 90)
@@ -51,14 +52,28 @@ public class LectureService {
 			rank = "D";
 		else
 			rank = "F";
-		LectureHistory history = hdb.register(code, id, grade, rank, problem, evaluation, count);
+		LectureHistory history = hdb.register(code, id, grade, rank);
 		if(history == null)
 			return false;
 		return true;
 	}
 	
-	public boolean register(String code, String id, String attendance) {
-		LectureAttendance attendances = adb.register(code, id, attendance);
+	public boolean problem(String code, String id, String problem) {
+		LectureHistory history = hdb.problem(code, id, problem);
+		if(history == null)
+			return false;
+		return true;
+	}
+	
+	public boolean evaluation(String code, String id, String evaluation) {
+		LectureHistory history = hdb.evaluation(code, id, evaluation);
+		if(history == null)
+			return false;
+		return true;
+	}
+	
+	public boolean register(String code, String id, int month, int day, String attendance) {
+		LectureAttendance attendances = adb.register(code, id, month, day, attendance);
 		return true;
 	}
 	
@@ -66,8 +81,8 @@ public class LectureService {
 		return db.read(code);
 	}
 	
-	public LectureHistory hread(String id) {
-		return hdb.read(id);
+	public LectureHistory hread(String code) {
+		return hdb.read(code);
 	}
 	
 	public List<Lecture> readAll(String id) {

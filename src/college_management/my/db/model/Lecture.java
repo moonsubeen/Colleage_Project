@@ -44,8 +44,8 @@ public class Lecture implements Serializable{
 //	private HashMap<String, List<Integer>> time = new HashMap<String, List<Integer>>(); // 시간
 //	private HashMap<String, Integer> time = new HashMap<String, Integer>(); // 시간
 	
-	@Column(name = "count")
-	private int count; // 인원 수
+	@Column(name = "max_count")
+	private int max_count; // 최대인원 수
 	
 	@Column(name = "lecture_plan")
 	private String lecturePlan; // 강의 계획서
@@ -87,11 +87,11 @@ public class Lecture implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public int getCount() {
-		return count;
+	public int getMax_count() {
+		return max_count;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setMax_count(int max_count) {
+		this.max_count = max_count;
 	}
 	public String getCode() {
 		return code;
@@ -126,6 +126,6 @@ public class Lecture implements Serializable{
 	public String toString() {
 		return "강의 코드 : " + code + ", 담당 교수 : " + professor.getUser().getName() + ", 교수코드 : " + professor.getUser().getId() 
 				+ ", 강의명 : " + name + ", 년도 : " + year + "년도, 학기 : " + semester 
-				+ ", 요일 : " + day + ", 시간 : " + time + ", 인원 수  : " + count + "명";
+				+ ", 요일 : " + day + ", 시간 : " + time + ", 최대인원 수  : " + max_count + "명";
 	}
 }
