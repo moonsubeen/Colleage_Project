@@ -30,7 +30,9 @@ public class LectureDB extends BaseDB{
 			String time, int max_count, int point, String plan) {
 		try {
 			Lecture lecture = new Lecture();
-			Professor professor = em.find(Professor.class, id);
+			User user = em.find(User.class, id);
+			Professor professor = new Professor();
+			professor.setUser(user);
 			lecture.setProfessor(professor);
 			lecture.setCode(code);
 			lecture.setName(name);
@@ -78,7 +80,7 @@ public class LectureDB extends BaseDB{
 //		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
 //		Root<Lecture> from = cQuery.from(Lecture.class);
 //		Join<Lecture, Professor> join = from.join("professor");
-//		Predicate where = criteriaBuilder.equal(join.get("professor_id"), id);
+//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
 //		cQuery.where(where);
 //		
 //		Query query = em.createQuery(cQuery);

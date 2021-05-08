@@ -2,14 +2,18 @@ package college_management.my.db.model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -21,8 +25,11 @@ public class Lecture implements Serializable{
 	private String code; // 강의 코드 
 	
 	@ManyToOne
-	@JoinColumn(name = "professor_id", referencedColumnName="professor_id", insertable = false, updatable = false)
+	@JoinColumn(name = "id", referencedColumnName="professor_id") // insertable = fasle, uptable = false;
 	private Professor professor; // 교수 번호
+	
+	@OneToMany(mappedBy="lecture")
+	private Set<LectureHistory> history = new HashSet<LectureHistory>();
 	
 	@Column(name = "lecure_name")
 	private String name; // 강의명

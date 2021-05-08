@@ -18,8 +18,8 @@ public class UserSoldier implements Serializable{
 	@JoinColumn(name="id", referencedColumnName="id")
 	private User user; // 학번
 	
-	@Column(name="state")
-	private boolean state; // 군입대 유무
+	@Column(name="states")
+	private boolean states; // 군입대 유무
 	
 	@Column(name="military_number")
 	private String militaryNumber; // 군번
@@ -33,8 +33,8 @@ public class UserSoldier implements Serializable{
 	@Column(name="branch")
 	private String branch; // 군대주특기(병과)
 	
-	@Column(name="rank")
-	private String rank; // 계급
+	@Column(name="ranks")
+	private String ranks; // 계급
 	
 	@Column(name="joinDate")
 	private String joinDate; // 입대일자
@@ -51,11 +51,11 @@ public class UserSoldier implements Serializable{
 	}
 
 	public boolean isState() {
-		return state;
+		return states;
 	}
 
-	public void setState(boolean state) {
-		this.state = state;
+	public void setState(boolean states) {
+		this.states = states;
 	}
 
 	public String getMilitaryNumber() {
@@ -91,11 +91,11 @@ public class UserSoldier implements Serializable{
 	}
 
 	public String getRank() {
-		return rank;
+		return ranks;
 	}
 
-	public void setRank(String rank) {
-		this.rank = rank;
+	public void setRank(String ranks) {
+		this.ranks = ranks;
 	}
 
 	public String getJoinDate() {
@@ -114,6 +114,6 @@ public class UserSoldier implements Serializable{
 		this.dischageDate = dischageDate;
 	}
 	public String toString() {
-		return "군입대 : " + state + ", 군번 : " + militaryNumber + "군별 : " + type + ", 역종 : " + classification + ", 병과 : " + branch + ", 계급 : " + rank + ", 입영일자 : " + joinDate + ", 전역일자 : " + dischageDate;
+		return "군입대 : " + states + ", 군번 : " + militaryNumber + "군별 : " + type + ", 역종 : " + classification + ", 병과 : " + branch + ", 계급 : " + ranks + ", 입영일자 : " + joinDate + ", 전역일자 : " + dischageDate;
 	}
 }

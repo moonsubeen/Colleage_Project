@@ -15,36 +15,35 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "lecturehistory")
+@Table(name = "lectureHistory")
 public class LectureHistory implements Serializable{
 	@EmbeddedId
 	private LectureHistoryID id;
-	
+
 	@ManyToOne
-	@MapsId("lecture")
-	@JoinColumn(name="lecture_code", referencedColumnName="code", insertable = false, updatable = false)
-	private Lecture lecture; // 강의 코드 
-	
+//	@MapsId("lecture")
+	@JoinColumn(name = "lecture_code", referencedColumnName = "code", insertable = false, updatable = false)
+	private Lecture lecture; // 강의 코드
+
 	@ManyToOne
-	@MapsId("student")
-	@JoinColumn(name = "student_id", referencedColumnName="student_id", insertable = false, updatable = false)
+//	@MapsId("student")
+	@JoinColumn(name = "student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
 	private Student student; // 학생 번호
 	
 	@Column(name = "grade")
-	private int grade; // 성적
+	private int grades; // 성적
 	
-	@Column(name = "rank")
-	private String rank; // 등급
+	@Column(name = "ranks")
+	private String ranks; // 등급
 	
 	@Column(name = "problem")
-	private String problem; // 이의 제기
+	private String problems; // 이의 제기
 	
 	@Column(name = "evaluation")
-	private String evaluation; // 강의 평가
+	private String evaluations; // 강의 평가
 	
 	@Column(name = "count")
-	private int count; // 신청자 수
-	
+	private int counts; // 신청자 수
 	
 	public LectureHistoryID getId() {
 		return id;
@@ -55,11 +54,11 @@ public class LectureHistory implements Serializable{
 	}
 
 	public int getCount() {
-		return count;
+		return counts;
 	}
 
-	public void setCount(int count) {
-		this.count = count;
+	public void setCount(int counts) {
+		this.counts = counts;
 	}
 
 	public Lecture getLecture() {
@@ -79,39 +78,39 @@ public class LectureHistory implements Serializable{
 	}
 
 	public int getGrade() {
-		return grade;
+		return grades;
 	}
 
-	public void setGrade(int grade) {
-		this.grade = grade;
+	public void setGrade(int grades) {
+		this.grades = grades;
 	}
 
 	public String getRank() {
-		return rank;
+		return ranks;
 	}
 
-	public void setRank(String rank) {
-		this.rank = rank;
+	public void setRank(String ranks) {
+		this.ranks = ranks;
 	}
 
 	public String getProblem() {
-		return problem;
+		return problems;
 	}
 
-	public void setProblem(String problem) {
-		this.problem = problem;
+	public void setProblem(String problems) {
+		this.problems = problems;
 	}
 
 	public String getEvaluation() {
-		return evaluation;
+		return evaluations;
 	}
 
-	public void setEvaluation(String evaluation) {
-		this.evaluation = evaluation;
+	public void setEvaluation(String evaluations) {
+		this.evaluations = evaluations;
 	}
 	public String toString() {
-		return "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() +  ", 성적 : " + grade
-				+ ", 등급 : " + rank + ", 평가 : " + evaluation + ", 이의 제기 : " + problem + "강의 인원 수 : " + count; 
+		return  "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() +  ", 성적 : " + grades
+				+ ", 등급 : " + ranks + ", 평가 : " + evaluations + ", 이의 제기 : " + problems + ", 강의 인원 수 : " + counts; 
 	}
 	
 }

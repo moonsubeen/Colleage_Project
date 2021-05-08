@@ -25,7 +25,7 @@ public class SoldierDB extends BaseDB{
 	}
 	
 	public UserSoldier register(String id, boolean state, String militaryNumber, String type, 
-			String classification, String branch, String rank, String joinDate, String dischageDate) {
+			String classification, String branch, String ranks, String joinDate, String dischageDate) {
 		try {
 			UserSoldier soldier = new UserSoldier();
 			User user = em.find(User.class, id);
@@ -35,7 +35,7 @@ public class SoldierDB extends BaseDB{
 			soldier.setType(type);
 			soldier.setClassification(classification);
 			soldier.setBranch(branch);
-			soldier.setRank(rank);
+			soldier.setRank(ranks);
 			soldier.setJoinDate(joinDate);
 			soldier.setDischageDate(dischageDate);
 			EntityTransaction transaction = em.getTransaction();

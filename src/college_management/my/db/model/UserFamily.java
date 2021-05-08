@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="studentfamily")
+@Table(name="userfamily")
 public class UserFamily implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -1,12 +1,15 @@
 package college_management.my.db.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,6 +21,9 @@ public class Student implements Serializable{
 	@OneToOne
 	@JoinColumn(name="student_id", referencedColumnName="id", insertable = false, updatable = false)
 	private User user; // 학번
+	
+	@OneToMany(mappedBy = "student")
+	private Set<LectureHistory> history = new HashSet<LectureHistory>();
 	
 	@Column(name = "major")
 	private String major; // 학과

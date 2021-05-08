@@ -17,24 +17,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lectureattendance")
 public class LectureAttendance implements Serializable{
-	@EmbeddedId
-	private LectureHistoryID id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer no;
 	
 	@ManyToOne
-	@MapsId("lecture")
-	@JoinColumn(name="lecture_code", referencedColumnName="code", insertable = false, updatable = false)
+	@JoinColumn(name="lecture_code", referencedColumnName="code")
 	private Lecture lecture; // 강의 코드 
 	
 	@ManyToOne
-	@MapsId("student")
-	@JoinColumn(name = "student_id", referencedColumnName="student_id", insertable = false, updatable = false)
+	@JoinColumn(name = "student_id", referencedColumnName="student_id")
 	private Student student; // 학생 번호
 	
 	@Column(name = "month")
 	private int month; // 월
 	
 	@Column(name = "day")
-	private int day; //일
+	private String day; //일
 	
 	@Column(name = "attendance")
 	private String attendance; // 출석
@@ -55,14 +54,6 @@ public class LectureAttendance implements Serializable{
 		this.student = student;
 	}
 
-	public LectureHistoryID getId() {
-		return id;
-	}
-
-	public void setId(LectureHistoryID id) {
-		this.id = id;
-	}
-
 	public int getMonth() {
 		return month;
 	}
@@ -71,11 +62,11 @@ public class LectureAttendance implements Serializable{
 		this.month = month;
 	}
 
-	public int getDay() {
+	public String getDay() {
 		return day;
 	}
 
-	public void setDay(int day) {
+	public void setDay(String day) {
 		this.day = day;
 	}
 
@@ -89,7 +80,7 @@ public class LectureAttendance implements Serializable{
 	
 	public String toString() {
 		return "강의코드 : " + lecture.getCode() + ", 제목 : " + lecture.getName() 
-		+ month + "월, " + day + "일, 이름 : " + student.getUser().getName() + ", 출석 : " + attendance;
+		+ ", " + month + "월, " + day + "일, 이름 : " + student.getUser().getName() + ", 출석 : " + attendance;
 	}
 	
 }

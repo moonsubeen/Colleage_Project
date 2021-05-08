@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureAttendance;
@@ -21,7 +22,7 @@ public class LectureAttendanceDB extends BaseDB{
 		return instance;
 	}
 	
-	public LectureAttendance register(String id, String code, int month, int day, String attendance) {
+	public LectureAttendance register(String id, String code, int month, String day, String attendance) {
 		try {
 			Lecture lecture = em.find(Lecture.class, code);
 			Student student = em.find(Student.class, id);
@@ -34,7 +35,7 @@ public class LectureAttendanceDB extends BaseDB{
 			
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
-			em.persist(lecture);
+			em.persist(attendances);
 			transaction.commit();
 			
 			return attendances;
@@ -42,6 +43,18 @@ public class LectureAttendanceDB extends BaseDB{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<LectureAttendance> readAll(String id) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		
+		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id);
+		List<LectureAttendance> resultList = query.getResultList();
+
+		if (resultList.size() > 0)
+			return resultList;
+		else
+			return null;
 	}
 	
 	public LectureAttendance count() {

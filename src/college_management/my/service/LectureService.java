@@ -23,7 +23,7 @@ public class LectureService {
 		return instance;
 	}
 	
-	public boolean register(String id, String code, String name,int year, int semester, String day,
+	public boolean register(String id, String code, String name, int year, int semester, String day,
 			String time, int count, int point, String plan) {
 		Lecture lecture = db.register(id, code, name, year, semester, day, time, count, point, plan);
 		if(lecture == null)
@@ -31,8 +31,7 @@ public class LectureService {
 		return true;
 	}
 	
-	public boolean register(String code, String id, int grade, String evaluation, 
-			String count) {
+	public boolean register(String code, String id, int grade) {
 		String rank;
 		if(grade >= 95)
 			rank = "A+";
@@ -72,8 +71,8 @@ public class LectureService {
 		return true;
 	}
 	
-	public boolean register(String code, String id, int month, int day, String attendance) {
-		LectureAttendance attendances = adb.register(code, id, month, day, attendance);
+	public boolean register3(String id, String code, int month, String day, String attendance) {
+		LectureAttendance attendances = adb.register(id, code, month, day, attendance);
 		return true;
 	}
 	
@@ -87,5 +86,9 @@ public class LectureService {
 	
 	public List<Lecture> readAll(String id) {
 		return db.readAll(id);
+	}
+	
+	public List<LectureAttendance> readAll2(String id) {
+		return adb.readAll(id);
 	}
 }

@@ -62,7 +62,7 @@ public class CLIRegister implements Runnable  {
 	
 	@Option(names = { "-ca", "--campus" }, description = "The student Campus", required = false)
 	private String campus = "";
-	
+
 	@Option(names = { "-f", "--faculty" }, description = "The student faculty", required = false)
 	private String faculty = "";
 	
@@ -126,6 +126,15 @@ public class CLIRegister implements Runnable  {
 	@Option(names = {"-co"})
 	private int count;
 	
+	@Option(names = {"-g"})
+	private int grade;
+	
+	@Option(names = {"-mo"})
+	private int month;
+	
+	@Option(names = {"-at"})
+	private String attendance;
+	
 	@ParentCommand
 	CliCommands parent;
 	
@@ -185,6 +194,22 @@ public class CLIRegister implements Runnable  {
 					parent.out.println("register fail");
 				}
 				break;
+			case "lecture2":
+				pauth();
+				if(lectureService.register(code, id, grade)) {
+					parent.out.println("register success");
+				} else {
+					parent.out.println("register fail");
+				}
+				break;
+			case "lecture3":
+				pauth();
+				if(lectureService.register3(id, code, month, day, attendance)) {
+					parent.out.println("register success");
+				} else {
+					parent.out.println("register fail");
+				}
+				break;
 			case "disabilityinfo":
 				auth();
 				if(infoService.register(id, state, disability, document)) {
@@ -200,6 +225,7 @@ public class CLIRegister implements Runnable  {
 				} else {
 					parent.out.println("register fail");
 				}
+				break;
 			default:
 				break;
 		}

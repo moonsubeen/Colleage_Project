@@ -13,11 +13,11 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "professr")
+@Table(name = "professor")
 public class Professor implements Serializable{
 	@Id
 	@OneToOne
-	@JoinColumn(name="professor_id", referencedColumnName="id", insertable = false, updatable = false)
+	@JoinColumn(name="professor_id", referencedColumnName="id")
 	private User user; // 교수 코드
 	
 	@Column(name = "faculty")

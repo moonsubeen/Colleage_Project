@@ -35,8 +35,8 @@ public class LectureHistoryDB extends BaseDB{
 			history.setGrade(grade);
 			history.setRank(rank);
 			history.setCount(count);
-			history.setProblem(null);
-			history.setEvaluation(null);
+			history.setProblem("");
+			history.setEvaluation("");
 			
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();

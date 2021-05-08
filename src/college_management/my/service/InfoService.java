@@ -18,9 +18,9 @@ public class InfoService {
 		return instance;
 	}
 	
-	public boolean register(String id, boolean state, String disability, String document) {
-		UserDisability disabilities = ddb.register(id, state, disability, document);
-		if(state == false) {
+	public boolean register(String id, boolean states, String disability, String document) {
+		UserDisability disabilities = ddb.register(id, states, disability, document);
+		if(states == false) {
 			disability = null;
 			document = null;
 			System.out.println("장애가 없습니다.");
@@ -30,14 +30,14 @@ public class InfoService {
 		return true;
 	}
 	
-	public boolean register(String id, boolean state, String militaryNumber, String type, String classification, String branch, String rank, String joinDate, String dischageDate) {
-		UserSoldier soldier = sdb.register(id, state, militaryNumber, type, classification, branch, rank, joinDate, dischageDate);
-		if(state == false) {
+	public boolean register(String id, boolean states, String militaryNumber, String type, String classification, String branch, String ranks, String joinDate, String dischageDate) {
+		UserSoldier soldier = sdb.register(id, states, militaryNumber, type, classification, branch, ranks, joinDate, dischageDate);
+		if(states == false) {
 			militaryNumber = null;
 			type = null;
 			classification = null;
 			branch = null;
-			rank = null;
+			ranks = null;
 			joinDate = null;
 			dischageDate = null;
 			System.out.println("군복무를 하지 않았습니다.");
