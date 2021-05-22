@@ -6,7 +6,7 @@
 	> login admin 0000
 	```
 ### Register
-- 등록 명령어로 각종 서브 명령과 옵션이 필요하지만 필수 옵션으로 id가 있다
+- 등록 명령어로 각종 서브 명령과 옵션이 필요하 필수 옵션으로 id가 있다
 
 |서브 명령어|의미|권한|
 |:---:|:---:|:---:|
@@ -70,11 +70,43 @@
 	> register lecture3 -i 2018 -c 543013 -mo 3 -da 5 -at 출석
 	```
 ### Read
+- 읽기 명령어로 옵션이 서브 명령어로 인식되어있으며 특정강의의 출석확인과 특정강의 정보를 읽을때만 옵션인 code를 이용한다
+|서브 명령 옵션|의미|admin|student|professor|
+|-a, -all|모든 유저정보 읽기|O|-|-|
+|-s|학생정보 읽기|-|O|-|
+|-p|교수정보 일기|-|-|O|
+|-l|강의정보 읽기|O|O|O|
+|-la|모든강의정보 읽기|professor|
+|-lh|강의점수 읽기|student|
+|-lha|강의기록정보 읽기|professor|
+|-le|강의출석정보 읽기|student|
+|-les|특정강의출석정보 읽기|student|
+|-lea|모든강의출석정보 읽기|professor|
+	```
 	> read
 	> read -a
+	> read -s
+	> read -p
+	> read -l -c 543013
+	> read -la
+	> read -lh
+	> read -lha
 	> read -le
 	> read -les -c 543013
+	> read -lea
+	```
 ### Lecture
+- 강의에 대한 문제제기 신청, 강의 평가, 점수 입력을 위한 명령어로 서브 명령 옵션과 일반 옵션으로 구성한다.
+|서브 명령 옵션|의미|권한|
+|:---:|:---:|:---:|
+|-e|강의평가|student|
+|-p|문제제기|studennt|
+|-ga|점수입력|professor|
+
+|옵션|의미|기본어|
+|:---:|:---:|:---:|
+|-ga|점수|attendance|
+|-ev|
 	> lecture -e -c 543013 -ev 좋음
 	> lecture -ga -c 543013 -g 90
 	> lecture -p -c 543013 -pr 없음
