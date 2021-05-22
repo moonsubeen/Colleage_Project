@@ -1,6 +1,7 @@
 # HOW to use
 ----------------
 ### Login
+- 로그인 명령어로 아이디와 비밀번호를 입력하세요
 	> login admin 0000
 ### Register
 	> register user -n 홍길동 -i 2018 -e zx04090@naver.com -na 한국 -p 010-5568-5870 -a 안산 -re 990426-1****** -b 990426 -s 남 -r student
