@@ -1,3 +1,4 @@
-### README.md
+### HOW to use
 
-- 테스트 중 입니다.
+Login
+	login admin 0000
