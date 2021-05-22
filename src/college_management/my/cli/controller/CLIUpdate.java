@@ -15,7 +15,9 @@ public class CLIUpdate implements Runnable {
 //
 //	@Option(names = { "-i", "--id" }, description = "The student ID")
 //	private String id;
-
+	@Option(names = { "-u", "--update" }, description = "The student Password", required = false)
+	private boolean update;
+	
 	@Option(names = { "-p", "--password" }, description = "The student Password", required = false)
 	private String password;
 	
@@ -45,7 +47,14 @@ public class CLIUpdate implements Runnable {
 			parent.out.println("it's need to login");
 			return;
 		}
-
+		
+		if(update) {
+			if(userService.update2(id, address, name))
+				parent.out.println("update success");
+			else
+				parent.out.println("update fail");
+		}
+		else {
 		// 사용자 정보 갱신
 		boolean result = userService.update(id, password, name, email, address, phoneNumber);
 		if (result) {
@@ -53,7 +62,7 @@ public class CLIUpdate implements Runnable {
 		} else {
 			parent.out.println("update fail");
 		}
-		
+		}
 //		CLIAuth auth = CLIAuth.getInstance();
 //		if(!auth.isLogin())
 //		{

@@ -73,6 +73,14 @@ public class UserDB extends BaseDB{
 			return null;
 	}
 	
+	public static void update2(String id, String address, String name) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.createNativeQuery("update user m set m.address = :address where m.id = :id and m.name = :name")
+		.setParameter("address", address).setParameter("id", id).setParameter("name", name).executeUpdate();
+		transaction.commit();
+	}
+	
 	public boolean update(String id, String pwd, String name, String email, String address, String phoneNumber) {
 		try {
 			User user = em.find(User.class, id);

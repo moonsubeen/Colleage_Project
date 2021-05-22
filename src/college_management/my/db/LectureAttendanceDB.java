@@ -5,12 +5,16 @@ import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureAttendance;
 import college_management.my.db.model.LectureHistory;
 import college_management.my.db.model.Professor;
 import college_management.my.db.model.Student;
+import college_management.my.db.model.User;
 
 public class LectureAttendanceDB extends BaseDB{
 	private static LectureAttendanceDB instance;
@@ -43,6 +47,18 @@ public class LectureAttendanceDB extends BaseDB{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<LectureAttendance> check(String id, String code) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		
+		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id + " and m.lecture.code=" + code);
+		List<LectureAttendance> resultList = query.getResultList();
+
+		if (resultList.size() > 0)
+			return resultList;
+		else
+			return null;
 	}
 	
 	public List<LectureAttendance> readAll(String id) {

@@ -83,4 +83,8 @@ public class LectureAttendance implements Serializable{
 		+ ", " + month + "월, " + day + "일, 이름 : " + student.getUser().getName() + ", 출석 : " + attendance;
 	}
 	
+	public String toString2() {
+		return "출석 : " + attendance;
+	}
+	
 }

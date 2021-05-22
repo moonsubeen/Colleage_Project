@@ -195,8 +195,8 @@ public class CLIRegister implements Runnable  {
 				}
 				break;
 			case "lecture2":
-				pauth();
-				if(lectureService.register(code, id, grade)) {
+//				pauth();
+				if(lectureService.register(code, id)) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");

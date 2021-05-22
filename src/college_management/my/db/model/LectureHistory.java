@@ -18,16 +18,20 @@ import javax.persistence.Table;
 @Table(name = "lectureHistory")
 public class LectureHistory implements Serializable{
 	@EmbeddedId
-	private LectureHistoryID id;
+	private LectureHistoryID id = new LectureHistoryID(); 
 
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private Integer no;
+	
 	@ManyToOne
-//	@MapsId("lecture")
-	@JoinColumn(name = "lecture_code", referencedColumnName = "code", insertable = false, updatable = false)
+	@MapsId("lecture")
+	@JoinColumn(name = "lecture_code", referencedColumnName = "code" /*, insertable = false, updatable = false */)
 	private Lecture lecture; // 강의 코드
 
 	@ManyToOne
-//	@MapsId("student")
-	@JoinColumn(name = "student_id", referencedColumnName = "student_id", insertable = false, updatable = false)
+	@MapsId("student")
+	@JoinColumn(name = "student_id", referencedColumnName = "student_id" /*, insertable = false, updatable = false */)
 	private Student student; // 학생 번호
 	
 	@Column(name = "grade")

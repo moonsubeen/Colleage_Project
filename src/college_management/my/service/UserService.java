@@ -40,6 +40,11 @@ public class UserService {
 	public boolean update(String id,  String pwd, String name, String email ,String address, String phoneNumber) {
 		return db.update(id, pwd, name, email, address, phoneNumber);
 	}
+	
+	public boolean update2(String id, String address, String name) {
+		db.update2(id, address, name);
+		return true;
+	}
 
 	public User read(String id) {
 		return db.read(id);

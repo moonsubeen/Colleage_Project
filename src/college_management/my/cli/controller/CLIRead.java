@@ -70,6 +70,12 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-le", "--lectureAttendance all" }, description = "The Student sodier")
 	private boolean lectureAttendance;
 	
+	@Option(names = { "-les", "--lectureAttendance select" }, description = "The Student sodier")
+	private boolean lectureAttendanceSelect;
+	
+	@Option(names = { "-c", "--code" }, description = "The Student sodier")
+	private String code = "";
+	
 	@ParentCommand
 	CliCommands parent;
 	
@@ -153,8 +159,23 @@ public class CLIRead implements Runnable  {
 		}
 		
 		if(lectureAttendance) {
-			for(LectureAttendance lecture : lectureService.readAll2(id)) {
+			if(auth.hasStudentPermission()) {
+				for(LectureAttendance lecture : lectureService.readAll2(user.getId())) {
 				parent.out.println(lecture.toString());
+				}
+			} else {
+				parent.out.println("It's denied");
+			}
+			return;
+		}
+		
+		if(lectureAttendanceSelect) {
+			if(auth.hasStudentPermission()) {
+				for(LectureAttendance lecture : lectureService.check(user.getId(), code)) {
+				parent.out.println(lecture.toString());
+				}
+			} else {
+				parent.out.println("It's denied");
 			}
 			return;
 		}
