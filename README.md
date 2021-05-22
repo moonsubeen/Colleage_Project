@@ -21,3 +21,5 @@
 	> lecture -e -c 543013 -ev 좋음
 	> lecture -ga -c 543013 -g 90
 	> lecture -p -c 543013 -pr 없음
+### Logout
+	> logout
