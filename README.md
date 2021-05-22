@@ -1,5 +1,4 @@
 ### HOW to use
 ----------------
 Login
-	login admin 0000
-
+	> login admin 0000
