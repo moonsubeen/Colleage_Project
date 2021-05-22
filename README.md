@@ -6,6 +6,10 @@
 	> login admin 0000
 	```
 ### Register
+| 서브 명령어 | 의미 |
+| --- | : --- :|
+| 'user' | 유저 아이디 생성 |
+	```
 	> register user -n 홍길동 -i 2018 -e zx04090@naver.com -na 한국 -p 010-5568-5870 -a 안산 -re 990426-1****** -b 990426 -s 남 -r student
 	> register professor -i 2019 -f 수학부 -d 수학공학과
 	> register student -i 2018 -m computer -ca 본캠
@@ -15,6 +19,7 @@
 	> register lecture -i 2019 -c 543013 -n 공학수학 -y 21 -se 1 -da 월요일 -ti 3시간 -co 18 -po 3 -pl 공학수학을합니다.
 	> register lecture2 -c 543013 -i 2018 -g 80
 	> register lecture3 -i 2018 -c 543013 -mo 3 -da 5 -at 출석
+	```
 ### Read
 	> read
 	> read -a
