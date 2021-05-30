@@ -91,7 +91,7 @@
 ```
 4. 기본정보를 읽거나, 모든 유저들의 기본정보를 읽어본다.
 ```
-> read // read -p // read -f // read -sd // read -d // read -a
+> read // read -f // read -sd // read -d // read -a
 ```
 5. 기본정보 및 추가정보에서 바뀐 것이나 틀린 것을 수정한다.
 ```
