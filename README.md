@@ -20,7 +20,39 @@
 	> lecture -p -c 543013 -pr "저의 점수가 OO점인 이유를 모르겠습니다. 저의 답안 체점내용을 알려주실 수 있나요?"
 	```
 ### 교수 시나리오
-
+- 로그인 화면창에서 자신의 아이디와 비밀번호를 입력한다.
+- 자신의 기본정보와 추가적인 정보를 읽어서 틀린 것이 있는지 확인해본다.
+- 기본정보 및 추가정보에서 바뀐 것이나 틀린 것을 수정한다.
+- 자신이 강의할 강의들의 정보를 입력하여 강의 개설을 한다.
+- 자신이 개설한 강의 정보를 읽어본다.
+- 자신이 수업하는 강의에 학생들의 아이디를 입력하여 출석정보를 입력한다.
+- 수업하는 강의의 출석정보와 기록정보를 읽어본다.
+- 자신의 강의에 수업을 들은 학생들의 점수를 입력한다.
+	```
+	> login 2019 0000
+	> read // read -p // read -f // read -sd // read -d
+	> update -p56sad4xz1c -a 부산 -e yodadsao@gmail.com 
+	> register lecture -c 543013 -n 공학수학 -y 21 -se 1 -da 월요일 -ti 3시간 -co 18 -po 3 -pl "공학수학에 대해서 알기 쉬운 강의를 알려드립니다."
+	> read -l -c 543013
+	> register lecture3 -i 2018 -c 543013 -mo 3 -da 5 -at 출석
+	> read -lea // read -lha
+	> lecture -ga -c 543013 -i 2018 -g 90
+	```
+### admin 시나리오
+- 로그인 화면창에 admin 계정으로 로그인한다.
+- 모든 유저들의 기본정보를 입력하여 유저들의 아이디를 만든다.
+- 모든 유저들의 추가정보들을 입력하여 유저들의 정보를 업데이트한다.
+- 기본정보 및 추가정보에서 바뀐 것이나 틀린 것을 수정한다.
+- 모든 유저들의 기본정보를 읽어본다.
+	```
+	> register user -n 홍길동 -i 2018 -e zx04090@naver.com -na 한국 -p 010-5568-5870 -a 안산 -re 990426-1****** -b 990426 -s 남 -r student
+	> register professor -i 2019 -f 수학부 -d 수학공학과
+	> register student -i 2018 -m computer -ca 본캠
+	> register soldierinfo -i 2018 -st -mn 513426 -t 육군 -cl 복무요원 -br 없음 -ra 일병 -jd 21년1월14일 -dd 22년10월13일
+	> register family -i 2018 -n 길순 -rl 엄마 -p 010-xxxx-xxxx
+	> register disabilityinfo -i 2018 -st -di 없음 -do 없음
+	> update -1230asmdk -a 안산 -e yodamki1234o@gmail.com 
+	> read -a
 # HOW to use
 ----------------
 ### Login
@@ -29,7 +61,7 @@
 	> login admin 0000
 	```
 ### Register
-- 등록 명령어로 각종 서브 명령과 옵션으로 강의 개설, 신청, 출석 입력에서 아이디 옵션이 필요하지만 로그인된 유저의 아이디가 자동으로 옵션으로 등록되도록 만들었다.
+- 등록 명령어로 각종 서브 명령과 옵션으로 강의 개설, 신청에서 아이디 옵션이 필요하지만 로그인된 유저의 아이디가 자동으로 옵션으로 등록되도록 만들었다.
 - 유저 아이디를 생성 할 때 비밀번호는 자동으로 0000으로 생성이 된다. 나중에 업데이트를 통해 비밀번호를 변경해주세요.
 
 |서브 명령어|의미|권한|옵션|
@@ -52,7 +84,7 @@
 	> register disabilityinfo -i 2018 -st -di 없음 -do 없음
 	> register lecture -c 543013 -n 공학수학 -y 21 -se 1 -da 월요일 -ti 3시간 -co 18 -po 3 -pl 공학수학을합니다.
 	> register lecture2 -c 543013
-	> register lecture3 -c 543013 -mo 3 -da 5 -at 출석
+	> register lecture3 -i 2018 -c 543013 -mo 3 -da 5 -at 출석
 	```
 ### Update
 - 업데이트 명령어로 등록되어 있는 유저의 정보를 수정할 수 있으며 옵션을 다 입력 안해도 괜찮으며 아이디 옵션은 로그인된 유저의 아이디가 입력된다.
