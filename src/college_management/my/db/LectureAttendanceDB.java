@@ -9,10 +9,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.querydsl.jpa.impl.JPAQuery;
+
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureAttendance;
 import college_management.my.db.model.LectureHistory;
 import college_management.my.db.model.Professor;
+import college_management.my.db.model.QLectureAttendance;
+import college_management.my.db.model.QLectureHistory;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 
@@ -49,29 +53,62 @@ public class LectureAttendanceDB extends BaseDB{
 		}
 	}
 	
-	public List<LectureAttendance> check(String id, String code) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//	public List<LectureAttendance> check(String id, String code) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id + " and m.lecture.code=" + code);
+//		List<LectureAttendance> resultList = query.getResultList();
+//
+//		if (resultList.size() > 0)
+//			return resultList;
+//		else
+//			return null;
+//	}
+	
+	public static List<LectureAttendance> check(String id, String code) {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
 		
-		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id + " and m.lecture.code=" + code);
-		List<LectureAttendance> resultList = query.getResultList();
-
-		if (resultList.size() > 0)
-			return resultList;
-		else
-			return null;
+		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.student.user.id.eq(id).and(LectureAttendance.lecture.code.eq(code))).fetch();
+		return result;
 	}
 	
-	public List<LectureAttendance> readAll(String id) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//	public List<LectureAttendance> readAll(String id) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id);
+//		List<LectureAttendance> resultList = query.getResultList();
+//
+//		if (resultList.size() > 0)
+//			return resultList;
+//		else
+//			return null;
+//	}
+	
+	public static List<LectureAttendance> readAll(String id) {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
 		
-		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id);
-		List<LectureAttendance> resultList = query.getResultList();
-
-		if (resultList.size() > 0)
-			return resultList;
-		else
-			return null;
+		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.student.user.id.eq(id)).fetch();
+		return result;
 	}
+	
+	public static List<LectureAttendance> readAll2() {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
+		
+		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).fetch();
+		return result;
+	}
+	
+//	public List<LectureAttendance> readAll2() {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		Query query = em.createQuery("select m from LectureAttendance m");
+//		List<LectureAttendance> resultList = query.getResultList();
+//
+//		if (resultList.size() > 0)
+//			return resultList;
+//		else
+//			return null;
+//	}
 	
 	public LectureAttendance count() {
 		Query query = em.createQuery("select count(m) from LectureAttendance m where m.attendance = 결석");

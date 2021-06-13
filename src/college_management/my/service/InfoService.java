@@ -1,5 +1,7 @@
 package college_management.my.service;
 
+import java.util.List;
+
 import college_management.my.db.DisabilityDB;
 import college_management.my.db.SoldierDB;
 import college_management.my.db.model.Student;
@@ -47,11 +49,11 @@ public class InfoService {
 		return true;
 	}
 	
-	public UserDisability read(String id) {
+	public List<UserDisability> read(String id) {
 		return ddb.read(id);
 	}
 	
-	public UserSoldier sread(String id) {
+	public List<UserSoldier> sread(String id) {
 		return sdb.read(id);
 	}
 }

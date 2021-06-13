@@ -1,5 +1,7 @@
 package college_management.my.service;
 
+import java.util.List;
+
 import college_management.my.db.ProfessorDB;
 import college_management.my.db.UserDB;
 import college_management.my.db.model.Professor;
@@ -23,7 +25,7 @@ public class ProfessorService {
 		return true;
 	}
 	
-	public Professor read(String id) {
+	public List<Professor> read(String id) {
 		return db.read(id);
 	}
 }

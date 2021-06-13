@@ -10,8 +10,13 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.querydsl.jpa.impl.JPAQuery;
+
 import college_management.my.db.model.Lecture;
+import college_management.my.db.model.LectureHistory;
 import college_management.my.db.model.Professor;
+import college_management.my.db.model.QLecture;
+import college_management.my.db.model.QLectureHistory;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 import college_management.my.db.model.UserFamily;
@@ -56,40 +61,41 @@ public class LectureDB extends BaseDB{
 		}
 	}
 	
-	public Lecture read(String code) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		
-//		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
-//		Root<Lecture> from = cQuery.from(Lecture.class);
-//		Predicate where = criteriaBuilder.equal(from.get("code"), code);
-//		cQuery.where(where);
+//	public Lecture read(String code) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 //		
-//		Query query = em.createQuery(cQuery);
-		Query query = em.createQuery("select m from Lecture m where m.code = '" + code + "'");
-		List<Lecture> resultList = query.getResultList();
-
-		if (resultList.size() == 1)
-			return resultList.get(0);
-		else
-			return null;
+//		Query query = em.createQuery("select m from Lecture m where m.code = '" + code + "'");
+//		List<Lecture> resultList = query.getResultList();
+//
+//		if (resultList.size() == 1)
+//			return resultList.get(0);
+//		else
+//			return null;
+//	}
+	
+	public static List<Lecture> read(String code) {
+		QLecture lecture = QLecture.lecture;
+		
+		List<Lecture> result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.code.eq(code)).fetch();
+		return result;
 	}
 	
-	public List<Lecture> readAll(String id) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+	public static List<Lecture> readAll(String id) {
+		QLecture lecture = QLecture.lecture;
 		
-//		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
-//		Root<Lecture> from = cQuery.from(Lecture.class);
-//		Join<Lecture, Professor> join = from.join("professor");
-//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-		Query query = em.createQuery("select m from Lecture m where m.professor.user.id=" + id);
-		List<Lecture> resultList = query.getResultList();
-
-		if (resultList.size() > 0)
-			return resultList;
-		else
-			return null;
+		List<Lecture> result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.professor.user.id.eq(id)).fetch();
+		return result;
 	}
+	
+//	public List<Lecture> readAll(String id) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		Query query = em.createQuery("select m from Lecture m where m.professor.user.id=" + id);
+//		List<Lecture> resultList = query.getResultList();
+//
+//		if (resultList.size() > 0)
+//			return resultList;
+//		else
+//			return null;
+//	}
 }

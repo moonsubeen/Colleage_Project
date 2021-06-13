@@ -32,6 +32,7 @@ C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\cli\co
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\api\config\Permission.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\api\old_api\EmployeeAPI.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\db\model\LectureAttendance.java
+C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\cli\controller\CLILecture.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\db\model\UserFamily.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\db\model\LectureHistoryID.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\auth\Old_CLIAuth.java
@@ -47,3 +48,4 @@ C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\cli\co
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\service\EmployeeService.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\cli\controller\CLISRegister.java
 C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\db\LectureHistoryDB.java
+C:\Users\伙己\eclipse-workspace\College_Project\src\college_management\my\GUI\sample.java

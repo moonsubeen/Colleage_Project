@@ -10,6 +10,10 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.querydsl.jpa.impl.JPAQuery;
+
+import college_management.my.db.model.QUser;
+import college_management.my.db.model.QUserSoldier;
 import college_management.my.db.model.Student;
 import college_management.my.db.model.UserSoldier;
 import college_management.my.db.model.User;
@@ -50,21 +54,27 @@ public class SoldierDB extends BaseDB{
 		}
 	}
 	
-	public UserSoldier read(String id) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		
-		CriteriaQuery<UserSoldier> cQuery = criteriaBuilder.createQuery(UserSoldier.class);
-		Root<UserSoldier> from = cQuery.from(UserSoldier.class);
-		Join<UserSoldier, User> join = from.join("user");
-		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-		cQuery.where(where);
-		
-		Query query = em.createQuery(cQuery);
-		List<UserSoldier> resultList = query.getResultList();
-
-		if (resultList.size() == 1)
-			return resultList.get(0);
-		else
-			return null;
+//	public UserSoldier read(String id) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		CriteriaQuery<UserSoldier> cQuery = criteriaBuilder.createQuery(UserSoldier.class);
+//		Root<UserSoldier> from = cQuery.from(UserSoldier.class);
+//		Join<UserSoldier, User> join = from.join("user");
+//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
+//		cQuery.where(where);
+//		
+//		Query query = em.createQuery(cQuery);
+//		List<UserSoldier> resultList = query.getResultList();
+//
+//		if (resultList.size() == 1)
+//			return resultList.get(0);
+//		else
+//			return null;
+//	}
+	
+	public List<UserSoldier> read(String id) {
+		QUserSoldier soldier = QUserSoldier.userSoldier;
+		List<UserSoldier> result = new JPAQuery<UserSoldier>(em).from(soldier).where(soldier.user.id.eq(id)).fetch();
+		return result;
 	}
 }

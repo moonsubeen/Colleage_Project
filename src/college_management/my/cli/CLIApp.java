@@ -52,7 +52,7 @@ public class CLIApp {
 			new TailTipWidgets(reader, descriptionGenerator::commandDescription, 5, TipType.COMPLETER);
 			
 			// 초기화 (Default 어드민 계정 추가)
-			Init();
+//			Init();
 						
 			// start the shell and process input until the user quits with Ctrl-D
 			String prompt = "";

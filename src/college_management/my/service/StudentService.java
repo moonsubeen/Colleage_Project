@@ -1,5 +1,7 @@
 package college_management.my.service;
 
+import java.util.List;
+
 import college_management.my.api.config.Permission;
 import college_management.my.db.DisabilityDB;
 import college_management.my.db.SoldierDB;
@@ -29,7 +31,7 @@ public class StudentService {
 		return true;
 	}
 	
-	public Student read(String id) {
+	public List<Student> read(String id) {
 		return db.read(id);
 	}
 }

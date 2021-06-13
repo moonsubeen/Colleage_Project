@@ -12,8 +12,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.querydsl.jpa.impl.JPAQuery;
+
 import college_management.my.api.config.Permission;
 import college_management.my.db.model.UserFamily;
+import college_management.my.db.model.QUser;
 import college_management.my.db.model.User;
 
 public class UserDB extends BaseDB{
@@ -113,36 +116,48 @@ public class UserDB extends BaseDB{
 		return true;
 	}
 	
-	public User read(String id) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		
-		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
-		Root<User> from = cQuery.from(User.class);
-		Predicate where = criteriaBuilder.equal(from.get("id"), id);
-		cQuery.where(where);
-		
-		Query query = em.createQuery(cQuery);
-		List<User> resultList = query.getResultList();
-
-		if (resultList.size() == 1)
-			return resultList.get(0);
-		else
-			return null;
+//	public User read(String id) {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
+//		Root<User> from = cQuery.from(User.class);
+//		Predicate where = criteriaBuilder.equal(from.get("id"), id);
+//		cQuery.where(where);
+//		
+//		Query query = em.createQuery(cQuery);
+//		List<User> resultList = query.getResultList();
+//
+//		if (resultList.size() == 1)
+//			return resultList.get(0);
+//		else
+//			return null;
+//	}
+	
+	public List<User> read(String id) {
+		QUser user = QUser.user;
+		List<User> result = new JPAQuery<User>(em).from(user).where(user.id.eq(id)).fetch();
+		return result;
 	}
 	
 	public List<User> readAll() {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		
-		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
-		cQuery.from(User.class);
-		
-		Query query = em.createQuery(cQuery);
-		List<User> resultList = query.getResultList();
-
-		if (resultList.size() > 0)
-			return resultList;
-		else
-			return null;
+		QUser user = QUser.user;
+		List<User> result = new JPAQuery<User>(em).from(user).fetch();
+		return result;
 	}
+	
+//	public List<User> readAll() {
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//		
+//		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
+//		cQuery.from(User.class);
+//		
+//		Query query = em.createQuery(cQuery);
+//		List<User> resultList = query.getResultList();
+//
+//		if (resultList.size() > 0)
+//			return resultList;
+//		else
+//			return null;
+//	}
 	
 }

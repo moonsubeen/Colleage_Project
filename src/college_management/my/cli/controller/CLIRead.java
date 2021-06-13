@@ -34,9 +34,9 @@ import picocli.CommandLine.ParentCommand;
 	subcommands = CommandLine.HelpCommand.class)
 
 public class CLIRead implements Runnable  {
-//	@Parameters(paramLabel = "Role", description = "The role")
-//	private String role;
-//
+//	@Parameters(paramLabel = "Info", description = "The Info")
+//    private String info;
+    
 	@Option(names = { "-i", "--id" }, description = "The identification")
 	private String id = "";
 	
@@ -52,7 +52,7 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-sd", "--sodier" }, description = "The Student sodier")
 	private boolean sodier;
 	
-	@Option(names = { "-da", "--disabilty" }, description = "The Student sodier")
+	@Option(names = { "-d", "--disabilty" }, description = "The Student sodier")
 	private boolean disabilty;
 	
 	@Option(names = { "-p", "--professor" }, description = "The Student sodier")
@@ -64,14 +64,20 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-lh", "--lecturehistory" }, description = "The Student sodier")
 	private boolean lecturehistory;
 	
+	@Option(names = { "-lha", "--lecturehistoryAll" }, description = "The Student sodier")
+	private boolean lecturehistoryAll;
+	
 	@Option(names = { "-la", "--lecture all" }, description = "The Student sodier")
 	private boolean lectureAll;
 	
-	@Option(names = { "-le", "--lectureAttendance all" }, description = "The Student sodier")
+	@Option(names = { "-le", "--lectureAttendance" }, description = "The Student sodier")
 	private boolean lectureAttendance;
 	
-	@Option(names = { "-les", "--lectureAttendance select" }, description = "The Student sodier")
+	@Option(names = { "-les", "--lectureAttendanceSelect" }, description = "The Student sodier")
 	private boolean lectureAttendanceSelect;
+	
+	@Option(names = { "-lea", "--lectureAttendanceAll" }, description = "The Student sodier")
+	private boolean lectureAttendanceAll;
 	
 	@Option(names = { "-c", "--code" }, description = "The Student sodier")
 	private String code = "";
@@ -141,50 +147,96 @@ public class CLIRead implements Runnable  {
 		}
 		
 		if(professor) {
-			Professor professor = professorService.read(user.getId());
-			parent.out.println(professor.toString());
-			return;
+			if(auth.hasProfessorPermission()) {
+				Professor professor = professorService.read(user.getId());
+				parent.out.println(professor.toString());
+				return;
+			}
+			else {
+				parent.out.println("it's denied");
+				return;
+			}
 		}
 		
 		if(lecture) {
-			Lecture lecture = lectureService.read(id);
+			Lecture lecture = lectureService.read(code);
 				parent.out.println(lecture.toString());
 			return;
 		}
 		
 		if(lecturehistory) {
-			LectureHistory lecturehistory = lectureService.hread(id);
-				parent.out.println(lecturehistory.toString());
+			if(auth.hasStudentPermission()) {
+				for(LectureHistory lecturehistory : lectureService.hread(user.getId())) {
+					parent.out.println(lecturehistory.toString2());
+				}
 			return;
+			}
+			else {
+				parent.out.println("it's denied");
+				return;
+			}
+		}
+		
+		if(lecturehistoryAll) {
+			if(auth.hasProfessorPermission()) {
+				for(LectureHistory lecturehistory : lectureService.readAll3()) {
+					parent.out.println(lecturehistory.toString());
+				}
+			return;
+			}
+			else {
+				parent.out.println("it's denied");
+				return;
+			}
 		}
 		
 		if(lectureAttendance) {
 			if(auth.hasStudentPermission()) {
 				for(LectureAttendance lecture : lectureService.readAll2(user.getId())) {
-				parent.out.println(lecture.toString());
+					parent.out.println(lecture.toString());
 				}
+			return;
 			} else {
 				parent.out.println("It's denied");
+				return;
 			}
-			return;
 		}
 		
 		if(lectureAttendanceSelect) {
 			if(auth.hasStudentPermission()) {
 				for(LectureAttendance lecture : lectureService.check(user.getId(), code)) {
-				parent.out.println(lecture.toString());
+					parent.out.println(lecture.toString());
 				}
+			return;
 			} else {
 				parent.out.println("It's denied");
+				return;
 			}
+		}
+		
+		if(lectureAttendanceAll) {
+			if(auth.hasProfessorPermission()) {
+				for(LectureAttendance lecture : lectureService.readAll4()) {
+					parent.out.println(lecture.toString());
+				}
 			return;
+			} else {
+				parent.out.println("It's denied");
+				return;
+			}
 		}
 		
 		if(lectureAll) {
-			for(Lecture lecture : lectureService.readAll(user.getId())) {
-				parent.out.println(lecture.toString());
-			}
+			if(auth.hasProfessorPermission()) {
+				for(Lecture lecture : lectureService.readAll(user.getId())) {
+					parent.out.println(lecture.toString());
+				}
 			return;
+			}
+			else {
+				parent.out.println("It's denied");
+				return;
+			}
 		}
 		
 		parent.out.println(user.toString());

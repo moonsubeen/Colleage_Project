@@ -81,12 +81,12 @@ public class LectureService {
 		return adb.check(id, code);
 	}
 	
-	public Lecture read(String code) {
+	public List<Lecture> read(String code) {
 		return db.read(code);
 	}
 	
-	public LectureHistory hread(String code) {
-		return hdb.read(code);
+	public List<LectureHistory> hread(String id) {
+		return hdb.read(id);
 	}
 	
 	public List<Lecture> readAll(String id) {
@@ -95,5 +95,13 @@ public class LectureService {
 	
 	public List<LectureAttendance> readAll2(String id) {
 		return adb.readAll(id);
+	}
+	
+	public List<LectureHistory> readAll3() {
+		return hdb.readAll();
+	}
+	
+	public List<LectureAttendance> readAll4() {
+		return adb.readAll2();
 	}
 }

@@ -116,5 +116,8 @@ public class LectureHistory implements Serializable{
 		return  "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() +  ", 성적 : " + grades
 				+ ", 등급 : " + ranks + ", 평가 : " + evaluations + ", 이의 제기 : " + problems + ", 강의 인원 수 : " + counts; 
 	}
+	public String toString2() {
+		return "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() + ", 성적 : " + grades + ", 등급 : " + ranks;
+	}
 	
 }

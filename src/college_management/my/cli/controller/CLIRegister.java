@@ -81,58 +81,58 @@ public class CLIRegister implements Runnable  {
 	@Option(names = { "-rl", "--relation" }, description = "The relation", required = false)
 	private String relation = "";
 	
-	@Option(names = {"-st"})
+	@Option(names = {"-st", "--state" }, description = "The relation", required = false)
 	private boolean state;
 	
-	@Option(names = {"-di"})
+	@Option(names = {"-di", "--disability" }, description = "The relation", required = false)
 	private String disability = "";
 	
-	@Option(names = {"-do"})
+	@Option(names = {"-do", "--document" }, description = "The relation", required = false)
 	private String document = "";
 	
-	@Option(names = {"-mn"})
+	@Option(names = {"-mn", "--militaryNumber" }, description = "The relation", required = false)
 	private String militaryNumber = "";
 	
-	@Option(names = {"-t"})
+	@Option(names = {"-t", "--type" }, description = "The relation", required = false)
 	private String type = "";
 	
-	@Option(names = {"-cl"})
+	@Option(names = {"-cl", "--classification" }, description = "The relation", required = false)
 	private String classification = "";
 	
-	@Option(names = {"-br"})
+	@Option(names = {"-br", "--branch" }, description = "The relation", required = false)
 	private String branch = "";
 	
-	@Option(names = {"-ra"})
+	@Option(names = {"-ra", "--rank" }, description = "The relation", required = false)
 	private String rank = "";
 	
-	@Option(names = {"-jd"})
+	@Option(names = {"-jd", "--joinDate" }, description = "The relation", required = false)
 	private String joinDate = "";
 	
-	@Option(names = {"-dd"})
+	@Option(names = {"-dd", "--dischageDate" }, description = "The relation", required = false)
 	private String dischageDate = "";
 	
-	@Option(names = {"-y"})
+	@Option(names = {"-y", "--year" }, description = "The relation", required = false)
 	private int year;
 	
-	@Option(names = {"-se"})
+	@Option(names = {"-se", "--semester" }, description = "The relation", required = false)
 	private int semester;
 	
-	@Option(names = {"-da"})
+	@Option(names = {"-da", "--day" }, description = "The relation", required = false)
 	private String day = "";
 	
-	@Option(names = {"-ti"})
+	@Option(names = {"-ti", "--time" }, description = "The relation", required = false)
 	private String time;
 	
-	@Option(names = {"-co"})
+	@Option(names = {"-co", "--count" }, description = "The relation", required = false)
 	private int count;
 	
-	@Option(names = {"-g"})
+	@Option(names = {"-g", "--grade" }, description = "The relation", required = false)
 	private int grade;
 	
-	@Option(names = {"-mo"})
+	@Option(names = {"-mo", "--month" }, description = "The relation", required = false)
 	private int month;
 	
-	@Option(names = {"-at"})
+	@Option(names = {"-at", "--attendance" }, description = "The relation", required = false)
 	private String attendance;
 	
 	@ParentCommand
@@ -146,7 +146,7 @@ public class CLIRegister implements Runnable  {
 	
 	public void run() {
 		UserAuth auth = UserAuth.getInstance();
-
+		User user = auth.getUser();
 		// 로그인 확인
 		if (!auth.isLogin()) {
 			parent.out.println("it's need to login");
@@ -188,7 +188,7 @@ public class CLIRegister implements Runnable  {
 				break;
 			case "lecture":
 				pauth();
-				if(lectureService.register(id, code, name, year, semester, day, time, count, point, plan)) {
+				if(lectureService.register(user.getId(), code, name, year, semester, day, time, count, point, plan)) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");
@@ -196,7 +196,7 @@ public class CLIRegister implements Runnable  {
 				break;
 			case "lecture2":
 //				pauth();
-				if(lectureService.register(code, id)) {
+				if(lectureService.register(code, user.getId())) {
 					parent.out.println("register success");
 				} else {
 					parent.out.println("register fail");

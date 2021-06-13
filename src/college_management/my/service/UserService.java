@@ -46,7 +46,7 @@ public class UserService {
 		return true;
 	}
 
-	public User read(String id) {
+	public List<User> read(String id) {
 		return db.read(id);
 	}
 	
