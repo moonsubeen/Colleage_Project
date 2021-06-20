@@ -25,7 +25,7 @@ public class ProfessorService {
 		return true;
 	}
 	
-	public List<Professor> read(String id) {
+	public Professor read(String id) {
 		return db.read(id);
 	}
 }

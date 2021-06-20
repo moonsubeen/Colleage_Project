@@ -114,6 +114,7 @@ public class CLIRead implements Runnable  {
 		
 		// 사용자 정보 출력
 		User user = auth.getUser();
+		User users = userService.read(user.getId());
 		
 		if(student) {
 			if(auth.hasStudentPermission()) {
@@ -239,6 +240,6 @@ public class CLIRead implements Runnable  {
 			}
 		}
 		
-		parent.out.println(user.toString());
+		parent.out.println(users.toString());
 	}
 }

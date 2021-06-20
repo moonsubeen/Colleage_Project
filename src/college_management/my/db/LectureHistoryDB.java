@@ -10,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureAttendance;
@@ -40,49 +41,36 @@ public class LectureHistoryDB extends BaseDB{
 	}
 	
 	public static void grade(String code, String id, int grade, String ranks) {
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		em.createNativeQuery("update lecturehistory m set m.grade = :grade, m.ranks =:ranks where m.lecture_code = :code and m.student_id = :id")
-		.setParameter("grade", grade).setParameter("ranks", ranks).setParameter("code", code).setParameter("id", id).executeUpdate();
-		transaction.commit();
+		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
+		em.getTransaction().begin();
+		JPAUpdateClause update = new JPAUpdateClause(em, LectureHistory);
+		update.set(LectureHistory.grades, grade);
+		update.set(LectureHistory.ranks, ranks);
+		update.where(LectureHistory.lecture.code.eq(code).and(LectureHistory.student.user.id.eq(id))).execute();
+		em.getTransaction().commit();
+		em.clear();
 	}
 	
 	public static void problem(String code, String id, String problem) {	
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		em.createNativeQuery("update lecturehistory m set m.problem = :problem where m.lecture_code = :code and m.student_id = :id")
-		.setParameter("problem", problem).setParameter("code", code).setParameter("id", id).executeUpdate();
-		transaction.commit();
+		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
+		em.getTransaction().begin();
+		JPAUpdateClause update = new JPAUpdateClause(em, LectureHistory);
+		update.set(LectureHistory.problems, problem);
+		update.where(LectureHistory.lecture.code.eq(code).and(LectureHistory.student.user.id.eq(id))).execute();
+		em.getTransaction().commit();
+		em.clear();
 	}
 	
 	public static void evaluation(String code, String id, String evaluation) {	
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		em.createNativeQuery("update lecturehistory m set m.evaluation = :evaluation where m.lecture_code = :code and m.student_id = :id")
-		.setParameter("evaluation", evaluation).setParameter("code", code).setParameter("id", id).executeUpdate();
-		transaction.commit();
+		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
+		em.getTransaction().begin();
+		JPAUpdateClause update = new JPAUpdateClause(em, LectureHistory);
+		update.set(LectureHistory.evaluations, evaluation);
+		update.where(LectureHistory.lecture.code.eq(code).and(LectureHistory.student.user.id.eq(id))).execute();
+		em.getTransaction().commit();
+		em.clear();
 	}
 	
-	public static void check(String id, String code, int grade, String ranks) {
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		em.createNativeQuery("update lecturehistory m set m.grade = :evaluation where m.lecture_code = :code and m.student_id = :id")
-		.setParameter("evaluation", grade).setParameter("code", code).setParameter("id", id).executeUpdate();
-		transaction.commit();
-	}
-	
-//	public List<LectureHistory> read(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from LectureHistory m where m.student.user.id = " + id);
-//		List<LectureHistory> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
-//	
 	public static List<LectureHistory> read(String id) {
 		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
 		
@@ -96,16 +84,4 @@ public class LectureHistoryDB extends BaseDB{
 		List<LectureHistory> result = new JPAQuery<LectureHistory>(em).from(LectureHistory).fetch();
 		return result;
 	}
-	
-//	public List<LectureHistory> readAll() {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from LectureHistory m");
-//		List<LectureHistory> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
 }

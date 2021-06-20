@@ -81,7 +81,7 @@ public class LectureService {
 		return adb.check(id, code);
 	}
 	
-	public List<Lecture> read(String code) {
+	public Lecture read(String code) {
 		return db.read(code);
 	}
 	

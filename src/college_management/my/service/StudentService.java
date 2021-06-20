@@ -31,7 +31,7 @@ public class StudentService {
 		return true;
 	}
 	
-	public List<Student> read(String id) {
+	public Student read(String id) {
 		return db.read(id);
 	}
 }

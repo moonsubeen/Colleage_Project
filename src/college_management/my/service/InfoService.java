@@ -49,11 +49,11 @@ public class InfoService {
 		return true;
 	}
 	
-	public List<UserDisability> read(String id) {
+	public UserDisability read(String id) {
 		return ddb.read(id);
 	}
 	
-	public List<UserSoldier> sread(String id) {
+	public UserSoldier sread(String id) {
 		return sdb.read(id);
 	}
 }

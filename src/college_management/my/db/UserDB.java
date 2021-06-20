@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.FlushModeType;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import college_management.my.api.config.Permission;
 import college_management.my.db.model.UserFamily;
@@ -31,6 +33,8 @@ public class UserDB extends BaseDB{
 	
 	public User register(String id, String name, String email, String nationality, String phoneNumber, String address, String residentNumber, String birthdate, String sex, Permission role) {
 		try {
+			QUser users = QUser.user;
+//			SQLInsertClause insert = insert(users)
 			User user = new User();
 			user.setId(id);
 			user.setName(name);
@@ -57,23 +61,9 @@ public class UserDB extends BaseDB{
 	}
 	
 	public User login(String id, String pwd) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		
-		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
-		Root<User> from = cQuery.from(User.class);
-		Predicate where1 = criteriaBuilder.equal(from.get("id"), id);
-		Predicate where2 = criteriaBuilder.equal(from.get("pwd"), pwd);
-		Predicate whereFinal = criteriaBuilder.and(where1, where2);
-		cQuery.where(whereFinal);
-		
-		Query query = em.createQuery(cQuery);
-		List<User> resultList = query.getResultList();
-
-		if (resultList.size() == 1) {
-			return resultList.get(0);
-		}
-		else
-			return null;
+		QUser user = QUser.user;
+		User result = new JPAQuery<User>(em).from(user).where(user.id.eq(id).and(user.pwd.eq(pwd))).fetchOne();
+		return result;
 	}
 	
 	public static void update2(String id, String address, String name) {
@@ -85,30 +75,30 @@ public class UserDB extends BaseDB{
 	}
 	
 	public boolean update(String id, String pwd, String name, String email, String address, String phoneNumber) {
-		try {
-			User user = em.find(User.class, id);
-			EntityTransaction transaction = em.getTransaction();
-		
+		try{
+			QUser user = QUser.user;
+			em.getTransaction().begin();
+			JPAUpdateClause update = new JPAUpdateClause(em, user);
+			
 			if(pwd != null) {
 				if(pwd.length() < 8) {
 					System.out.println("It must be at least 8 digits");
 					return false;
 				}
-				user.setPwd(pwd);
+				update.set(user.pwd, pwd);
+			} else if(name != null) {
+				update.set(user.name, name);
+			} else if(email != null) {
+				update.set(user.email, email);
+			} else if(address != null) {
+				update.set(user.address, address);
+			} else if(phoneNumber != null) {
+				update.set(user.phoneNumber, phoneNumber);
 			}
-			if(name != null)
-				user.setName(name);
-			if(email != null)
-				user.setEmail(email);
-			if(address != null)
-				user.setAddress(address);
-			if(phoneNumber != null)
-				user.setPhoneNumber(phoneNumber);
-			
-			transaction.begin();
-			em.persist(user);
-			transaction.commit();
-
+			update.where(user.id.eq(id)).execute();
+			em.getTransaction().commit();
+			em.refresh(user);
+//			em.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -116,26 +106,9 @@ public class UserDB extends BaseDB{
 		return true;
 	}
 	
-//	public User read(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
-//		Root<User> from = cQuery.from(User.class);
-//		Predicate where = criteriaBuilder.equal(from.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<User> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
-	
-	public List<User> read(String id) {
+	public User read(String id) {
 		QUser user = QUser.user;
-		List<User> result = new JPAQuery<User>(em).from(user).where(user.id.eq(id)).fetch();
+		User result = new JPAQuery<User>(em).from(user).where(user.id.eq(id)).fetchOne();
 		return result;
 	}
 	
@@ -144,20 +117,4 @@ public class UserDB extends BaseDB{
 		List<User> result = new JPAQuery<User>(em).from(user).fetch();
 		return result;
 	}
-	
-//	public List<User> readAll() {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<User> cQuery = criteriaBuilder.createQuery(User.class);
-//		cQuery.from(User.class);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<User> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
-	
 }

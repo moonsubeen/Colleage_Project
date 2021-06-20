@@ -53,28 +53,10 @@ public class SoldierDB extends BaseDB{
 			return null;
 		}
 	}
-	
-//	public UserSoldier read(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<UserSoldier> cQuery = criteriaBuilder.createQuery(UserSoldier.class);
-//		Root<UserSoldier> from = cQuery.from(UserSoldier.class);
-//		Join<UserSoldier, User> join = from.join("user");
-//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<UserSoldier> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
-	
-	public List<UserSoldier> read(String id) {
+
+	public UserSoldier read(String id) {
 		QUserSoldier soldier = QUserSoldier.userSoldier;
-		List<UserSoldier> result = new JPAQuery<UserSoldier>(em).from(soldier).where(soldier.user.id.eq(id)).fetch();
+		UserSoldier result = new JPAQuery<UserSoldier>(em).from(soldier).where(soldier.user.id.eq(id)).fetchOne();
 		return result;
 	}
 }

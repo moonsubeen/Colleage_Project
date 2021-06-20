@@ -50,28 +50,10 @@ public class DisabilityDB extends BaseDB{
 			return null;
 		}
 	}
-	
-//	public UserDisability read(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<UserDisability> cQuery = criteriaBuilder.createQuery(UserDisability.class);
-//		Root<UserDisability> from = cQuery.from(UserDisability.class);
-//		Join<UserDisability, User> join = from.join("user");
-//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<UserDisability> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
-	
-	public List<UserDisability> read(String id) {
+		
+	public UserDisability read(String id) {
 		QUserDisability userdisability = QUserDisability.userDisability;
-		List<UserDisability> result = new JPAQuery<UserDisability>(em).from(userdisability).where(userdisability.user.id.eq(id)).fetch();
+		UserDisability result = new JPAQuery<UserDisability>(em).from(userdisability).where(userdisability.user.id.eq(id)).fetchOne();
 		return result;
 	}
 }

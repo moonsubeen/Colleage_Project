@@ -53,36 +53,12 @@ public class LectureAttendanceDB extends BaseDB{
 		}
 	}
 	
-//	public List<LectureAttendance> check(String id, String code) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id + " and m.lecture.code=" + code);
-//		List<LectureAttendance> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
-	
 	public static List<LectureAttendance> check(String id, String code) {
 		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
 		
 		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.student.user.id.eq(id).and(LectureAttendance.lecture.code.eq(code))).fetch();
 		return result;
 	}
-	
-//	public List<LectureAttendance> readAll(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from LectureAttendance m where m.student.user.id=" + id);
-//		List<LectureAttendance> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
 	
 	public static List<LectureAttendance> readAll(String id) {
 		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
@@ -97,18 +73,6 @@ public class LectureAttendanceDB extends BaseDB{
 		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).fetch();
 		return result;
 	}
-	
-//	public List<LectureAttendance> readAll2() {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from LectureAttendance m");
-//		List<LectureAttendance> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
 	
 	public LectureAttendance count() {
 		Query query = em.createQuery("select count(m) from LectureAttendance m where m.attendance = 결석");

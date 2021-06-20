@@ -49,27 +49,9 @@ public class ProfessorDB extends BaseDB{
 		}
 	}
 	
-//	public Professor read(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<Professor> cQuery = criteriaBuilder.createQuery(Professor.class);
-//		Root<Professor> from = cQuery.from(Professor.class);
-//		Join<Professor, User> join = from.join("user");
-//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<Professor> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
-	
-	public List<Professor> read(String id) {
+	public Professor read(String id) {
 		QProfessor professor = QProfessor.professor;
-		List<Professor> result = new JPAQuery<Professor>(em).from(professor).where(professor.user.id.eq(id)).fetch();
+		Professor result = new JPAQuery<Professor>(em).from(professor).where(professor.user.id.eq(id)).fetchOne();
 		return result;
 	}
 	

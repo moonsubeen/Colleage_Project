@@ -61,22 +61,10 @@ public class LectureDB extends BaseDB{
 		}
 	}
 	
-//	public Lecture read(String code) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from Lecture m where m.code = '" + code + "'");
-//		List<Lecture> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
-	
-	public static List<Lecture> read(String code) {
+	public static Lecture read(String code) {
 		QLecture lecture = QLecture.lecture;
 		
-		List<Lecture> result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.code.eq(code)).fetch();
+		Lecture result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.code.eq(code)).fetchOne();
 		return result;
 	}
 	
@@ -86,16 +74,4 @@ public class LectureDB extends BaseDB{
 		List<Lecture> result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.professor.user.id.eq(id)).fetch();
 		return result;
 	}
-	
-//	public List<Lecture> readAll(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		Query query = em.createQuery("select m from Lecture m where m.professor.user.id=" + id);
-//		List<Lecture> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
 }

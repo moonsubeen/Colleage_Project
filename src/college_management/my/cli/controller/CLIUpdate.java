@@ -63,25 +63,5 @@ public class CLIUpdate implements Runnable {
 			parent.out.println("update fail");
 		}
 		}
-//		CLIAuth auth = CLIAuth.getInstance();
-//		if(!auth.isLogin())
-//		{
-//			parent.out.println("It's need to login");
-//			return;
-//		}
-//		
-//		User user = CLIAuth.getInstance().getUser();
-//		
-//		switch (user.getRole()) {
-//		case "student":
-//			UserAPI api = new UserAPI();
-//			boolean result = api.pwdUpdate(pwd, user.getId());
-//			if (result) {
-//				parent.out.println("update success");
-//			} else {
-//				parent.out.println("update fail");
-//			}
-//			break;
-//		}
 	}
 }

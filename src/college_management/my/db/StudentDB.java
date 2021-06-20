@@ -47,27 +47,9 @@ public class StudentDB extends BaseDB{
 		}
 	}
 	
-//	public Student read(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<Student> cQuery = criteriaBuilder.createQuery(Student.class);
-//		Root<Student> from = cQuery.from(Student.class);
-//		Join<Student, User> join = from.join("user");
-//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<Student> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
-	
-	public List<Student> read(String id) {
+	public Student read(String id) {
 		QStudent student = QStudent.student;
-		List<Student> result = new JPAQuery<Student>(em).from(student).where(student.user.id.eq(id)).fetch();
+		Student result = new JPAQuery<Student>(em).from(student).where(student.user.id.eq(id)).fetchOne();
 		return result;
 	}
 }
