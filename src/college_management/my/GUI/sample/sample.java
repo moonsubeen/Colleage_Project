@@ -1,4 +1,4 @@
-package college_management.my.GUI;
+package college_management.my.GUI.sample;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,7 +13,7 @@ import javax.swing.BoxLayout;
 public class sample extends JFrame {
 
 	private JPanel contentPane;
-	private sample panel;
+	private Panelsample panel;
 
 	/**
 	 * Launch the application.
@@ -45,7 +45,7 @@ public class sample extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 		
-		panel = new sample();
+		panel = new Panelsample();
 		contentPane.add(panel);
 		initUI();
 	}
