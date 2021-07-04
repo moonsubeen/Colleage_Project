@@ -41,7 +41,7 @@ public class UserTab extends TabPanel{
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
 		JButton registerBtn = layout.getRegisterBtn();
-		JButton deleteBtn = layout.getDeleteBtn();
+//		JButton deleteBtn = layout.getDeleteBtn();
 		loadBtn.addActionListener(loadListener);
 		updateBtn.addActionListener(updateListener);
 		registerBtn.addActionListener(registerListener);
@@ -60,11 +60,8 @@ public class UserTab extends TabPanel{
 
 	private void refresh() {
 		if (auth.isLogin()) {
-			String role = roleComboBox.getSelectedItem().toString();
-			if(role == "Admin") {
-				List<User> users = userService.readAll();
-				list.setModel(new UserListTableAdapter(users));
-			}
+			List<User> users = userService.RolereadAll(roleComboBox.getSelectedItem().toString());
+			list.setModel(new UserListTableAdapter(users));
 		}
 	}
 
@@ -84,6 +81,7 @@ public class UserTab extends TabPanel{
 		public void actionPerformed(ActionEvent e) {
 			User user = (User) info.getData();
 			if (userService.update(user.getId(), user.getPwd(), user.getName(), user.getEmail(), user.getAddress(), user.getPhoneNumber())) {
+				showMessageBox("업데이트 성공");
 				refresh();
 			}
 		}

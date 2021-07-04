@@ -36,7 +36,7 @@ public class AdminUserInfoView extends LecView{
 		setLayout(new GridBagLayout());
 
 		int row = 0;
-		addTxtField("학번", idTxtField, row++, false);
+		addTxtField("아이디", idTxtField, row++, false);
 		addTxtField("이름", nameTxtField, row++, true);
 		addTxtField("주소", addressTxtField, row++, true);
 		addTxtField("전화번호", phoneTxtField, row++, true);

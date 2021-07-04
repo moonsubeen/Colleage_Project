@@ -8,7 +8,7 @@ import college_management.my.gui.layout.common.TableAdapter;
 @SuppressWarnings("serial")
 public class UserListTableAdapter extends TableAdapter{
 	// 제목
-		private final String[] header = { "학번", "이름", "권한" };
+		private final String[] header = { "아이디", "이름", "역활" };
 
 		// 내용
 		private List<User> data;

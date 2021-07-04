@@ -43,6 +43,9 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-a", "--all" }, description = "The All Users")
 	private boolean isAll;
 	
+	@Option(names = { "-r", "--roleAll" }, description = "The Role All Users")
+	private boolean RoleAll;
+	
 	@Option(names = { "-s", "--student" }, description = "The Student Users")
 	private boolean student;
 	
@@ -82,6 +85,9 @@ public class CLIRead implements Runnable  {
 	@Option(names = { "-c", "--code" }, description = "The Student sodier")
 	private String code = "";
 	
+	@Option(names = { "-ro", "--role" }, description = "The Student sodier")
+	private String role = "";
+	
 	@ParentCommand
 	CliCommands parent;
 	
@@ -108,6 +114,17 @@ public class CLIRead implements Runnable  {
 				}
 			} else {
 				parent.out.println("it's denided");
+			}
+			return;
+		}
+		
+		if(RoleAll) {
+			if(auth.hasAdminPermission()) {
+				for(User user : userService.RolereadAll(role)) {
+					parent.out.println(user.toString());
+				}
+			} else {
+				parent.out.println("it's denied");
 			}
 			return;
 		}

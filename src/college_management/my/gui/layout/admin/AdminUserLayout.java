@@ -49,8 +49,8 @@ public class AdminUserLayout extends JPanel{
 		registerBtn = (new JButton("사용자 정보 추가하기"));
 		registerBtn.setPreferredSize(new Dimension(200, 30));
 
-		deleteBtn = (new JButton("사용자 정보 삭제하기"));
-		deleteBtn.setPreferredSize(new Dimension(200, 30));
+//		deleteBtn = (new JButton("사용자 정보 삭제하기"));
+//		deleteBtn.setPreferredSize(new Dimension(200, 30));
 
 		initLayout();
 	}
@@ -85,10 +85,10 @@ public class AdminUserLayout extends JPanel{
 		c.gridy = 3;
 		add(registerBtn, c);
 
-		c.gridwidth = 2;
-		c.gridx = 1;
-		c.gridy = 4;
-		add(deleteBtn, c);
+//		c.gridwidth = 2;
+//		c.gridx = 1;
+//		c.gridy = 4;
+//		add(deleteBtn, c);
 	}
 
 	public LayoutManager getLayout() {
@@ -123,7 +123,7 @@ public class AdminUserLayout extends JPanel{
 		return registerBtn;
 	}
 
-	public JButton getDeleteBtn() {
-		return deleteBtn;
-	}
+//	public JButton getDeleteBtn() {
+//		return deleteBtn;
+//	}
 }

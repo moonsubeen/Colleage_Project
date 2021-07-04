@@ -81,23 +81,23 @@ public class UserDB extends BaseDB{
 			JPAUpdateClause update = new JPAUpdateClause(em, user);
 			
 			if(pwd != null) {
-				if(pwd.length() < 8) {
-					System.out.println("It must be at least 8 digits");
-					return false;
-				}
+//				if(pwd.length() < 8) {
+//					System.out.println("It must be at least 8 digits");
+//					return false;
+//				}
 				update.set(user.pwd, pwd);
-			} else if(name != null) {
+			} if(name != null) {
 				update.set(user.name, name);
-			} else if(email != null) {
+			} if(email != null) {
 				update.set(user.email, email);
-			} else if(address != null) {
+			} if(address != null) {
 				update.set(user.address, address);
-			} else if(phoneNumber != null) {
+			} if(phoneNumber != null) {
 				update.set(user.phoneNumber, phoneNumber);
 			}
 			update.where(user.id.eq(id)).execute();
 			em.getTransaction().commit();
-			em.refresh(user);
+//			em.refresh(user);
 //			em.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,6 +115,11 @@ public class UserDB extends BaseDB{
 	public List<User> readAll() {
 		QUser user = QUser.user;
 		List<User> result = new JPAQuery<User>(em).from(user).fetch();
+		return result;
+	}
+	public List<User> RolereadAll(Permission role){
+		QUser user = QUser.user;
+		List<User> result = new JPAQuery<User>(em).from(user).where(user.role.eq(role)).fetch();
 		return result;
 	}
 }

@@ -54,6 +54,10 @@ public class UserService {
 		return db.readAll();
 	}
 	
+	public List<User> RolereadAll(String role){
+		return db.RolereadAll(Permission.valueOfType(role));
+	}
+	
 	public List<UserFamily> readAll(String id) {
 		return fdb.readAll(id);
 	}
