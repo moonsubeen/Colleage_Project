@@ -19,9 +19,10 @@ public class AdminUserInfoView extends LecView{
 	private JTextField addressTxtField = new JTextField();
 	private JTextField phoneTxtField = new JTextField();
 	private JTextField countryTxtField = new JTextField();
-	private JTextField regdentTxtField = new JTextField();
+	private JTextField residentTxtField = new JTextField();
 	private JTextField emailTxtField = new JTextField();
 	private JTextField birthTxtField = new JTextField();
+	private JTextField sexTxtField = new JTextField();
 	private JTextField pwdTxtField = new JTextField();
 	private JTextField roleTxtField = new JTextField();
 	
@@ -41,9 +42,10 @@ public class AdminUserInfoView extends LecView{
 		addTxtField("주소", addressTxtField, row++, true);
 		addTxtField("전화번호", phoneTxtField, row++, true);
 		addTxtField("국적", countryTxtField, row++, true);
-		addTxtField("주민등록번호", regdentTxtField, row++, true);
+		addTxtField("주민등록번호", residentTxtField, row++, true);
 		addTxtField("이메일", emailTxtField, row++, true);
 		addTxtField("생년월일", birthTxtField, row++, true);
+		addTxtField("성별", sexTxtField, row++, true);
 		addTxtField("비밀번호", pwdTxtField, row++, true);
 		addTxtField("역활", roleTxtField, row++, true);
 	}
@@ -85,8 +87,8 @@ public class AdminUserInfoView extends LecView{
 		return countryTxtField;
 	}
 
-	public JTextField getRegdentTxtField() {
-		return regdentTxtField;
+	public JTextField getResidentTxtField() {
+		return residentTxtField;
 	}
 
 	public JTextField getEmailTxtField() {
@@ -96,7 +98,11 @@ public class AdminUserInfoView extends LecView{
 	public JTextField getBirthTxtField() {
 		return birthTxtField;
 	}
-
+	
+	public JTextField getSexTxtField() {
+		return sexTxtField;
+	}
+	
 	public JTextField getPwdTxtField() {
 		return pwdTxtField;
 	}
@@ -113,9 +119,10 @@ public class AdminUserInfoView extends LecView{
 		addressTxtField.setText(user.getAddress());
 		phoneTxtField.setText(user.getPhoneNumber());
 		countryTxtField.setText(user.getNationality());
-		regdentTxtField.setText(user.getResidentNumber());
+		residentTxtField.setText(user.getResidentNumber());
 		emailTxtField.setText(user.getEmail());
 		birthTxtField.setText(user.getBirthdate());
+		sexTxtField.setText(user.getSex());
 		pwdTxtField.setText(user.getPwd());
 		roleTxtField.setText(user.getRole().getValue());
 	}
@@ -128,9 +135,10 @@ public class AdminUserInfoView extends LecView{
 		user.setAddress(addressTxtField.getText());
 		user.setPhoneNumber(phoneTxtField.getText());
 		user.setNationality(countryTxtField.getText());
-		user.setResidentNumber(regdentTxtField.getText());
+		user.setResidentNumber(residentTxtField.getText());
 		user.setEmail(emailTxtField.getText());
 		user.setBirthdate(birthTxtField.getText());
+		user.setSex(sexTxtField.getText());
 		user.setPwd(pwdTxtField.getText());
 		user.setRole(Permission.valueOfType(roleTxtField.getText()));
 		return user;

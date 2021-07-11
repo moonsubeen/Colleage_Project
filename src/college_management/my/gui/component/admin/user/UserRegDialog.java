@@ -39,7 +39,7 @@ public class UserRegDialog extends LecPanel{
 		for (Permission p : Permission.values()) {
 			roleComboBox.addItem(p);
 		}
-		roleComboBox.setSelectedIndex(0);
+		roleComboBox.setSelectedIndex(3);
 		roleComboBox.addActionListener(roleListener);
 //		initComboBox(view.getStudent().getDivComboBox(), view.getStudent().getDepComboBox());
 //		initComboBox(view.getProfessor().getDivComboBox(), view.getProfessor().getDepComboBox());
@@ -58,8 +58,10 @@ public class UserRegDialog extends LecPanel{
 		int selected = JOptionPane.showOptionDialog(null, view, title, JOptionPane.DEFAULT_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, icon, options, options[0]);
 		if (selected == 0) {
+			showMessageBox("취소가 성공했습니다.");
 			cancel();
 		} else {
+			showMessageBox("등록이 성공했습니다.");
 			register();
 		}
 	}
@@ -77,6 +79,10 @@ public class UserRegDialog extends LecPanel{
 		public void actionPerformed(ActionEvent e) {
 			Permission selected = (Permission) roleComboBox.getSelectedItem();
 			switch (selected) {
+			case Admin:
+				showMessageBox("admin계정은 생성이 불가능합니다.");
+				view.changeToStudent();
+				break;
 			case Student:
 				view.changeToStudent();
 				break;

@@ -36,7 +36,7 @@ public class UserAuth {
 
 	public boolean hasAdminPermission() {
 		Permission role = user.getRole();
-		if (Permission.Admin.equals(role) || Permission.Employee.equals(role)) {
+		if (Permission.Admin.equals(role) /* || Permission.Employee.equals(role) */) {
 			return true;
 		}
 		return false;
