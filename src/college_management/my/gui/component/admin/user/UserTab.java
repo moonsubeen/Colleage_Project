@@ -73,6 +73,7 @@ public class UserTab extends TabPanel{
 
 	private ActionListener loadListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			showMessageBox("목록 새로고침 완료");
 			refresh();
 		}
 	};

@@ -30,7 +30,7 @@ public class LectureAttendanceDB extends BaseDB{
 		return instance;
 	}
 	
-	public LectureAttendance register(String id, String code, int month, String day, String attendance) {
+	public LectureAttendance register(String id, String code, String month, String day, String attendance) {
 		try {
 			Lecture lecture = em.find(Lecture.class, code);
 			Student student = em.find(Student.class, id);

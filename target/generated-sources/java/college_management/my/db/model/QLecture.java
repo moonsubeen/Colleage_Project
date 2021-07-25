@@ -30,19 +30,19 @@ public class QLecture extends EntityPathBase<Lecture> {
 
     public final StringPath lecturePlan = createString("lecturePlan");
 
-    public final NumberPath<Integer> max_count = createNumber("max_count", Integer.class);
+    public final StringPath max_count = createString("max_count");
 
     public final StringPath name = createString("name");
 
-    public final NumberPath<Integer> point = createNumber("point", Integer.class);
+    public final StringPath point = createString("point");
 
     public final QProfessor professor;
 
-    public final NumberPath<Integer> semester = createNumber("semester", Integer.class);
+    public final StringPath semester = createString("semester");
 
     public final StringPath time = createString("time");
 
-    public final NumberPath<Integer> year = createNumber("year", Integer.class);
+    public final StringPath year = createString("year");
 
     public QLecture(String variable) {
         this(Lecture.class, forVariable(variable), INITS);

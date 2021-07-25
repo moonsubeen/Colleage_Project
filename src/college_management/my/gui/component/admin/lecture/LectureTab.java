@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 import college_management.my.db.model.Lecture;
+import college_management.my.db.model.Professor;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.common.TabPanel;
+import college_management.my.gui.layout.admin.AdminBaseLectureDlgView;
 import college_management.my.gui.layout.admin.AdminLectureLayout;
+import college_management.my.gui.layout.admin.AdminLectureRegDlgView;
 import college_management.my.gui.layout.common.LecTableView;
 import college_management.my.gui.layout.common.LecView;
 
@@ -18,6 +22,7 @@ import college_management.my.gui.layout.common.LecView;
 public class LectureTab extends TabPanel{
 	private LecTableView list;
 	private LecView info;
+//	private JComboBox<String> professorComboBox;
 
 	public LectureTab(MainGUI frame) {
 		super(frame);
@@ -25,7 +30,7 @@ public class LectureTab extends TabPanel{
 		// set layout
 		AdminLectureLayout layout = new AdminLectureLayout();
 		add(layout);
-
+		
 		// set button
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
@@ -49,13 +54,14 @@ public class LectureTab extends TabPanel{
 
 	private void refresh() {
 		if (auth.isLogin()) {
-//			List<Lecture> lectures = lectureService.readAll();
-//			list.setModel(new LectureListTableAdapter(lectures));
+			List<Lecture> lectures = lectureService.readAll();
+			list.setModel(new LectureListTableAdapter(lectures));
 		}
 	}
 
 	private ActionListener loadListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			showMessageBox("목록 새로고침 완료");
 			refresh();
 		}
 	};
@@ -71,10 +77,8 @@ public class LectureTab extends TabPanel{
 
 	private ActionListener registerListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			Lecture lecture = (Lecture) info.getData();
-//			if (lectureService.register(lecture.getCode(), lecture)) {
-//				refresh();
-//			}
+			LectureRegDialog dlg = new LectureRegDialog(frame);
+			dlg.show();
 		}
 	};
 

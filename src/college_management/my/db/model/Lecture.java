@@ -35,13 +35,13 @@ public class Lecture implements Serializable{
 	private String name; // 강의명
 	
 	@Column(name = "point")
-	private int point; // 학점 
+	private String point; // 학점 
 	
 	@Column(name = "year")
-	private int year; // 년도
+	private String year; // 년도
 	
 	@Column(name = "semester")
-	private int semester; // 학기
+	private String semester; // 학기
 	
 	@Column(name = "day")
 	private String day; // 요일
@@ -52,21 +52,21 @@ public class Lecture implements Serializable{
 //	private HashMap<String, Integer> time = new HashMap<String, Integer>(); // 시간
 	
 	@Column(name = "max_count")
-	private int max_count; // 최대인원 수
+	private String max_count; // 최대인원 수
 	
 	@Column(name = "lecture_plan")
 	private String lecturePlan; // 강의 계획서
 	
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
-	public int getSemester() {
+	public String getSemester() {
 		return semester;
 	}
-	public void setSemester(int semester) {
+	public void setSemester(String semester) {
 		this.semester = semester;
 	}
 	public String getDay() {
@@ -94,10 +94,10 @@ public class Lecture implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public int getMax_count() {
+	public String getMax_count() {
 		return max_count;
 	}
-	public void setMax_count(int max_count) {
+	public void setMax_count(String max_count) {
 		this.max_count = max_count;
 	}
 	public String getCode() {
@@ -118,10 +118,10 @@ public class Lecture implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPoint() {
+	public String getPoint() {
 		return point;
 	}
-	public void setPoint(int point) {
+	public void setPoint(String point) {
 		this.point = point;
 	}
 	public String getLecturePlan() {

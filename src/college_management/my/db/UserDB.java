@@ -98,7 +98,7 @@ public class UserDB extends BaseDB{
 			update.where(user.id.eq(id)).execute();
 			em.getTransaction().commit();
 //			em.refresh(user);
-//			em.clear();
+			em.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

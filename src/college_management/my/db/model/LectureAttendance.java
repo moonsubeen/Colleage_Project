@@ -30,7 +30,7 @@ public class LectureAttendance implements Serializable{
 	private Student student; // 학생 번호
 	
 	@Column(name = "month")
-	private int month; // 월
+	private String month; // 월
 	
 	@Column(name = "day")
 	private String day; //일
@@ -54,12 +54,12 @@ public class LectureAttendance implements Serializable{
 		this.student = student;
 	}
 
-	public int getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(int month) {
-		this.month = month;
+	public void setMonth(String month2) {
+		this.month = month2;
 	}
 
 	public String getDay() {

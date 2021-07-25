@@ -31,8 +31,8 @@ public class LectureDB extends BaseDB{
 		return instance;
 	}
 	
-	public Lecture register(String id, String code, String name, int year, int semester, String day, 
-			String time, int max_count, int point, String plan) {
+	public Lecture register(String id, String code, String name, String year, String semester, String day, 
+			String time, String max_count, String point, String plan) {
 		try {
 			Lecture lecture = new Lecture();
 			User user = em.find(User.class, id);
@@ -61,10 +61,18 @@ public class LectureDB extends BaseDB{
 		}
 	}
 	
+	
 	public static Lecture read(String code) {
 		QLecture lecture = QLecture.lecture;
 		
 		Lecture result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.code.eq(code)).fetchOne();
+		return result;
+	}
+	
+	public static List<Lecture> readAll() {
+		QLecture lecture = QLecture.lecture;
+		
+		List<Lecture> result = new JPAQuery<Lecture>(em).from(lecture).fetch();
 		return result;
 	}
 	

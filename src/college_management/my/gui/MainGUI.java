@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import college_management.my.gui.component.admin.AdminCard;
 import college_management.my.gui.component.login.LoginCard;
+import college_management.my.gui.component.professor.ProfessorTab;
 
 @SuppressWarnings("serial")
 public class MainGUI extends JFrame {
@@ -32,7 +33,7 @@ public class MainGUI extends JFrame {
 		Container pan = getContentPane();
 		pan.setLayout(layout);
 		pan.add(Login, new LoginCard(this));
-//		pan.add(Professor, new ProfessorTab(this));
+		pan.add(Professor, new ProfessorTab(this));
 //		pan.add(Student, new StudentCard(this));
 		pan.add(Admin, new AdminCard(this));
 	}

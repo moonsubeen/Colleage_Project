@@ -28,7 +28,7 @@ public class QLectureAttendance extends EntityPathBase<LectureAttendance> {
 
     public final QLecture lecture;
 
-    public final NumberPath<Integer> month = createNumber("month", Integer.class);
+    public final StringPath month = createString("month");
 
     public final NumberPath<Integer> no = createNumber("no", Integer.class);
 

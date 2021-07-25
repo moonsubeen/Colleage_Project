@@ -8,7 +8,7 @@ import college_management.my.gui.layout.common.TableAdapter;
 @SuppressWarnings("serial")
 public class LectureListTableAdapter extends TableAdapter{
 	// 제목
-		private final String[] header = { "강의코드", "과목이름", "강의소개" };
+		private final String[] header = { "강의코드", "과목이름", "교수이름", "교수아이디"};
 
 		// 내용
 		private List<Lecture> data;
@@ -37,10 +37,12 @@ public class LectureListTableAdapter extends TableAdapter{
 			switch (columnIndex) {
 			case 0:
 				return data.get(rowIndex).getCode();
-//			case 1:
-//				return data.get(rowIndex).getSubject().getName();
-//			case 2:
-//				return data.get(rowIndex).getDescription();
+			case 1:
+				return data.get(rowIndex).getName();
+			case 2:
+				return data.get(rowIndex).getProfessor().getUser().getName();
+			case 3:
+				return data.get(rowIndex).getProfessor().getUser().getId();
 			default:
 				return "default";
 			}

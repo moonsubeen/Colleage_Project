@@ -3,18 +3,21 @@ package college_management.my.gui.component.admin.user;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import college_management.my.api.config.Permission;
+import college_management.my.db.model.Professor;
+import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.common.LecPanel;
 import college_management.my.gui.layout.admin.AdminUserInfoRegDlgView;
 
-public class UserRegDialog extends LecPanel{
+public class UserRegDialog extends LecPanel implements Serializable{
 	private AdminUserInfoRegDlgView view;
 	private ImageIcon icon;
 	private String title = "사용자 추가 등록하기";
@@ -41,18 +44,7 @@ public class UserRegDialog extends LecPanel{
 		}
 		roleComboBox.setSelectedIndex(3);
 		roleComboBox.addActionListener(roleListener);
-//		initComboBox(view.getStudent().getDivComboBox(), view.getStudent().getDepComboBox());
-//		initComboBox(view.getProfessor().getDivComboBox(), view.getProfessor().getDepComboBox());
 	}
-
-//	private void initComboBox(JComboBox<Division> divComboBox, JComboBox<Department> depComboBox) {
-//		for (Division div : schoolService.readAllDiv()) {
-//			divComboBox.addItem(div);
-//		}
-//		for (Department dep : schoolService.readAllDep()) {
-//			depComboBox.addItem(dep);
-//		}
-//	}
 
 	public void show() {
 		int selected = JOptionPane.showOptionDialog(null, view, title, JOptionPane.DEFAULT_OPTION,
@@ -67,8 +59,24 @@ public class UserRegDialog extends LecPanel{
 	}
 
 	public void register() {
-		User user = (User) view.getData();
-		userService.register(user.getId(), user.getName(), user.getEmail(), user.getNationality(), user.getPhoneNumber(), user.getAddress(), user.getResidentNumber(), user.getBirthdate(), user.getSex(), user.getRole().getValue());
+		Permission selected = (Permission) roleComboBox.getSelectedItem();
+		switch(selected) {
+		case Student:
+			Student student = (Student) view.getStudent().getData();
+			userService.register(student.getUser().getId(), student.getUser().getName(), student.getUser().getEmail(), student.getUser().getNationality(), student.getUser().getPhoneNumber(), student.getUser().getAddress(), student.getUser().getResidentNumber(), student.getUser().getBirthdate(), student.getUser().getSex(), selected.getValue());
+			studentService.register(student.getUser().getId(), student.getMajor(), student.getCampus());
+			break;
+		case Professor:
+			Professor professor = (Professor) view.getProfessor().getData();
+			userService.register(professor.getUser().getId(), professor.getUser().getName(), professor.getUser().getEmail(), professor.getUser().getNationality(), professor.getUser().getPhoneNumber(), professor.getUser().getAddress(), professor.getUser().getResidentNumber(), professor.getUser().getBirthdate(), professor.getUser().getSex(), professor.getUser().getRole().getValue());
+			professorService.register(professor.getUser().getId(), professor.getFaculty(), professor.getDepartment());
+			break;
+		default:
+			break;
+		}
+//		User user = (User) view.getData();
+//		view.getStudent().getData();
+//		userService.register(user.getId(), user.getName(), user.getEmail(), user.getNationality(), user.getPhoneNumber(), user.getAddress(), user.getResidentNumber(), user.getBirthdate(), user.getSex(), user.getRole().getValue());
 	}
 
 	public void cancel() {

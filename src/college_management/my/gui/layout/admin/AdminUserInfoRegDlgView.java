@@ -11,12 +11,16 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import college_management.my.api.config.Permission;
+import college_management.my.db.model.User;
 import college_management.my.gui.layout.common.LecView;
 
 @SuppressWarnings("serial")
 public class AdminUserInfoRegDlgView extends LecView{
-
-	private HashMap<String, JComponent> infoMap = new HashMap<String, JComponent>();
+	private AdminStudentRegDlgView student = new AdminStudentRegDlgView();
+	private AdminProfessorRegDlgView professor = new AdminProfessorRegDlgView(); 
+	private JComponent studentview = student;
+	private JComponent professorview = professor;
+	private JComboBox<Permission> comboBox = new JComboBox<Permission>();
 
 	public AdminUserInfoRegDlgView() {
 		super();
@@ -31,23 +35,21 @@ public class AdminUserInfoRegDlgView extends LecView{
 		setLayout(new GridBagLayout());
 
 		int row = 0;
-		genComboBoxPair("role", "권한", row++);
-		genView("student", new AdminStudentRegDlgView(), row);
-		genView("professor", new AdminProfessorRegDlgView(), row);
+		addComboBoxPair(comboBox, "권한", row++);
+		addView("student", studentview, row);
+		addView("professor", professorview, row);
 	}
 
-	private void genView(String id, JComponent view, int row) {
+	private void addView(String id, JComponent view, int row) {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = row;
 		add(view, c);
-
-		infoMap.put(id, view);
 	}
 
-	private void genComboBoxPair(String id, String name, int row) {
+	private void addComboBoxPair(JComboBox<Permission> comboBox, String name, int row) {
 		GridBagConstraints c = new GridBagConstraints();
 
 		JLabel label = new JLabel(name);
@@ -56,43 +58,43 @@ public class AdminUserInfoRegDlgView extends LecView{
 		c.gridy = row;
 		add(label, c);
 
-		JComboBox<Permission> comboBox = new JComboBox<Permission>();
 		c.gridx = 1;
 		c.gridy = row;
 		add(comboBox, c);
-
-		infoMap.put(id, comboBox);
 	}
 
 	@Override
 	public void setData(Object model) {
-	}
+	}	
 
 	@Override
 	public Object getData() {
+		getStudent().getData();
+//		User user = new User();
+//		student.getData();
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	public JComboBox<Permission> getRoleComboBox() {
-		return (JComboBox<Permission>) infoMap.get("role");
+		return (JComboBox<Permission>) comboBox;
 	}
 
 	public AdminStudentRegDlgView getStudent() {
-		return (AdminStudentRegDlgView) infoMap.get("student");
+		return (AdminStudentRegDlgView) studentview;
 	}
 
 	public AdminProfessorRegDlgView getProfessor() {
-		return (AdminProfessorRegDlgView) infoMap.get("professor");
+		return (AdminProfessorRegDlgView) professorview;
 	}
 
 	public void changeToStudent() {
-		infoMap.get("professor").setVisible(false);
-		infoMap.get("student").setVisible(true);
+		professorview.setVisible(false);
+		studentview.setVisible(true);
 	}
 
 	public void changeToProfessor() {
-		infoMap.get("professor").setVisible(true);
-		infoMap.get("student").setVisible(false);
+		professorview.setVisible(true);
+		studentview.setVisible(false);
 	}
 }

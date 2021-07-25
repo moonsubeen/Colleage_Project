@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -34,7 +35,7 @@ public class AdminLectureLayout extends JPanel {
 			list = new LecTableView(lectureInfo);
 			scrollPane = new JScrollPane(list);
 			scrollPane.setPreferredSize(new Dimension(400, 400));
-
+			
 			loadBtn = (new JButton("강의 리스트 불러오기"));
 			loadBtn.setPreferredSize(new Dimension(200, 30));
 
@@ -61,7 +62,7 @@ public class AdminLectureLayout extends JPanel {
 			c.gridx = 1;
 			c.gridy = 0;
 			add(lectureInfo, c);
-
+			
 			c.gridwidth = 2;
 			c.gridx = 1;
 			c.gridy = 1;
@@ -94,6 +95,7 @@ public class AdminLectureLayout extends JPanel {
 		public LecTableView getList() {
 			return list;
 		}
+		
 
 		public LecView getLectureInfo() {
 			return lectureInfo;
