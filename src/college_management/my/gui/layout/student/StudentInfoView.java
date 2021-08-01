@@ -9,12 +9,22 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import college_management.my.db.model.Student;
+import college_management.my.db.model.User;
 import college_management.my.gui.layout.common.LecView;
 
 @SuppressWarnings("serial")
 public class StudentInfoView extends LecView{
-	private HashMap<String, JTextField> infoMap = new HashMap<String, JTextField>();
-
+	private JTextField idTxtField = new JTextField();
+	private JTextField pwdTxtField = new JTextField();
+	private JTextField nameTxtField = new JTextField();
+	private JTextField addressTxtField = new JTextField();
+	private JTextField emailTxtField = new JTextField();
+	private JTextField phoneTxtField = new JTextField();
+	private JTextField residentTxtField = new JTextField();
+	private JTextField majorTxtField = new JTextField();
+	private JTextField campusTxtField = new JTextField();
+	private JTextField disTxtField = new JTextField();
+	
 	public StudentInfoView() {
 		super();
 
@@ -25,18 +35,19 @@ public class StudentInfoView extends LecView{
 		setLayout(new GridBagLayout());
 
 		int row = 0;
-		genInfoPair("id", "ID", row++);
-		genInfoPair("div_code", "학부", row++);
-		genInfoPair("dep_code", "학과", row++);
-		genInfoPair("status", "학적 상태", row++);
-		genInfoPair("disability", "장애 여부", row++);
-		genInfoPair("admission_year", "입학년도", row++);
-		genInfoPair("admission_semester", "입학학기", row++);
-		genInfoPair("graduation_year", "졸업년도", row++);
-		genInfoPair("graduation_semester", "졸업학기", row++);
+		genInfoPair("아이디", idTxtField, row++, false);
+		genInfoPair("비번", pwdTxtField, row++, true);
+		genInfoPair("이름", nameTxtField, row++, true);
+		genInfoPair("주소", addressTxtField, row++, true);
+		genInfoPair("이메일", emailTxtField, row++, true);
+		genInfoPair("전화번호", phoneTxtField, row++, true);
+		genInfoPair("주민번호", residentTxtField, row++, false);
+		genInfoPair("전공", majorTxtField, row++, false);
+		genInfoPair("캠퍼스,", campusTxtField, row++, false);
+//		genInfoPair("장애여부", disTxtField, row++, false);
 	}
 
-	private void genInfoPair(String id, String name, int row) {
+	private void genInfoPair(String name, JTextField txtField, int row, boolean isEditable) {
 		GridBagConstraints c = new GridBagConstraints();
 
 		JLabel label = new JLabel(name);
@@ -45,32 +56,40 @@ public class StudentInfoView extends LecView{
 		c.gridy = row;
 		add(label, c);
 
-		JTextField field = new JTextField();
-		field.setPreferredSize(new Dimension(200, 30));
+		txtField.setPreferredSize(new Dimension(200, 30));
 		c.gridx = 1;
 		c.gridy = row;
-		add(field, c);
-
-		infoMap.put(id, field);
+		add(txtField, c);
 	}
 
 	@Override
 	public void setData(Object model) {
 		Student student = (Student) model;
-		infoMap.get("id").setText(student.getUser().getId());
-//		infoMap.get("div_code").setText(student.getDiv().getCode());
-//		infoMap.get("dep_code").setText(student.getDep().getCode());
-//		infoMap.get("status").setText(student.getStatus());
-//		infoMap.get("disability").setText(student.getDisability().toString());
-//		infoMap.get("admission_year").setText(student.getAdmissionYear().toString());
-//		infoMap.get("admission_semester").setText(student.getAdmissionSemester().toString());
-//		infoMap.get("graduation_year").setText(student.getGraduationYear().toString());
-//		infoMap.get("graduation_semester").setText(student.getGraduationSemester().toString());
+		idTxtField.setText(student.getUser().getId());
+		pwdTxtField.setText(student.getUser().getPwd());
+		nameTxtField.setText(student.getUser().getName());
+		addressTxtField.setText(student.getUser().getAddress());
+		emailTxtField.setText(student.getUser().getEmail());
+		phoneTxtField.setText(student.getUser().getPhoneNumber());
+		residentTxtField.setText(student.getUser().getResidentNumber());
+		majorTxtField.setText(student.getMajor());
+		campusTxtField.setText(student.getCampus());
 	}
 
 	@Override
 	public Object getData() {
-		return null;
+		Student student = new Student();
+		User user = new User();
+		user.setId(idTxtField.getText());
+		user.setPwd(pwdTxtField.getText());
+		user.setName(nameTxtField.getText());
+		user.setAddress(addressTxtField.getText());
+		user.setPhoneNumber(phoneTxtField.getText());
+		user.setResidentNumber(residentTxtField.getText());
+		student.setMajor(majorTxtField.getText());
+		student.setCampus(campusTxtField.getText());
+		student.setUser(user);
+		return student;
 	}
 
 }

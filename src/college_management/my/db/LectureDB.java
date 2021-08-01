@@ -1,5 +1,6 @@
 package college_management.my.db;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityTransaction;
@@ -21,7 +22,7 @@ import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 import college_management.my.db.model.UserFamily;
 
-public class LectureDB extends BaseDB{
+public class LectureDB extends BaseDB implements Serializable{
 	private static LectureDB instance;
 	
 	public static LectureDB getInstance() {

@@ -71,6 +71,54 @@ public class AdminProfessorRegDlgView extends LecView{
 		add(field, c);
 	}
 
+	public JTextField getIdTxtField() {
+		return idTxtField;
+	}
+
+	public JTextField getNameTxtField() {
+		return nameTxtField;
+	}
+
+	public JTextField getAddressTxtField() {
+		return addressTxtField;
+	}
+
+	public JTextField getPhoneTxtField() {
+		return phoneTxtField;
+	}
+
+	public JTextField getCountryTxtField() {
+		return countryTxtField;
+	}
+
+	public JTextField getResidentTxtField() {
+		return residentTxtField;
+	}
+
+	public JTextField getEmailTxtField() {
+		return emailTxtField;
+	}
+
+	public JTextField getBirthTxtField() {
+		return birthTxtField;
+	}
+
+	public JTextField getSexTxtField() {
+		return sexTxtField;
+	}
+
+	public JTextField getPwdTxtField() {
+		return pwdTxtField;
+	}
+	
+	public JTextField getFacultyTxtField() {
+		return facultyTxtField;
+	}
+
+	public JTextField getDepartmentTxtField() {
+		return departmentTxtField;
+	}
+
 	@Override
 	public void setData(Object model) {
 		Professor professor = (Professor) model;
@@ -102,7 +150,6 @@ public class AdminProfessorRegDlgView extends LecView{
 		user.setEmail(emailTxtField.getText());
 		user.setBirthdate(birthTxtField.getText());
 		user.setSex(sexTxtField.getText());
-		user.setPwd(pwdTxtField.getText());
 		professor.setFaculty(facultyTxtField.getText());
 		professor.setDepartment(departmentTxtField.getText());
 		professor.setUser(user);

@@ -68,7 +68,7 @@ public class UserRegDialog extends LecPanel implements Serializable{
 			break;
 		case Professor:
 			Professor professor = (Professor) view.getProfessor().getData();
-			userService.register(professor.getUser().getId(), professor.getUser().getName(), professor.getUser().getEmail(), professor.getUser().getNationality(), professor.getUser().getPhoneNumber(), professor.getUser().getAddress(), professor.getUser().getResidentNumber(), professor.getUser().getBirthdate(), professor.getUser().getSex(), professor.getUser().getRole().getValue());
+			userService.register(professor.getUser().getId(), professor.getUser().getName(), professor.getUser().getEmail(), professor.getUser().getNationality(), professor.getUser().getPhoneNumber(), professor.getUser().getAddress(), professor.getUser().getResidentNumber(), professor.getUser().getBirthdate(), professor.getUser().getSex(), selected.getValue());
 			professorService.register(professor.getUser().getId(), professor.getFaculty(), professor.getDepartment());
 			break;
 		default:

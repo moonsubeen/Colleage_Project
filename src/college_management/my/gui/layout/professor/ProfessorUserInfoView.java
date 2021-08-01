@@ -1,9 +1,8 @@
-package college_management.my.gui.layout.student;
+package college_management.my.gui.layout.professor;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.HashMap;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,7 +11,7 @@ import college_management.my.api.config.Permission;
 import college_management.my.db.model.User;
 import college_management.my.gui.layout.common.LecView;
 
-public class StudentUserInfoView extends LecView{
+public class ProfessorUserInfoView extends LecView{
 	private JTextField idTxtField = new JTextField();
 	private JTextField nameTxtField = new JTextField();
 	private JTextField addressTxtField = new JTextField();
@@ -24,13 +23,13 @@ public class StudentUserInfoView extends LecView{
 	private JTextField sexTxtField = new JTextField();
 	private JTextField pwdTxtField = new JTextField();
 	private JTextField roleTxtField = new JTextField();
-
-	public StudentUserInfoView() {
+	
+	ProfessorUserInfoView(){
 		super();
-
+		
 		initLayout();
 	}
-
+	
 	private void initLayout() {
 		setLayout(new GridBagLayout());
 		
