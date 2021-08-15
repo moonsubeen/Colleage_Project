@@ -41,11 +41,10 @@ public class ProfessorInfoView extends LecView{
 		c.gridy = row;
 		add(label, c);
 
-		JTextField field = new JTextField();
-		field.setPreferredSize(new Dimension(200, 30));
+		txtField.setPreferredSize(new Dimension(200, 30));
 		c.gridx = 1;
 		c.gridy = row;
-		add(field, c);
+		add(txtField, c);
 	}
 	
 	@Override

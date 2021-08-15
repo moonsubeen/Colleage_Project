@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import college_management.my.gui.layout.common.LecTableView;
 import college_management.my.gui.layout.common.LecView;
@@ -25,7 +26,9 @@ public class AdminUserLayout extends JPanel{
 	private JButton updateBtn;
 	private JButton registerBtn;
 	private JButton deleteBtn;
-
+	private JButton searchBtn;
+	private JTextField searchTxtField = new JTextField();
+	
 	public AdminUserLayout() {
 
 		// 선택된 사용자 정보
@@ -48,7 +51,11 @@ public class AdminUserLayout extends JPanel{
 
 		registerBtn = (new JButton("사용자 정보 추가하기"));
 		registerBtn.setPreferredSize(new Dimension(200, 30));
-
+		
+		searchBtn = (new JButton("검색"));
+		searchBtn.setPreferredSize(new Dimension(60, 30));
+		
+		searchTxtField.setPreferredSize(new Dimension(200, 30));
 //		deleteBtn = (new JButton("사용자 정보 삭제하기"));
 //		deleteBtn.setPreferredSize(new Dimension(200, 30));
 
@@ -70,7 +77,15 @@ public class AdminUserLayout extends JPanel{
 		c.gridx = 0;
 		c.gridy = 1;
 		add(roleComboBox, c);
-
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		add(searchBtn, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		add(searchTxtField, c);
+		
 		c.gridx = 1;
 		c.gridy = 1;
 		add(loadBtn, c);
@@ -123,7 +138,12 @@ public class AdminUserLayout extends JPanel{
 		return registerBtn;
 	}
 
-//	public JButton getDeleteBtn() {
-//		return deleteBtn;
-//	}
+	public JButton getSearchBtn() {
+		return searchBtn;
+	}
+
+	public JTextField getSearchTxtField() {
+		return searchTxtField;
+	}
+
 }

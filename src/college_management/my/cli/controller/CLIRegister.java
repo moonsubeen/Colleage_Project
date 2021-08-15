@@ -73,7 +73,7 @@ public class CLIRegister implements Runnable  {
 	private String code = "";
 	
 	@Option(names = { "-po", "--point" }, description = "The point", required = false)
-	private String point;
+	private int point;
 	
 	@Option(names = { "-pl", "--plan" }, description = "The plan", required = false)
 	private String plan = "";
@@ -112,10 +112,10 @@ public class CLIRegister implements Runnable  {
 	private String dischageDate = "";
 	
 	@Option(names = {"-y", "--year" }, description = "The relation", required = false)
-	private String year;
+	private int year;
 	
 	@Option(names = {"-se", "--semester" }, description = "The relation", required = false)
-	private String semester;
+	private int semester;
 	
 	@Option(names = {"-da", "--day" }, description = "The relation", required = false)
 	private String day = "";
@@ -124,7 +124,7 @@ public class CLIRegister implements Runnable  {
 	private String time;
 	
 	@Option(names = {"-co", "--count" }, description = "The relation", required = false)
-	private String count;
+	private int count;
 	
 	@Option(names = {"-g", "--grade" }, description = "The relation", required = false)
 	private String grade;

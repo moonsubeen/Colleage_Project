@@ -3,10 +3,12 @@ package college_management.my.gui.component.admin.user;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 import college_management.my.api.config.Permission;
 import college_management.my.db.model.User;
@@ -21,6 +23,7 @@ public class UserTab extends TabPanel{
 	private LecTableView list;
 	private LecView info;
 	private JComboBox<String> roleComboBox;
+	private JTextField searchTxtField;
 
 	public UserTab(MainGUI frame) {
 		super(frame);
@@ -41,11 +44,14 @@ public class UserTab extends TabPanel{
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
 		JButton registerBtn = layout.getRegisterBtn();
-//		JButton deleteBtn = layout.getDeleteBtn();
+		JButton searchBtn = layout.getSearchBtn();
+		
+		searchTxtField = layout.getSearchTxtField();
+		
 		loadBtn.addActionListener(loadListener);
 		updateBtn.addActionListener(updateListener);
 		registerBtn.addActionListener(registerListener);
-//		deleteBtn.addActionListener(deleteListener);
+		searchBtn.addActionListener(searchListener);
 
 		// set list
 		list = layout.getUserList();
@@ -57,7 +63,15 @@ public class UserTab extends TabPanel{
 		super.paintComponent(g);
 		refresh();
 	}
-
+	
+	private void search() {
+		if(auth.isLogin()) {
+			List<User> users = new ArrayList<User>();
+			users.add(userService.read(searchTxtField.getText()));
+			list.setModel(new UserListTableAdapter(users));
+		}
+	}
+	
 	private void refresh() {
 		if (auth.isLogin()) {
 			List<User> users = userService.RolereadAll(roleComboBox.getSelectedItem().toString());
@@ -95,12 +109,10 @@ public class UserTab extends TabPanel{
 		}
 	};
 
-//	private ActionListener deleteListener = new ActionListener() {
-//		public void actionPerformed(ActionEvent e) {
-//			User user = (User) info.getData();
-//			if (userService.delete(user.getId())) {
-//				refresh();
-//			}
-//		}
-//	};
+	private ActionListener searchListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			showMessageBox("검색 완료");
+			search();
+		}
+	};
 }

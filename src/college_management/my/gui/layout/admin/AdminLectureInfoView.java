@@ -111,15 +111,15 @@ public class AdminLectureInfoView extends LecView{
 	@Override
 	public void setData(Object lecture) {
 		data = (Lecture) lecture;
-		yearTxtField.setText(data.getSemester());
-		semesterTxtField.setText(data.getSemester());
+		yearTxtField.setText(Integer.toString(data.getYear()));
+		semesterTxtField.setText(Integer.toString(data.getSemester()));
 		dayTxtField.setText(data.getDay());
 		timeTxtField.setText(data.getTime());
 		codeTxtField.setText(data.getCode());
 		nameTxtField.setText(data.getName());
-		pointTxtField.setText(data.getPoint());
+		pointTxtField.setText(Integer.toString(data.getPoint()));
 		planTxtField.setText(data.getLecturePlan());
-		maxTxtField.setText(data.getMax_count());
+		maxTxtField.setText(Integer.toString(data.getMax_count()));
 		idTxtField.setText(data.getProfessor().getUser().getId());
 		professorTxtField.setText(data.getProfessor().getUser().getName());
 	}
@@ -128,14 +128,14 @@ public class AdminLectureInfoView extends LecView{
 	public Object getData() {
 //		Professor professor = new Professor();
 //		professor.getUser().getId();
-		data.setYear(yearTxtField.getText());
-		data.setSemester(semesterTxtField.getText());
+		data.setYear(Integer.parseInt(yearTxtField.getText()));
+		data.setSemester(Integer.parseInt(semesterTxtField.getText()));
 		data.setDay(dayTxtField.getText());
 		data.setTime(timeTxtField.getText());
 		data.setCode(codeTxtField.getText());
 		data.setName(nameTxtField.getText());
-		data.setPoint(pointTxtField.getText());
-		data.setMax_count(maxTxtField.getText());
+		data.setPoint(Integer.parseInt(pointTxtField.getText()));
+		data.setMax_count(Integer.parseInt(maxTxtField.getText()));
 		data.setLecturePlan(planTxtField.getText());
 //		data.setProfessor(professor);
 		return data;

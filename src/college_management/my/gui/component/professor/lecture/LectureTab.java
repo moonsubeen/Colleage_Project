@@ -10,9 +10,9 @@ import javax.swing.JButton;
 import college_management.my.db.model.Lecture;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.common.TabPanel;
-import college_management.my.gui.layout.admin.AdminLectureLayout;
 import college_management.my.gui.layout.common.LecTableView;
 import college_management.my.gui.layout.common.LecView;
+import college_management.my.gui.layout.professor.ProfessorLectureLayout;
 
 @SuppressWarnings("serial")
 public class LectureTab extends TabPanel{
@@ -23,7 +23,7 @@ public class LectureTab extends TabPanel{
 		super(frame);
 
 		// set layout
-		AdminLectureLayout layout = new AdminLectureLayout();
+		ProfessorLectureLayout layout = new ProfessorLectureLayout();
 		add(layout);
 
 		// set button
@@ -49,8 +49,8 @@ public class LectureTab extends TabPanel{
 
 	private void refresh() {
 		if (auth.isLogin()) {
-//			List<Lecture> lectures = lectureService.readAll();
-//			list.setModel(new LectureListTableAdapter(lectures));
+			List<Lecture> lectures = lectureService.readAll(auth.getUser().getId());
+			list.setModel(new LectureListTableAdapter(lectures));
 		}
 	}
 

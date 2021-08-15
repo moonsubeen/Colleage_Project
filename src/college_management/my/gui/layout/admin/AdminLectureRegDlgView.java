@@ -46,7 +46,6 @@ public class AdminLectureRegDlgView extends LecView{
 		addTextFieldPair("강의시간", timeTxtField, row++, true);
 		addTextFieldPair("강의코드", codeTxtField, row++, true);
 		addTextFieldPair("교수아이디", idTxtField, row++, true);
-//		addTextFieldPair("교수이름", professorTxtField, row++, true);
 		addTextFieldPair("강의제목", nameTxtField, row++, true);
 		addTextFieldPair("강의계획", planTxtField, row++, true);
 		addTextFieldPair("강의최대인원수", maxTxtField, row++, true);
@@ -116,12 +115,12 @@ public class AdminLectureRegDlgView extends LecView{
 	public void setData(Object lecture) {
 		data = (Lecture) lecture;
 		codeTxtField.setText(data.getCode());
-		semesterTxtField.setText(data.getSemester());
-		yearTxtField.setText(data.getYear());
+		semesterTxtField.setText(Integer.toString(data.getSemester()));
+		yearTxtField.setText(Integer.toString(data.getYear()));
 		dayTxtField.setText(data.getDay());
-		pointTxtField.setText(data.getPoint());
+		pointTxtField.setText(Integer.toString(data.getPoint()));
 		timeTxtField.setText(data.getTime());
-		maxTxtField.setText(data.getMax_count());
+		maxTxtField.setText(Integer.toString(data.getMax_count()));
 		planTxtField.setText(data.getLecturePlan());
 //		professorTxtField.setText(data.getProfessor().getUser().getName());
 		nameTxtField.setText(data.getName());
@@ -133,15 +132,15 @@ public class AdminLectureRegDlgView extends LecView{
 //		Professor professor = new Professor();
 		Lecture lecture = new Lecture();
 //		professor.getUser();
-		lecture.setYear(yearTxtField.getText());
-		lecture.setSemester(semesterTxtField.getText());
-		lecture.setPoint(pointTxtField.getText());
+		lecture.setYear(Integer.parseInt(yearTxtField.getText()));
+		lecture.setSemester(Integer.parseInt(semesterTxtField.getText()));
+		lecture.setPoint(Integer.parseInt(pointTxtField.getText()));
 		lecture.setDay(dayTxtField.getText());
 		lecture.setTime(timeTxtField.getText());
 		lecture.setCode(codeTxtField.getText());
 		lecture.setName(nameTxtField.getText());
 		lecture.setLecturePlan(planTxtField.getText());
-		lecture.setMax_count(maxTxtField.getText());
+		lecture.setMax_count(Integer.parseInt(maxTxtField.getText()));
 //		lecture.setProfessor(professor);
 		return lecture;
 	}

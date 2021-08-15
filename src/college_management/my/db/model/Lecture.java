@@ -35,13 +35,13 @@ public class Lecture implements Serializable{
 	private String name; // 강의명
 	
 	@Column(name = "point")
-	private String point; // 학점 
+	private int point; // 학점 
 	
 	@Column(name = "year")
-	private String year; // 년도
+	private int year; // 년도
 	
 	@Column(name = "semester")
-	private String semester; // 학기
+	private int semester; // 학기
 	
 	@Column(name = "day")
 	private String day; // 요일
@@ -52,21 +52,21 @@ public class Lecture implements Serializable{
 //	private HashMap<String, Integer> time = new HashMap<String, Integer>(); // 시간
 	
 	@Column(name = "max_count")
-	private String max_count; // 최대인원 수
+	private int max_count; // 최대인원 수
 	
 	@Column(name = "lecture_plan")
 	private String lecturePlan; // 강의 계획서
 	
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
-	public String getSemester() {
+	public int getSemester() {
 		return semester;
 	}
-	public void setSemester(String semester) {
+	public void setSemester(int semester) {
 		this.semester = semester;
 	}
 	public String getDay() {
@@ -94,10 +94,10 @@ public class Lecture implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public String getMax_count() {
+	public int getMax_count() {
 		return max_count;
 	}
-	public void setMax_count(String max_count) {
+	public void setMax_count(int max_count) {
 		this.max_count = max_count;
 	}
 	public String getCode() {
@@ -118,10 +118,10 @@ public class Lecture implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPoint() {
+	public int getPoint() {
 		return point;
 	}
-	public void setPoint(String point) {
+	public void setPoint(int point) {
 		this.point = point;
 	}
 	public String getLecturePlan() {
@@ -133,6 +133,6 @@ public class Lecture implements Serializable{
 	public String toString() {
 		return "강의 코드 : " + code + ", 담당 교수 : " + professor.getUser().getName() + ", 교수코드 : " + professor.getUser().getId() 
 				+ ", 강의명 : " + name + ", 년도 : " + year + "년도, 학기 : " + semester 
-				+ ", 요일 : " + day + ", 시간 : " + time + ", 최대인원 수  : " + max_count + "명";
+				+ "학기, 요일 : " + day + ", 시간 : " + time + ", 학점 :" + point + "점, 최대인원 수  : " + max_count + "명";
 	}
 }

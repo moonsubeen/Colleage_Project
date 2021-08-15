@@ -37,10 +37,10 @@ public class LectureListTableAdapter extends TableAdapter{
 			switch (columnIndex) {
 			case 0:
 				return data.get(rowIndex).getCode();
-//			case 1:
-//				return data.get(rowIndex).getSubject().getName();
-//			case 2:
-//				return data.get(rowIndex).getDescription();
+			case 1:
+				return data.get(rowIndex).getName();
+			case 2:
+				return data.get(rowIndex).getLecturePlan();
 			default:
 				return "default";
 			}

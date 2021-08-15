@@ -10,8 +10,7 @@ public class ProfessorCard extends CardPanel{
 	public ProfessorCard(MainGUI frame) {
 		super(frame);
 
-//		this.setPanel(new ProfessorTab(frame));
-		setBackground(new Color(153, 204, 255));
+		setBackground(new Color(153, 200, 255));
 		setPanel(new ProfessorTab(frame));
 	}
 }

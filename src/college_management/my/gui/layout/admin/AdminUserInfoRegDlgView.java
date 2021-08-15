@@ -18,8 +18,8 @@ import college_management.my.gui.layout.common.LecView;
 public class AdminUserInfoRegDlgView extends LecView{
 	private AdminStudentRegDlgView student = new AdminStudentRegDlgView();
 	private AdminProfessorRegDlgView professor = new AdminProfessorRegDlgView(); 
-	private JComponent studentview = student;
-	private JComponent professorview = professor;
+//	private JComponent studentview = student;
+//	private JComponent professorview = professor;
 	private JComboBox<Permission> comboBox = new JComboBox<Permission>();
 
 	public AdminUserInfoRegDlgView() {
@@ -36,11 +36,11 @@ public class AdminUserInfoRegDlgView extends LecView{
 
 		int row = 0;
 		addComboBoxPair(comboBox, "권한", row++);
-		addView("student", studentview, row);
-		addView("professor", professorview, row);
+		addView(student, row);
+		addView(professor, row);
 	}
 
-	private void addView(String id, JComponent view, int row) {
+	private void addView(JComponent view, int row) {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.gridwidth = 2;
@@ -77,24 +77,24 @@ public class AdminUserInfoRegDlgView extends LecView{
 
 	@SuppressWarnings("unchecked")
 	public JComboBox<Permission> getRoleComboBox() {
-		return (JComboBox<Permission>) comboBox;
+		return comboBox;
 	}
 
 	public AdminStudentRegDlgView getStudent() {
-		return (AdminStudentRegDlgView) studentview;
+		return student;
 	}
 
 	public AdminProfessorRegDlgView getProfessor() {
-		return (AdminProfessorRegDlgView) professorview;
+		return professor;
 	}
 
 	public void changeToStudent() {
-		professorview.setVisible(false);
-		studentview.setVisible(true);
+		professor.setVisible(false);
+		student.setVisible(true);
 	}
 
 	public void changeToProfessor() {
-		professorview.setVisible(true);
-		studentview.setVisible(false);
+		professor.setVisible(true);
+		student.setVisible(false);
 	}
 }

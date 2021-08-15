@@ -12,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureHistory;
@@ -22,7 +23,7 @@ import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 import college_management.my.db.model.UserFamily;
 
-public class LectureDB extends BaseDB implements Serializable{
+public class LectureDB extends BaseDB{
 	private static LectureDB instance;
 	
 	public static LectureDB getInstance() {
@@ -32,36 +33,42 @@ public class LectureDB extends BaseDB implements Serializable{
 		return instance;
 	}
 	
-	public Lecture register(String id, String code, String name, String year, String semester, String day, 
-			String time, String max_count, String point, String plan) {
-		try {
-			Lecture lecture = new Lecture();
-			User user = em.find(User.class, id);
-			Professor professor = new Professor();
-			professor.setUser(user);
-			lecture.setProfessor(professor);
-			lecture.setCode(code);
-			lecture.setName(name);
-			lecture.setYear(year);
-			lecture.setSemester(semester);
-			lecture.setDay(day);
-			lecture.setTime(time);
-			lecture.setMax_count(max_count);
-			lecture.setPoint(point);
-			lecture.setLecturePlan(plan);
-			
+	public static void register(String id, String code, String name, int year, int semester, String day, 
+			String time, int max_count, int point, String plan) {
+		
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
-			em.persist(lecture);
+			em.createNativeQuery("INSERT INTO lecture (id, code, lecure_name, year, semester, day, time, max_count, point, lecture_plan) VALUES (?,?,?,?,?,?,?,?,?,?)")
+			.setParameter(1, id).setParameter(2, code).setParameter(3, name).setParameter(4, year).setParameter(5, semester).setParameter(6, day).setParameter(7, time)
+			.setParameter(8, max_count).setParameter(9, point).setParameter(10, plan).executeUpdate();
 			transaction.commit();
-			
-			return lecture;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 	
+	public static void update(String code, String name, int year, int semester, String day, String time, int max_count, int point, String plan) {
+		QLecture lecture = QLecture.lecture;
+		em.getTransaction().begin();
+		JPAUpdateClause update = new JPAUpdateClause(em, lecture);
+		if(name != null) {
+			update.set(lecture.name, name);
+		} if(Integer.toString(year) != null) {
+			update.set(lecture.year, year);
+		} if(Integer.toString(semester) != null) {
+			update.set(lecture.semester, semester);
+		} if(day != null) {
+			update.set(lecture.day, day);
+		} if(time != null) {
+			update.set(lecture.time, time);
+		} if(Integer.toString(max_count) != null) {
+			update.set(lecture.max_count, max_count);
+		} if(Integer.toString(point) != null) {
+			update.set(lecture.point, point);
+		} if(plan != null) {
+			update.set(lecture.lecturePlan, plan);
+		}
+		update.where(lecture.code.eq(code)).execute();
+		em.getTransaction().commit();
+		em.clear();
+	}
 	
 	public static Lecture read(String code) {
 		QLecture lecture = QLecture.lecture;

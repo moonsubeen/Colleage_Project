@@ -23,16 +23,26 @@ public class LectureService {
 		return instance;
 	}
 	
-	public boolean register(String id, String code, String name, String year, String semester, String day,
-			String time, String count, String point, String plan) {
-		Lecture lecture = db.register(id, code, name, year, semester, day, time, count, point, plan);
-		if(lecture == null)
-			return false;
+	public boolean register(String id, String code, String name, int year, int semester, String day,
+			String time, int count, int point, String plan) {
+		db.register(id, code, name, year, semester, day, time, count, point, plan);
 		return true;
 	}
 	
 	public boolean register(String code, String id) {
 		hdb.register(code, id, 0, "", "", "");
+		return true;
+	}
+	
+	public boolean register3(String id, String code, String month, String day, String attendance) {
+		LectureAttendance attendances = adb.register(id, code, month, day, attendance);
+		if(attendances == null)
+			return false;
+		return true;
+	}
+	
+	public boolean update(String code, String name, int year, int semester, String day, String time, int max_count, int point, String plan) {
+		db.update(code, name, year, semester, day, time, max_count, point, plan);
 		return true;
 	}
 	
@@ -67,13 +77,6 @@ public class LectureService {
 	
 	public boolean evaluation(String code, String id, String evaluation) {
 		hdb.evaluation(code, id, evaluation);
-		return true;
-	}
-	
-	public boolean register3(String id, String code, String month, String day, String attendance) {
-		LectureAttendance attendances = adb.register(id, code, month, day, attendance);
-		if(attendances == null)
-			return false;
 		return true;
 	}
 	

@@ -48,24 +48,6 @@ public class UserFamilyDB extends BaseDB{
 		}
 	}
 	
-//	public List<UserFamily> readAll(String id) {
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//		
-//		CriteriaQuery<UserFamily> cQuery = criteriaBuilder.createQuery(UserFamily.class);
-//		Root<UserFamily> from = cQuery.from(UserFamily.class);
-//		Join<UserFamily, User> join = from.join("user");
-//		Predicate where = criteriaBuilder.equal(join.get("id"), id);
-//		cQuery.where(where);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<UserFamily> resultList = query.getResultList();
-//
-//		if (resultList.size() > 0)
-//			return resultList;
-//		else
-//			return null;
-//	}
-	
 	public List<UserFamily> readAll(String id) {
 		QUserFamily userfamily = QUserFamily.userFamily;
 		List<UserFamily> result = new JPAQuery<UserFamily>(em).from(userfamily).where(userfamily.user.id.eq(id)).fetch();

@@ -63,12 +63,12 @@ public class AdminProfessorRegDlgView extends LecView{
 		c.gridx = 0;
 		c.gridy = row;
 		add(label, c);
-
-		JTextField field = new JTextField();
-		field.setPreferredSize(new Dimension(200, 30));
+		
+		txtField.setEditable(isEditable);
+		txtField.setPreferredSize(new Dimension(200, 30));
 		c.gridx = 1;
 		c.gridy = row;
-		add(field, c);
+		add(txtField, c);
 	}
 
 	public JTextField getIdTxtField() {
