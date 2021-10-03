@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import college_management.my.db.model.Lecture;
@@ -16,9 +17,9 @@ import college_management.my.db.model.User;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.admin.user.UserListTableAdapter;
 import college_management.my.gui.component.common.TabPanel;
-import college_management.my.gui.layout.admin.AdminBaseLectureDlgView;
-import college_management.my.gui.layout.admin.AdminLectureLayout;
-import college_management.my.gui.layout.admin.AdminLectureRegDlgView;
+import college_management.my.gui.layout.admin.lecture.AdminBaseLectureDlgView;
+import college_management.my.gui.layout.admin.lecture.AdminLectureLayout;
+import college_management.my.gui.layout.admin.lecture.AdminLectureRegDlgView;
 import college_management.my.gui.layout.common.LecTableView;
 import college_management.my.gui.layout.common.LecView;
 
@@ -40,6 +41,7 @@ public class LectureTab extends TabPanel{
 		JButton updateBtn = layout.getUpdateBtn();
 		JButton registerBtn = layout.getRegisterBtn();
 		JButton searchBtn = layout.getSearchBtn();
+		JLabel label = layout.getLabel();
 		
 		searchTxtField = layout.getSearchTxtField();
 		

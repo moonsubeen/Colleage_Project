@@ -10,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 
 import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureAttendance;
@@ -53,10 +54,32 @@ public class LectureAttendanceDB extends BaseDB{
 		}
 	}
 	
+	public static void update(String code, String id, String attendance) {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
+		em.getTransaction().begin();
+		JPAUpdateClause update = new JPAUpdateClause(em, LectureAttendance);
+		update.set(LectureAttendance.attendance, attendance);
+		update.where(LectureAttendance.lecture.code.eq(code).and(LectureAttendance.student.user.id.eq(id))).execute();
+		em.getTransaction().commit();
+		em.clear();
+	}
+	
 	public static List<LectureAttendance> check(String id, String code) {
 		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
 		
 		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.student.user.id.eq(id).and(LectureAttendance.lecture.code.eq(code))).fetch();
+		return result;
+	}
+	
+	public static List<LectureAttendance> read(String id) {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
+		
+//		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.lecture.professor.user.id.eq(id)).fetch();
+//		return result;
+		
+		Query query = em.createQuery("select u from LectureAttendance u left join u.lecture t where u.lecture.professor.user.id = '" + id + "'");
+		
+		List<LectureAttendance> result = query.getResultList();
 		return result;
 	}
 	
@@ -71,6 +94,20 @@ public class LectureAttendanceDB extends BaseDB{
 		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
 		
 		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).fetch();
+		return result;
+	}
+	
+	public static List<LectureAttendance> readAll3(String code, String id) {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
+		
+		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.lecture.code.eq(code).and(LectureAttendance.student.user.id.eq(id))).fetch();
+		return result;
+	}
+	
+	public static List<LectureAttendance> readAll4(String code) {
+		QLectureAttendance LectureAttendance = QLectureAttendance.lectureAttendance;
+		
+		List<LectureAttendance> result = new JPAQuery<LectureAttendance>(em).from(LectureAttendance).where(LectureAttendance.lecture.code.eq(code)).fetch();
 		return result;
 	}
 	

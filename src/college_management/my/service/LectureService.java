@@ -46,6 +46,11 @@ public class LectureService {
 		return true;
 	}
 	
+	public boolean update2(String code, String id, String attendance) {
+		adb.update(code, id, attendance);
+		return true;
+	}
+	
 	public boolean grade(String code, String id, int grade) {
 		String ranks;
 		if(grade >= 95)
@@ -92,6 +97,18 @@ public class LectureService {
 		return hdb.read(id);
 	}
 	
+	public List<LectureHistory> hread3(String code) {
+		return hdb.hread(code);
+	}
+	
+	public List<LectureHistory> hread2(String id) {
+		return hdb.read2(id);
+	}
+	
+	public LectureHistory hread3(String code, String id) {
+		return hdb.read3(code, id);
+	}
+	
 	public List<Lecture> readAll() {
 		return db.readAll();
 	}
@@ -102,6 +119,18 @@ public class LectureService {
 	
 	public List<LectureAttendance> readAll2(String id) {
 		return adb.readAll(id);
+	}
+	
+	public List<LectureAttendance> aread(String id) {
+		return adb.read(id);
+	}
+	
+	public List<LectureAttendance> aread3(String code, String id) {
+		return adb.readAll3(code, id);
+	}
+	
+	public List<LectureAttendance> aread4(String code) {
+		return adb.readAll4(code);
 	}
 	
 	public List<LectureHistory> readAll3() {

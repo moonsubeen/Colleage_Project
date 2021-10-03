@@ -22,8 +22,6 @@ public class QLectureHistory extends EntityPathBase<LectureHistory> {
 
     public static final QLectureHistory lectureHistory = new QLectureHistory("lectureHistory");
 
-    public final NumberPath<Integer> counts = createNumber("counts", Integer.class);
-
     public final StringPath evaluations = createString("evaluations");
 
     public final NumberPath<Integer> grades = createNumber("grades", Integer.class);

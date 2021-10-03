@@ -1,5 +1,6 @@
 package college_management.my.db;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityTransaction;
@@ -16,7 +17,9 @@ import college_management.my.db.model.Lecture;
 import college_management.my.db.model.LectureAttendance;
 import college_management.my.db.model.LectureHistory;
 import college_management.my.db.model.LectureHistoryID;
+import college_management.my.db.model.QLecture;
 import college_management.my.db.model.QLectureHistory;
+import college_management.my.db.model.QProfessor;
 import college_management.my.db.model.Student;
 
 public class LectureHistoryDB extends BaseDB{
@@ -75,6 +78,38 @@ public class LectureHistoryDB extends BaseDB{
 		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
 		
 		List<LectureHistory> result = new JPAQuery<LectureHistory>(em).from(LectureHistory).where(LectureHistory.student.user.id.eq(id)).fetch();
+		return result;
+	}
+	
+	public static List<LectureHistory> hread(String code) {
+		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
+		
+		List<LectureHistory> result = new JPAQuery<LectureHistory>(em).from(LectureHistory).where(LectureHistory.lecture.code.eq(code)).fetch();
+		return result;
+	}
+	
+	public static List<LectureHistory> read2(String id) {
+		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
+		QLecture lecture = QLecture.lecture;
+//		QProfessor professor = QProfessor.professor;
+//		
+//		List<Lecture> lece = new ArrayList<Lecture>();
+//		List<Lecture> result = new JPAQuery<Lecture>(em).from(lecture).where(lecture.professor.user.id.eq(id)).fetch();
+//		for(int i = 1; i <= result.size(); i++)
+//			lece.add(result.get(i));
+				
+//		List<LectureHistory> result2 = new JPAQuery<LectureHistory>(em).from(LectureHistory).where(LectureHistory.lecture.eq(result.get(1))).fetch();
+		
+		Query query = em.createQuery("select u from LectureHistory u left join u.lecture t where u.lecture.professor.user.id = '" + id + "'");
+		
+		List<LectureHistory> result = query.getResultList();
+		return result;
+	}
+	
+	public static LectureHistory read3(String code, String id) {
+		QLectureHistory LectureHistory = QLectureHistory.lectureHistory;
+		
+		LectureHistory result = new JPAQuery<LectureHistory>(em).from(LectureHistory).where(LectureHistory.lecture.code.eq(code).and(LectureHistory.student.user.id.eq(id))).fetchOne();
 		return result;
 	}
 	

@@ -46,9 +46,9 @@ public class LectureHistory implements Serializable{
 	@Column(name = "evaluation")
 	private String evaluations; // 강의 평가
 	
-	@Column(name = "count")
-	private int counts; // 신청자 수
-	
+//	@Column(name = "count")
+//	private int counts; // 신청자 수
+//	
 	public LectureHistoryID getId() {
 		return id;
 	}
@@ -57,13 +57,13 @@ public class LectureHistory implements Serializable{
 		this.id = id;
 	}
 
-	public int getCount() {
-		return counts;
-	}
-
-	public void setCount(int counts) {
-		this.counts = counts;
-	}
+//	public int getCount() {
+//		return counts;
+//	}
+//
+//	public void setCount(int counts) {
+//		this.counts = counts;
+//	}
 
 	public Lecture getLecture() {
 		return lecture;
@@ -114,7 +114,7 @@ public class LectureHistory implements Serializable{
 	}
 	public String toString() {
 		return  "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() +  ", 성적 : " + grades
-				+ ", 등급 : " + ranks + ", 평가 : " + evaluations + ", 이의 제기 : " + problems + ", 강의 인원 수 : " + counts; 
+				+ ", 등급 : " + ranks + ", 평가 : " + evaluations + ", 이의 제기 : " + problems; /*, 강의 인원 수 : " + counts*/ 
 	}
 	public String toString2() {
 		return "강의 : " + lecture.getName() + ", 학생 이름 : " + student.getUser().getName() + ", 성적 : " + grades + ", 등급 : " + ranks;

@@ -15,7 +15,7 @@ import college_management.my.db.model.Student;
 import college_management.my.db.model.User;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.common.LecPanel;
-import college_management.my.gui.layout.admin.AdminUserInfoRegDlgView;
+import college_management.my.gui.layout.admin.user.AdminUserInfoRegDlgView;
 
 public class UserRegDialog extends LecPanel implements Serializable{
 	private AdminUserInfoRegDlgView view;

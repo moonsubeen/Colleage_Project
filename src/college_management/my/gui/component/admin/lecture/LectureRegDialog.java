@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 import college_management.my.db.model.Lecture;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.common.LecPanel;
-import college_management.my.gui.layout.admin.AdminLectureRegDlgView;
-import college_management.my.gui.layout.admin.AdminUserInfoRegDlgView;
+import college_management.my.gui.layout.admin.lecture.AdminLectureRegDlgView;
+import college_management.my.gui.layout.admin.user.AdminUserInfoRegDlgView;
 
 public class LectureRegDialog extends LecPanel implements Serializable{
 	private AdminLectureRegDlgView view;
