@@ -30,7 +30,7 @@ public class DisabilityDB extends BaseDB{
 		return instance;
 	}
 	
-	public UserDisability register(String id, boolean state, String disability, String document) {
+	public UserDisability register(String id, String state, String disability, String document) {
 		try {
 			UserDisability disabilities = new UserDisability();
 			User user = em.find(User.class, id);

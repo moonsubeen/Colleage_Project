@@ -34,7 +34,7 @@ public class QUserSoldier extends EntityPathBase<UserSoldier> {
 
     public final StringPath ranks = createString("ranks");
 
-    public final BooleanPath states = createBoolean("states");
+    public final StringPath states = createString("states");
 
     public final StringPath type = createString("type");
 

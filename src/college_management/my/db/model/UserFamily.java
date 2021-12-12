@@ -21,7 +21,7 @@ public class UserFamily implements Serializable{
 	private Integer no;
 	
 	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName="id")
+	@JoinColumn(name = "id", referencedColumnName="id", unique=true)
 	private User user; // 유저 아이디
 	
 	@Column(name="realtion")

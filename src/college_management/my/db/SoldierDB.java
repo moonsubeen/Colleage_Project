@@ -28,7 +28,7 @@ public class SoldierDB extends BaseDB{
 		return instance;
 	}
 	
-	public UserSoldier register(String id, boolean state, String militaryNumber, String type, 
+	public UserSoldier register(String id, String state, String militaryNumber, String type, 
 			String classification, String branch, String ranks, String joinDate, String dischageDate) {
 		try {
 			UserSoldier soldier = new UserSoldier();

@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import college_management.my.gui.layout.common.LecView;
@@ -18,6 +19,9 @@ public class StudentUserLayout extends JPanel{
 	private LecView studentInfo;
 	private JButton loadBtn;
 	private JButton updateBtn;
+	private JButton pictureBtn;
+	private JButton saveBtn;
+	private JLabel picture = new JLabel();
 	
 	public StudentUserLayout() {
 
@@ -35,6 +39,14 @@ public class StudentUserLayout extends JPanel{
 		updateBtn = (new JButton("사용자 정보 수정하기"));
 		updateBtn.setPreferredSize(new Dimension(200, 30));
 		
+		pictureBtn = (new JButton("사진 업로드"));
+		pictureBtn.setPreferredSize(new Dimension(200, 30));
+		
+		saveBtn = (new JButton("사진 저장"));
+		saveBtn.setPreferredSize(new Dimension(200, 30));
+		
+		picture.setPreferredSize(new Dimension(100, 100));
+
 		initLayout();
 	}
 
@@ -54,10 +66,24 @@ public class StudentUserLayout extends JPanel{
 		c.gridy = 1;
 		add(loadBtn, c);
 
-		c.gridwidth = 2;
 		c.gridx = 1;
 		c.gridy = 2;
 		add(updateBtn, c);
+		
+		c.gridx = 1;
+		c.gridy = 3;
+		add(pictureBtn, c);
+		
+		c.gridx = 1;
+		c.gridy = 4;
+		add(saveBtn, c);
+		
+		c.gridheight = 4;
+		c.gridx = 0;
+		c.gridy = 1;
+		add(picture, c);
+		
+		
 	}
 
 	public LayoutManager getLayout() {
@@ -78,5 +104,17 @@ public class StudentUserLayout extends JPanel{
 	
 	public JButton getUpdateBtn() {
 		return updateBtn;
+	}
+	
+	public JButton getPictureeBtn() {
+		return pictureBtn;
+	}
+	
+	public JButton getSaveBtn() {
+		return saveBtn;
+	}
+	
+	public JLabel getPicture() {
+		return picture;
 	}
 }

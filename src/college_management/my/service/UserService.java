@@ -61,4 +61,8 @@ public class UserService {
 	public List<UserFamily> readAll(String id) {
 		return fdb.readAll(id);
 	}
+	
+	public UserFamily fread(String id) {
+		return fdb.read(id);
+	}
 }

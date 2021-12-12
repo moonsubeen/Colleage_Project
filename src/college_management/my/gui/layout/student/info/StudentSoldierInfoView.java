@@ -31,7 +31,7 @@ public class StudentSoldierInfoView extends LecView{
 		setLayout(new GridBagLayout());
 		
 		int row = 0;
-//		addTxtField("군입대 여부", stateTxtField, row++, true);
+		addTxtField("군입대 여부", stateTxtField, row++, true);
 		addTxtField("군번", militaryNumberTxtField, row++, true);
 		addTxtField("군별", typeTxtField, row++, true);
 		addTxtField("역종", classificationTxtField, row++, true);
@@ -61,7 +61,7 @@ public class StudentSoldierInfoView extends LecView{
 	@Override
 	public void setData(Object model) {
 		UserSoldier soldier = (UserSoldier) model;
-//		stateTxtField.setText();
+		stateTxtField.setText(soldier.getState());
 		militaryNumberTxtField.setText(soldier.getMilitaryNumber());
 		typeTxtField.setText(soldier.getType());
 		classificationTxtField.setText(soldier.getClassification());
@@ -74,6 +74,7 @@ public class StudentSoldierInfoView extends LecView{
 	@Override
 	public Object getData() {
 		UserSoldier soldier = new UserSoldier();
+		soldier.setState(stateTxtField.getText());
 		soldier.setMilitaryNumber(militaryNumberTxtField.getText());
 		soldier.setType(typeTxtField.getText());
 		soldier.setClassification(classificationTxtField.getText());

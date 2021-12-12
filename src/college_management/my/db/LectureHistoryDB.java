@@ -37,8 +37,8 @@ public class LectureHistoryDB extends BaseDB{
 		EntityTransaction transaction = em.getTransaction();
 //		count++;
 		transaction.begin();
-		em.createNativeQuery("INSERT INTO lecturehistory (lecture_code, student_id, grade, ranks, evaluation, problem, count) VALUES (?,?,?,?,?,?,?)")
-		.setParameter(1, lecture_code).setParameter(2, student_id).setParameter(3, grade).setParameter(4, "").setParameter(5, "").setParameter(6, "").setParameter(7, 0)
+		em.createNativeQuery("INSERT INTO lecturehistory (lecture_code, student_id, grade, ranks, evaluation, problem) VALUES (?,?,?,?,?,?)")
+		.setParameter(1, lecture_code).setParameter(2, student_id).setParameter(3, grade).setParameter(4, "").setParameter(5, "").setParameter(6, "")
 		.executeUpdate();
 		transaction.commit();
 	}

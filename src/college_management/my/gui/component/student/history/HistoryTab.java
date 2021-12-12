@@ -11,11 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import college_management.my.db.model.LectureHistory;
+import college_management.my.db.model.Student;
+import college_management.my.db.model.User;
 import college_management.my.gui.MainGUI;
 import college_management.my.gui.component.common.TabPanel;
 import college_management.my.gui.layout.common.LecTableView;
 import college_management.my.gui.layout.common.LecView;
 import college_management.my.gui.layout.student.history.StudentHistoryLayout;
+import college_management.my.util.ExcelWrapper;
 
 @SuppressWarnings("serial")
 public class HistoryTab extends TabPanel{
@@ -33,6 +36,7 @@ public class HistoryTab extends TabPanel{
 		JButton problemBtn = layout.getProblemBtn();
 		JButton evaluationBtn = layout.getEvaluationBtn();
 		JButton searchBtn = layout.getSearchBtn();
+		JButton exportexcelBtn = layout.getExportexcelBtn();
 		JLabel label = layout.getLabel();
 		
 		searchTxtField = layout.getSearchTxtField();
@@ -41,6 +45,7 @@ public class HistoryTab extends TabPanel{
 		problemBtn.addActionListener(problemListener);
 		evaluationBtn.addActionListener(evaluationListener);
 		searchBtn.addActionListener(searchListener);
+		exportexcelBtn.addActionListener(exportexcelListener);
 		
 		list = layout.getList();
 		info = layout.getHistoryInfo();
@@ -100,4 +105,19 @@ public class HistoryTab extends TabPanel{
 			search();
 		}
 	};
+	
+	private ActionListener exportexcelListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if(auth.isLogin()) {
+				User user = userService.read(auth.getUser().getId());
+				Student student = studentService.read(auth.getUser().getId());
+				List<LectureHistory> lectures = lectureService.hread(auth.getUser().getId());
+				ExcelWrapper wrapper = new ExcelWrapper();
+				
+				wrapper.init(user, student, lectures, auth.getUser().getId() + " " + auth.getUser().getName() + " 성적점수");
+				showMessageBox("엑셀 파일로 내보내기완료");
+			}
+		}
+	};
+	
 }	

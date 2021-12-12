@@ -21,10 +21,10 @@ public class UserRegDialog extends LecPanel implements Serializable{
 	private AdminUserInfoRegDlgView view;
 	private ImageIcon icon;
 	private String title = "사용자 추가 등록하기";
-	private Object[] options = new Object[] { "취소", "추가" };
+	private Object[] options = new Object[] { "추가", "취소" };
 
 	private JComboBox<Permission> roleComboBox;
-
+	
 	public UserRegDialog(MainGUI frame) {
 		super(frame);
 
@@ -50,33 +50,41 @@ public class UserRegDialog extends LecPanel implements Serializable{
 		int selected = JOptionPane.showOptionDialog(null, view, title, JOptionPane.DEFAULT_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, icon, options, options[0]);
 		if (selected == 0) {
-			showMessageBox("취소가 성공했습니다.");
-			cancel();
-		} else {
 			showMessageBox("등록이 성공했습니다.");
 			register();
+		} else {
+			showMessageBox("취소가 성공했습니다.");
+			cancel();
 		}
 	}
 
 	public void register() {
 		Permission selected = (Permission) roleComboBox.getSelectedItem();
+		String select = (String) view.getStudent().getSoldierStateComboBox().getSelectedItem();
+		String select2 = (String) view.getStudent().getDisabilityStateComboBox().getSelectedItem();
+		
 		switch(selected) {
 		case Student:
 			Student student = (Student) view.getStudent().getData();
 			userService.register(student.getUser().getId(), student.getUser().getName(), student.getUser().getEmail(), student.getUser().getNationality(), student.getUser().getPhoneNumber(), student.getUser().getAddress(), student.getUser().getResidentNumber(), student.getUser().getBirthdate(), student.getUser().getSex(), selected.getValue());
 			studentService.register(student.getUser().getId(), student.getMajor(), student.getCampus());
+			if(select.equals("없음") || select.equals("해당사항 아님"))
+				infoService.register(student.getUser().getId(), select, "", "", "", "", "", "", "");
+			if(select2.equals("없음"))
+				infoService.register(student.getUser().getId(), select2, "", "");
 			break;
 		case Professor:
 			Professor professor = (Professor) view.getProfessor().getData();
 			userService.register(professor.getUser().getId(), professor.getUser().getName(), professor.getUser().getEmail(), professor.getUser().getNationality(), professor.getUser().getPhoneNumber(), professor.getUser().getAddress(), professor.getUser().getResidentNumber(), professor.getUser().getBirthdate(), professor.getUser().getSex(), selected.getValue());
 			professorService.register(professor.getUser().getId(), professor.getFaculty(), professor.getDepartment());
+			if(select.equals("없음") || select.equals("해당사항 아님"))
+				infoService.register(professor.getUser().getId(), select, "", "", "", "", "", "", "");
+			if(select2.equals("없음"))
+				infoService.register(professor.getUser().getId(), select2, "", "");
 			break;
 		default:
 			break;
 		}
-//		User user = (User) view.getData();
-//		view.getStudent().getData();
-//		userService.register(user.getId(), user.getName(), user.getEmail(), user.getNationality(), user.getPhoneNumber(), user.getAddress(), user.getResidentNumber(), user.getBirthdate(), user.getSex(), user.getRole().getValue());
 	}
 
 	public void cancel() {

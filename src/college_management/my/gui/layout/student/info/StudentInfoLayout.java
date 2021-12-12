@@ -11,18 +11,25 @@ import javax.swing.JPanel;
 import college_management.my.gui.layout.common.LecView;
 
 @SuppressWarnings("serial")
-public class StudentSoldierLayout extends JPanel{
+public class StudentInfoLayout extends JPanel{
 	private LayoutManager layout;
 
 	private LecView soldierInfo;
-	private LecView disableInfo;
+	private LecView disabilityInfo;
+	private LecView familyInfo;
 	
 	private JButton loadBtn;
 	private JButton updateBtn;
 	
-	public StudentSoldierLayout(){
+	public StudentInfoLayout(){
 		soldierInfo = new StudentSoldierInfoView();
 		soldierInfo.setPreferredSize(new Dimension(400, 400));
+		
+		disabilityInfo = new StudentDisabilityInfoView();
+		disabilityInfo.setPreferredSize(new Dimension(400, 400));
+		
+		familyInfo = new StudentFamilyInfoView();
+		familyInfo.setPreferredSize(new Dimension(400, 100));
 		
 		loadBtn = (new JButton("사용자 정보 새로고침"));
 		loadBtn.setPreferredSize(new Dimension(200, 30));
@@ -40,15 +47,23 @@ public class StudentSoldierLayout extends JPanel{
 		c.gridx = 0;
 		c.gridy = 0;
 		add(soldierInfo, c);
-
-		c.gridx = 0;
+		
+		c.gridx = 1;
+		c.gridy = 0;
+		add(disabilityInfo, c);
+		
+		c.gridx = 1;
 		c.gridy = 1;
 		add(loadBtn, c);
 
-		c.gridwidth = 2;
-		c.gridx = 0;
+		c.gridx = 1;
 		c.gridy = 2;
 		add(updateBtn, c);
+		
+		c.gridheight = 3;
+		c.gridx = 0;
+		c.gridy = 1;
+		add(familyInfo, c);
 	}
 
 	public LayoutManager getLayout() {
@@ -58,7 +73,15 @@ public class StudentSoldierLayout extends JPanel{
 	public LecView getSoldierInfo() {
 		return soldierInfo;
 	}
-
+	
+	public LecView getDisabilityInfo() {
+		return disabilityInfo;
+	}
+	
+	public LecView getFamilyInfo() {
+		return familyInfo;
+	}
+	
 	public JButton getLoadBtn() {
 		return loadBtn;
 	}

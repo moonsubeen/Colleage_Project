@@ -82,7 +82,7 @@ public class CLIRegister implements Runnable  {
 	private String relation = "";
 	
 	@Option(names = {"-st", "--state" }, description = "The relation", required = false)
-	private boolean state;
+	private String state;
 	
 	@Option(names = {"-di", "--disability" }, description = "The relation", required = false)
 	private String disability = "";

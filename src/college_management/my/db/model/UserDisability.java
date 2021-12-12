@@ -19,7 +19,7 @@ public class UserDisability implements Serializable{
 	private User user; // 아이디
 	
 	@Column(name="state")
-	private boolean state; // 장애 유무
+	private String state; // 장애 유무
 	
 	@Column(name = "disability")
 	private String disability; // 병명
@@ -33,10 +33,10 @@ public class UserDisability implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public boolean isState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(boolean state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 	public String getDisability() {

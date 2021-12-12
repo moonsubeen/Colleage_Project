@@ -46,6 +46,7 @@ public class UserTab extends TabPanel{
 		JButton updateBtn = layout.getUpdateBtn();
 		JButton registerBtn = layout.getRegisterBtn();
 		JButton searchBtn = layout.getSearchBtn();
+		JButton familyBtn = layout.getFamilyBtn();
 		JLabel label = layout.getLabel();
 		
 		searchTxtField = layout.getSearchTxtField();
@@ -53,6 +54,7 @@ public class UserTab extends TabPanel{
 		loadBtn.addActionListener(loadListener);
 		updateBtn.addActionListener(updateListener);
 		registerBtn.addActionListener(registerListener);
+		familyBtn.addActionListener(familyListener);
 		searchBtn.addActionListener(searchListener);
 
 		// set list
@@ -108,6 +110,15 @@ public class UserTab extends TabPanel{
 		public void actionPerformed(ActionEvent e) {
 			UserRegDialog dlg = new UserRegDialog(frame);
 			dlg.show();
+		}
+	};
+	
+	private ActionListener familyListener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			User user = (User) info.getData();
+			String id = user.getId();
+			UserFamilyDialog dlgs = new UserFamilyDialog(frame);
+			dlgs.show(id);
 		}
 	};
 

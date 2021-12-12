@@ -28,6 +28,7 @@ public class AdminUserLayout extends JPanel{
 	private JButton loadBtn;
 	private JButton updateBtn;
 	private JButton registerBtn;
+	private JButton familyBtn;
 	private JButton deleteBtn;
 	private JButton searchBtn;
 	private JTextField searchTxtField = new JTextField();
@@ -60,14 +61,15 @@ public class AdminUserLayout extends JPanel{
 		registerBtn = (new JButton("사용자 정보 추가하기"));
 		registerBtn.setPreferredSize(new Dimension(200, 30));
 		
+		familyBtn = (new JButton("사용자 가족정보 추가하기"));
+		familyBtn.setPreferredSize(new Dimension(200, 30));
+		
 		label.setPreferredSize(new Dimension(100, 30));
 		
 		searchBtn = (new JButton("검색"));
 		searchBtn.setPreferredSize(new Dimension(60, 30));
 		
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
-//		deleteBtn = (new JButton("사용자 정보 삭제하기"));
-//		deleteBtn.setPreferredSize(new Dimension(200, 30));
 
 		initLayout();
 	}
@@ -114,10 +116,10 @@ public class AdminUserLayout extends JPanel{
 		c.gridy = 3;
 		add(registerBtn, c);
 
-//		c.gridwidth = 2;
-//		c.gridx = 1;
-//		c.gridy = 4;
-//		add(deleteBtn, c);
+		c.gridwidth = 2;
+		c.gridx = 1;
+		c.gridy = 4;
+		add(familyBtn, c);
 	}
 
 	public LayoutManager getLayout() {
@@ -155,7 +157,11 @@ public class AdminUserLayout extends JPanel{
 	public JButton getSearchBtn() {
 		return searchBtn;
 	}
-
+	
+	public JButton getFamilyBtn() {
+		return familyBtn;
+	}
+	
 	public JTextField getSearchTxtField() {
 		return searchTxtField;
 	}

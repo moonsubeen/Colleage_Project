@@ -15,7 +15,7 @@ public class LectureRegDialog extends LecPanel implements Serializable{
 	private ProfessorLectureRegDlgView view;
 	private ImageIcon icon;
 	private String title = "강의 추가 등록하기";
-	private Object[] options = new Object[] { "취소", "추가" };
+	private Object[] options = new Object[] { "추가", "취소" };
 	
 	public LectureRegDialog(MainGUI frame) {
 		super(frame);
@@ -33,11 +33,11 @@ public class LectureRegDialog extends LecPanel implements Serializable{
 		int selected = JOptionPane.showOptionDialog(null, view, title, JOptionPane.DEFAULT_OPTION,
 				JOptionPane.INFORMATION_MESSAGE, icon, options, options[0]);
 		if (selected == 0) {
-			showMessageBox("취소가 성공했습니다.");
-			cancel();
-		} else {
 			showMessageBox("등록이 성공했습니다.");
 			register();
+		} else {
+			showMessageBox("취소가 성공했습니다.");
+			cancel();
 		}
 	}
 	

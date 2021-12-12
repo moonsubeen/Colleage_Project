@@ -30,7 +30,11 @@ public class AdminStudentRegDlgView extends LecView{
 	private JTextField pwdTxtField = new JTextField();
 	private JTextField majorTxtField = new JTextField();
 	private JTextField campusTxtField = new JTextField();
-
+	String states[] = {"없음", "있음", "해당사항 아님"};
+	String state2[] = {"없음", "있음"};
+	private JComboBox<String> soldierstate = new JComboBox<String>(states);
+	private JComboBox<String> disabilitystate = new JComboBox<String>(state2);
+	
 	public AdminStudentRegDlgView() {
 		super();
 
@@ -42,6 +46,8 @@ public class AdminStudentRegDlgView extends LecView{
 		setLayout(new GridBagLayout());
 
 		int row = 0;
+		addComboBoxPair(soldierstate, "복무여부", row++);
+		addComboBoxPair(disabilitystate, "병여부", row++);
 		addTextFieldPair("학생 학번", idTxtField, row++, true);
 		addTextFieldPair("이름", nameTxtField, row++, true);
 		addTextFieldPair("주소", addressTxtField, row++, true);
@@ -51,7 +57,6 @@ public class AdminStudentRegDlgView extends LecView{
 		addTextFieldPair("이메일", emailTxtField, row++, true);
 		addTextFieldPair("생년월일", birthTxtField, row++, true);
 		addTextFieldPair("성별", sexTxtField, row++, true);
-//		addTextFieldPair("비밀번호", pwdTxtField, row++, true);
 		addTextFieldPair("학과", majorTxtField, row++, true);
 		addTextFieldPair("캠퍼스", campusTxtField, row++, true);
 	}
@@ -70,6 +75,20 @@ public class AdminStudentRegDlgView extends LecView{
 		c.gridx = 1;
 		c.gridy = row;
 		add(txtField, c);
+	}
+	
+	private void addComboBoxPair(JComboBox<String> state, String name, int row) {
+		GridBagConstraints c = new GridBagConstraints();
+
+		JLabel label = new JLabel(name);
+		label.setPreferredSize(new Dimension(100, 30));
+		c.gridx = 0;
+		c.gridy = row;
+		add(label, c);
+
+		c.gridx = 1;
+		c.gridy = row;
+		add(state, c);
 	}
 
 	@Override
@@ -108,5 +127,15 @@ public class AdminStudentRegDlgView extends LecView{
 		student.setCampus(campusTxtField.getText());
 		student.setUser(user);
 		return student;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JComboBox<String> getSoldierStateComboBox() {
+		return soldierstate;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JComboBox<String> getDisabilityStateComboBox() {
+		return disabilitystate;
 	}
 }

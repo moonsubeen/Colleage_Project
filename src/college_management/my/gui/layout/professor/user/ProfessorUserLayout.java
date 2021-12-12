@@ -18,17 +18,13 @@ public class ProfessorUserLayout extends JPanel{
 	private LayoutManager layout;
 	private LecView userInfo;
 	private LecView professorInfo;
-//	private ImageIcon icon;
 	private JButton pictureBtn;
+	private JButton saveBtn;
 	private JButton loadBtn;
 	private JButton updateBtn;
 	private JLabel picture = new JLabel();
 	
-	public ProfessorUserLayout(){
-//		Image img = (new ImageIcon("src/resource/new_user.png")).getImage().getScaledInstance(50, 50,
-//				Image.SCALE_SMOOTH);
-//		icon = new ImageIcon(img);
-		
+	public ProfessorUserLayout(){	
 		userInfo = new ProfessorUserInfoView();
 		userInfo.setPreferredSize(new Dimension(400, 400));
 		
@@ -38,13 +34,15 @@ public class ProfessorUserLayout extends JPanel{
 		pictureBtn = (new JButton("사진 업로드"));
 		pictureBtn.setPreferredSize(new Dimension(200, 30));
 		
+		saveBtn = (new JButton("사진 저장"));
+		saveBtn.setPreferredSize(new Dimension(200, 30));
+		
 		loadBtn = (new JButton("사용자 정보 새로고침"));
 		loadBtn.setPreferredSize(new Dimension(200, 30));
 
 		updateBtn = (new JButton("사용자 정보 수정하기"));
 		updateBtn.setPreferredSize(new Dimension(200, 30));
 		
-//		picture.setIcon(icon);
 		picture.setPreferredSize(new Dimension(100, 100));
 		
 		initLayout();
@@ -58,10 +56,6 @@ public class ProfessorUserLayout extends JPanel{
 		c.gridy = 0;
 		add(userInfo, c);
 		
-		c.gridx = 0;
-		c.gridy = 1;
-		add(picture, c);
-		
 		c.gridx = 1;
 		c.gridy = 0;
 		add(professorInfo, c);
@@ -71,13 +65,21 @@ public class ProfessorUserLayout extends JPanel{
 		add(pictureBtn, c);
 		
 		c.gridx = 1;
+		c.gridy = 4;
+		add(saveBtn, c);
+				
+		c.gridx = 1;
 		c.gridy = 1;
 		add(loadBtn, c);
-
-		c.gridwidth = 2;
+		
 		c.gridx = 1;
 		c.gridy = 2;
 		add(updateBtn, c);
+		
+		c.gridheight = 4;
+		c.gridx = 0;
+		c.gridy = 1;
+		add(picture, c);
 	}
 
 	public LayoutManager getLayout() {
@@ -103,7 +105,11 @@ public class ProfessorUserLayout extends JPanel{
 	public JButton getPictureeBtn() {
 		return pictureBtn;
 	}
-
+	
+	public JButton getSaveBtn() {
+		return saveBtn;
+	}
+		
 	public JLabel getPicture() {
 		return picture;
 	}

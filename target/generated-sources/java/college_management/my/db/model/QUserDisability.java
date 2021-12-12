@@ -26,7 +26,7 @@ public class QUserDisability extends EntityPathBase<UserDisability> {
 
     public final StringPath document = createString("document");
 
-    public final BooleanPath state = createBoolean("state");
+    public final StringPath state = createString("state");
 
     public final QUser user;
 

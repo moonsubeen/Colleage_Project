@@ -27,6 +27,8 @@ public class StudentHistoryLayout extends JPanel{
 	private JButton problemBtn;
 	private JButton evaluationBtn;
 	private JButton searchBtn;
+	private JButton exportexcelBtn;
+	
 	private JLabel label = new JLabel("강의 코드 입력");
 	
 	private JTextField searchTxtField = new JTextField();
@@ -56,6 +58,9 @@ public class StudentHistoryLayout extends JPanel{
 		
 		searchBtn = (new JButton("검색"));
 		searchBtn.setPreferredSize(new Dimension(60, 30));
+		
+		exportexcelBtn = (new JButton("엑셀 내보내기"));
+		exportexcelBtn.setPreferredSize(new Dimension(200, 30));
 		
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
 		
@@ -100,7 +105,11 @@ public class StudentHistoryLayout extends JPanel{
 		c.gridx = 1;
 		c.gridy = 3;
 		add(evaluationBtn, c);
-
+		
+		c.gridwidth = 2;
+		c.gridx = 1;
+		c.gridy = 4;
+		add(exportexcelBtn, c);
 	}
 
 	public LayoutManager getLayout() {
@@ -134,7 +143,11 @@ public class StudentHistoryLayout extends JPanel{
 	public JButton getSearchBtn() {
 		return searchBtn;
 	}
-
+	
+	public JButton getExportexcelBtn() {
+		return exportexcelBtn;
+	}
+	
 	public JTextField getSearchTxtField() {
 		return searchTxtField;
 	}

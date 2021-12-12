@@ -53,5 +53,11 @@ public class UserFamilyDB extends BaseDB{
 		List<UserFamily> result = new JPAQuery<UserFamily>(em).from(userfamily).where(userfamily.user.id.eq(id)).fetch();
 		return result;
 	}
+	
+	public UserFamily read(String id) {
+		QUserFamily userfamily = QUserFamily.userFamily;
+		UserFamily result = new JPAQuery<UserFamily>(em).from(userfamily).where(userfamily.user.id.eq(id)).fetchOne();
+		return result;
+	}
 
 }

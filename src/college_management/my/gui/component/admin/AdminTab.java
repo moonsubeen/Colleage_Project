@@ -17,13 +17,9 @@ public class AdminTab extends JTabbedPane implements ChangeListener{
 
 	public AdminTab(MainGUI frame) {
 		activities = new ArrayList<Tab>();
-//		activities.add(new ActivityPanel("회원 등록", new RegisterPanel(frame)));
 		activities.add(new Tab("회원 정보", new UserTab(frame)));
-//		activities.add(new Tab("과목 정보", new SubjectTab(frame)));
 		activities.add(new Tab("강의 정보", new LectureTab(frame)));
-//		activities.add(new Tab("학부 정보", new DivisionTab(frame)));
-//		activities.add(new Tab("학과 정보", new DepartmentTab(frame)));
-
+		
 		for (int i = 0; i < activities.size(); i++) {
 			Tab activity = activities.get(i);
 			addTab(activity.getName(), activity.getPanel());

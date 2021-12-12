@@ -19,7 +19,7 @@ public class UserSoldier implements Serializable{
 	private User user; // 학번
 	
 	@Column(name="states")
-	private boolean states; // 군입대 유무
+	private String states; // 군입대 유무
 	
 	@Column(name="military_number")
 	private String militaryNumber; // 군번
@@ -50,11 +50,11 @@ public class UserSoldier implements Serializable{
 		this.user = user;
 	}
 
-	public boolean isState() {
+	public String getState() {
 		return states;
 	}
 
-	public void setState(boolean states) {
+	public void setState(String states) {
 		this.states = states;
 	}
 

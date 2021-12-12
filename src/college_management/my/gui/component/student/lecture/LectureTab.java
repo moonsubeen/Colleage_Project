@@ -77,7 +77,6 @@ public class LectureTab extends TabPanel{
 	
 	private ActionListener applicationListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-//			LectureAttendance application = new LectureAttendance();
 			Lecture lecture = (Lecture) info.getData();
 			lectureService.register(lecture.getCode(), auth.getUser().getId());
 			showMessageBox("수강신청 완료");
