@@ -24,28 +24,34 @@ public class LectureTab extends TabPanel{
 	private LecTableView list;
 	private LecView info;
 	private JTextField searchTxtField;
-
+	
+	private ProfessorLectureLayout layout;
+	
 	public LectureTab(MainGUI frame) {
 		super(frame);
 
 		// set layout
-		ProfessorLectureLayout layout = new ProfessorLectureLayout();
+		layout = new ProfessorLectureLayout();
 		add(layout);
-
+	}
+	
+	public void initLayout() {
+		layout.initLayout();
+		
 		// set button
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
 		JButton registerBtn = layout.getRegisterBtn();
 		JButton searchBtn = layout.getSearchBtn();
 		JLabel label = layout.getLabel();
-		
+				
 		searchTxtField = layout.getSearchTxtField();
-		
+				
 		loadBtn.addActionListener(loadListener);
 		updateBtn.addActionListener(updateListener);
 		registerBtn.addActionListener(registerListener);
 		searchBtn.addActionListener(searchListener);
-		
+				
 		// set list
 		list = layout.getList();
 		info = layout.getLectureInfo();

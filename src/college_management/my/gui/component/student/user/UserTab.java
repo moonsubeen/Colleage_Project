@@ -31,13 +31,18 @@ public class UserTab extends LecPanel{
 	private String src2;
 	private JLabel picture = new JLabel();
 	
+	private StudentUserLayout layout;
+	
 	public UserTab(MainGUI frame) {
 		super(frame);
-
-		// set layout
-		StudentUserLayout layout = new StudentUserLayout();
+		layout = new StudentUserLayout();
 		add(layout);
-
+		
+		initLayout();
+	}
+	
+	public void initLayout() {
+		// set layout
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
 		JButton pictureBtn = layout.getPictureeBtn();

@@ -22,11 +22,17 @@ public class AttendanceTab extends TabPanel{
 	private LecView info;
 	private JTextField searchTxtField;
 	
+	private ProfessorAttendanceLayout layout;
+	
 	public AttendanceTab(MainGUI frame) {
 		super(frame);
 		
-		ProfessorAttendanceLayout layout = new ProfessorAttendanceLayout();
+		layout = new ProfessorAttendanceLayout();
 		add(layout);
+	}
+	
+	public void initLayout() {
+		layout.initLayout();
 		
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
@@ -42,7 +48,7 @@ public class AttendanceTab extends TabPanel{
 		searchBtn.addActionListener(searchListener);
 		
 		list = layout.getList();
-		info = layout.getAttendanceInfo();
+		info = layout.getAttendanceInfo();	
 	}
 	
 	@Override

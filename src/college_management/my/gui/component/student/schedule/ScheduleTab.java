@@ -24,24 +24,31 @@ public class ScheduleTab extends TabPanel{
 	private LecView info;
 	private JTextField searchTxtField;
 	
+	private StudentScheduleLayout layout;
+	
 	public ScheduleTab(MainGUI frame) {
 		super(frame);
 		
-		StudentScheduleLayout layout = new StudentScheduleLayout();
+		layout = new StudentScheduleLayout();
 		add(layout);
+	}
+	
+	public void initLayout() {	
+		layout.initLayout();
 		
 		// set button
 		JButton loadBtn = layout.getLoadBtn();
 		JButton searchBtn = layout.getSearchBtn();
 		JLabel label = layout.getLabel();
-		
+						
 		searchTxtField = layout.getSearchTxtField();
-				
+								
 		loadBtn.addActionListener(loadListener);
 		searchBtn.addActionListener(searchListener);
-		
+						
 		list = layout.getList();
 		info = layout.getLectureInfo();
+				
 	}
 	
 	@Override

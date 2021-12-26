@@ -33,7 +33,11 @@ public class StudentHistoryLayout extends JPanel{
 	
 	private JTextField searchTxtField = new JTextField();
 	
-	public StudentHistoryLayout() {
+	public StudentHistoryLayout() {	
+		initLayout();
+	}
+	
+	public void initLayout() {
 		historyInfo = new StudentHistoryInfoView();
 		historyInfo.setPreferredSize(new Dimension(400, 400));
 		
@@ -64,10 +68,11 @@ public class StudentHistoryLayout extends JPanel{
 		
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
 		
-		initLayout();
+		removeAll();
+		setLayout();
 	}
 	
-	private void initLayout() {
+	public void setLayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 

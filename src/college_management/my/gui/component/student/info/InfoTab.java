@@ -17,18 +17,23 @@ public class InfoTab extends LecPanel{
 	private LecView disabilityInfo;
 	private LecView familyInfo;
 	
+	private StudentInfoLayout layout;
+	
 	public InfoTab(MainGUI frame) {
 		super(frame);
-		
-		StudentInfoLayout layout = new StudentInfoLayout();
+		layout = new StudentInfoLayout();
 		add(layout);
 		
+		initLayout();
+	}
+	
+	public void initLayout() {
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
 		
 		soldierInfo = layout.getSoldierInfo();
 		disabilityInfo = layout.getDisabilityInfo();
-		familyInfo = layout.getFamilyInfo();
+		familyInfo = layout.getFamilyInfo();	
 	}
 	
 	@Override

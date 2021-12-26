@@ -35,7 +35,9 @@ public class AdminUserLayout extends JPanel{
 	private JLabel label = new JLabel("아이디 입력");
 	
 	public AdminUserLayout() {
-
+		initLayout();
+	}
+	public void initLayout() {
 		// 선택된 사용자 정보
 		userInfo = new AdminUserInfoView();
 		userInfo.setPreferredSize(new Dimension(400, 400));
@@ -70,11 +72,11 @@ public class AdminUserLayout extends JPanel{
 		searchBtn.setPreferredSize(new Dimension(60, 30));
 		
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
-
-		initLayout();
+		
+		removeAll();
+		setLayout();
 	}
-
-	private void initLayout() {
+	private void setLayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 

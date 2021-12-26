@@ -30,6 +30,10 @@ public class StudentLectureLayout extends JPanel{
 	private JLabel label = new JLabel("강의 코드 입력");
 	
 	public StudentLectureLayout() {
+		initLayout();
+	}
+	
+	public void initLayout() {
 		lectureInfo = new StudentLectureInfoView();
 		lectureInfo.setPreferredSize(new Dimension(400, 400));
 		
@@ -54,11 +58,12 @@ public class StudentLectureLayout extends JPanel{
 		searchBtn.setPreferredSize(new Dimension(60, 30));
 					
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
-					
-		initLayout();
+		
+		removeAll();
+		setLayout();
 	}
 	
-	private void initLayout() {
+	public void setLayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 

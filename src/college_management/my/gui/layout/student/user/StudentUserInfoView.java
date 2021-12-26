@@ -40,13 +40,12 @@ public class StudentUserInfoView extends LecView{
 		addTxtField("이름", nameTxtField, row++, true);
 		addTxtField("주소", addressTxtField, row++, true);
 		addTxtField("전화번호", phoneTxtField, row++, true);
-		addTxtField("국적", countryTxtField, row++, true);
+		addTxtField("국적", countryTxtField, row++, false);
 		addTxtField("주민등록번호", residentTxtField, row++, true);
 		addTxtField("이메일", emailTxtField, row++, true);
 		addTxtField("생년월일", birthTxtField, row++, false);
 		addTxtField("성별", sexTxtField, row++, false);
 		addTxtField("비밀번호", pwdTxtField, row++, true);
-//		addTxtField("역활", roleTxtField, row++, true);
 	}
 
 	private void addTxtField(String name, JTextField txtField, int row, boolean isEditable) {

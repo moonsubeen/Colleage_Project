@@ -26,11 +26,19 @@ public class HistoryTab extends TabPanel{
 	private LecView info;
 	private JTextField searchTxtField;
 	
+	private StudentHistoryLayout layout;
+	
 	public HistoryTab(MainGUI frame) {
 		super(frame);
 		
-		StudentHistoryLayout layout = new StudentHistoryLayout();
+		layout =  new StudentHistoryLayout();
 		add(layout);
+		
+		initLayout();
+	}
+	
+	public void initLayout() {
+		layout.initLayout();
 		
 		JButton loadBtn = layout.getLoadBtn();
 		JButton problemBtn = layout.getProblemBtn();
@@ -48,7 +56,7 @@ public class HistoryTab extends TabPanel{
 		exportexcelBtn.addActionListener(exportexcelListener);
 		
 		list = layout.getList();
-		info = layout.getHistoryInfo();
+		info = layout.getHistoryInfo();	
 	}
 	
 	@Override

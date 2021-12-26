@@ -20,128 +20,134 @@ import college_management.my.gui.layout.common.LecView;
 @SuppressWarnings("serial")
 public class AdminLectureLayout extends JPanel {
 	// components
-		private LayoutManager layout;
+	private LayoutManager layout;
 
-		private JScrollPane scrollPane;
-		private LecTableView list;
-		private LecView lectureInfo;
-		private JButton loadBtn;
-		private JButton updateBtn;
-		private JButton registerBtn;
-		private JButton searchBtn;
-		private JTextField searchTxtField = new JTextField();
-		private JLabel label = new JLabel("강의 코드 입력");
+	private JScrollPane scrollPane;
+	private LecTableView list;
+	private LecView lectureInfo;
+	private JButton loadBtn;
+	private JButton updateBtn;
+	private JButton registerBtn;
+	private JButton searchBtn;
+	private JTextField searchTxtField = new JTextField();
+	private JLabel label = new JLabel("강의 코드 입력");
 		
-		public AdminLectureLayout() {
-			// 선택된 사용자 정보
-			lectureInfo = new AdminLectureInfoView();
-			lectureInfo.setPreferredSize(new Dimension(400, 400));
+	public AdminLectureLayout() {
+		initLayout();
+	}
+	
+	public void initLayout() {
+		// 선택된 사용자 정보
+		lectureInfo = new AdminLectureInfoView();
+		lectureInfo.setPreferredSize(new Dimension(400, 400));
 
-			// 사용자 리스트
-			list = new LecTableView(lectureInfo);
-			list.setAutoCreateRowSorter(true);
-			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(list.getModel());
-			list.setRowSorter(sorter);
+		// 사용자 리스트
+		list = new LecTableView(lectureInfo);
+		list.setAutoCreateRowSorter(true);
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(list.getModel());
+		list.setRowSorter(sorter);
+					
+		scrollPane = new JScrollPane(list);
+		scrollPane.setPreferredSize(new Dimension(400, 400));
+					
+		loadBtn = (new JButton("강의 리스트 불러오기"));		
+		loadBtn.setPreferredSize(new Dimension(200, 30));
+
+		updateBtn = (new JButton("강의 정보 변경하기"));
+		updateBtn.setPreferredSize(new Dimension(200, 30));
+		
+		registerBtn = (new JButton("강의 정보 추가하기"));
+		registerBtn.setPreferredSize(new Dimension(200, 30));
+					
+		label.setPreferredSize(new Dimension(100, 30));
+					
+		searchBtn = (new JButton("검색"));
+		searchBtn.setPreferredSize(new Dimension(60, 30));
+					
+		searchTxtField.setPreferredSize(new Dimension(200, 30));
+		
+		removeAll();
+		setLayout();
+	}
+	
+	private void setLayout() {	
+		setLayout(new GridBagLayout());	
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.gridx = 0;
+		c.gridy = 0;
+		add(scrollPane, c);
+		
+		c.gridx = 1;
+		c.gridy = 0;
+		add(lectureInfo, c);
 			
-			scrollPane = new JScrollPane(list);
-			scrollPane.setPreferredSize(new Dimension(400, 400));
+		c.gridx = 0;
+		c.gridy = 1;
+		add(label, c);
 			
-			loadBtn = (new JButton("강의 리스트 불러오기"));
-			loadBtn.setPreferredSize(new Dimension(200, 30));
-
-			updateBtn = (new JButton("강의 정보 변경하기"));
-			updateBtn.setPreferredSize(new Dimension(200, 30));
-
-			registerBtn = (new JButton("강의 정보 추가하기"));
-			registerBtn.setPreferredSize(new Dimension(200, 30));
+		c.gridx = 0;
+		c.gridy = 3;
+		add(searchBtn, c);
 			
-			label.setPreferredSize(new Dimension(100, 30));
+		c.gridx = 0;
+		c.gridy = 2;
+		add(searchTxtField, c);
 			
-			searchBtn = (new JButton("검색"));
-			searchBtn.setPreferredSize(new Dimension(60, 30));
-			
-			searchTxtField.setPreferredSize(new Dimension(200, 30));
-			
-			initLayout();
-		}
+		c.gridwidth = 2;
+		c.gridx = 1;
+		c.gridy = 1;
+		add(loadBtn, c);
 
-		private void initLayout() {
-			setLayout(new GridBagLayout());
-			GridBagConstraints c = new GridBagConstraints();
+		c.gridwidth = 2;
+		c.gridx = 1;
+		c.gridy = 2;
+		add(updateBtn, c);
 
-			c.gridx = 0;
-			c.gridy = 0;
-			add(scrollPane, c);
+		c.gridwidth = 2;
+		c.gridx = 1;
+		c.gridy = 3;
+		add(registerBtn, c);
+	}
 
-			c.gridx = 1;
-			c.gridy = 0;
-			add(lectureInfo, c);
-			
-			c.gridx = 0;
-			c.gridy = 1;
-			add(label, c);
-			
-			c.gridx = 0;
-			c.gridy = 3;
-			add(searchBtn, c);
-			
-			c.gridx = 0;
-			c.gridy = 2;
-			add(searchTxtField, c);
-			
-			c.gridwidth = 2;
-			c.gridx = 1;
-			c.gridy = 1;
-			add(loadBtn, c);
+	public LayoutManager getLayout() {
+		return layout;		
+	}
 
-			c.gridwidth = 2;
-			c.gridx = 1;
-			c.gridy = 2;
-			add(updateBtn, c);
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
 
-			c.gridwidth = 2;
-			c.gridx = 1;
-			c.gridy = 3;
-			add(registerBtn, c);
-		}
-
-		public LayoutManager getLayout() {
-			return layout;
-		}
-
-		public JScrollPane getScrollPane() {
-			return scrollPane;
-		}
-
-		public LecTableView getList() {
-			return list;
-		}
+	public LecTableView getList() {
+		return list;
+	}
 		
 
-		public LecView getLectureInfo() {
-			return lectureInfo;
-		}
+	public LecView getLectureInfo() {
+		return lectureInfo;
+	}
 
-		public JButton getLoadBtn() {
-			return loadBtn;
-		}
+	public JButton getLoadBtn() {
+		return loadBtn;
+	}
 
-		public JButton getUpdateBtn() {
-			return updateBtn;
-		}
+	public JButton getUpdateBtn() {
+		return updateBtn;
+	}
 
-		public JButton getRegisterBtn() {
-			return registerBtn;
-		}
+	public JButton getRegisterBtn() {
+		return registerBtn;
+	}
 
-		public JButton getSearchBtn() {
-			return searchBtn;
-		}
+	public JButton getSearchBtn() {
+		return searchBtn;
+	}
 
-		public JTextField getSearchTxtField() {
-			return searchTxtField;
-		}
-		public JLabel getLabel() {
-			return label;
-		}
+	public JTextField getSearchTxtField() {
+		return searchTxtField;
+	}
+	
+	public JLabel getLabel() {
+		return label;
+	}
 }

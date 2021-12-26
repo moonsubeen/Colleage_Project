@@ -28,33 +28,39 @@ public class LectureTab extends TabPanel{
 	private LecTableView list;
 	private LecView info;
 	private JTextField searchTxtField;
-
+	
+	private AdminLectureLayout layout;
+	
 	public LectureTab(MainGUI frame) {
 		super(frame);
 
 		// set layout
-		AdminLectureLayout layout = new AdminLectureLayout();
+		layout = new AdminLectureLayout();
 		add(layout);
-		
+	}
+	
+	public void initLayout() {
+		layout.initLayout();
 		// set button
+				
 		JButton loadBtn = layout.getLoadBtn();
-		JButton updateBtn = layout.getUpdateBtn();
+		JButton updateBtn = layout.getUpdateBtn();		
 		JButton registerBtn = layout.getRegisterBtn();
 		JButton searchBtn = layout.getSearchBtn();
-		JLabel label = layout.getLabel();
-		
+		JLabel label = layout.getLabel();	
+			
 		searchTxtField = layout.getSearchTxtField();
-		
+				
 		loadBtn.addActionListener(loadListener);
 		updateBtn.addActionListener(updateListener);
 		registerBtn.addActionListener(registerListener);
 		searchBtn.addActionListener(searchListener);
-
+			
 		// set list
-		list = layout.getList();
+		list = layout.getList();	
 		info = layout.getLectureInfo();
 	}
-
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

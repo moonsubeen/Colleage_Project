@@ -25,22 +25,27 @@ public class UserTab extends TabPanel{
 	private LecView info;
 	private JComboBox<String> roleComboBox;
 	private JTextField searchTxtField;
-
+	private AdminUserLayout layout;
+	
 	public UserTab(MainGUI frame) {
 		super(frame);
 
 		// set layout
-		AdminUserLayout layout = new AdminUserLayout();
-		add(layout);
-
-		// set combo box
+		layout = new AdminUserLayout();
+		add(layout);		
+	}
+	
+	public void initLayout() {
+		layout.initLayout();
+		
+		// set combo box				
 		roleComboBox = layout.getRoleComboBox();
 		for (Permission p : Permission.values()) {
 			roleComboBox.addItem(p.getValue());
 		}
 		roleComboBox.setSelectedIndex(0);
 		roleComboBox.addActionListener(roleListener);
-
+		
 		// set button
 		JButton loadBtn = layout.getLoadBtn();
 		JButton updateBtn = layout.getUpdateBtn();
@@ -48,18 +53,19 @@ public class UserTab extends TabPanel{
 		JButton searchBtn = layout.getSearchBtn();
 		JButton familyBtn = layout.getFamilyBtn();
 		JLabel label = layout.getLabel();
-		
+				
 		searchTxtField = layout.getSearchTxtField();
-		
+				
+				
 		loadBtn.addActionListener(loadListener);
 		updateBtn.addActionListener(updateListener);
 		registerBtn.addActionListener(registerListener);
-		familyBtn.addActionListener(familyListener);
+		familyBtn.addActionListener(familyListener);		
 		searchBtn.addActionListener(searchListener);
 
 		// set list
-		list = layout.getUserList();
-		info = layout.getUserInfo();
+		list = layout.getUserList();	
+		info = layout.getUserInfo();	
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class StudentUserLayout extends JPanel{
 		initLayout();
 	}
 
-	private void initLayout() {
+	public void initLayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 

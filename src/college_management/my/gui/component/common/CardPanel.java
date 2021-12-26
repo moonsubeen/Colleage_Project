@@ -13,12 +13,14 @@ import javax.swing.JLabel;
 import college_management.my.gui.MainGUI;
 
 @SuppressWarnings("serial")
-public class CardPanel extends LecPanel{
+public class CardPanel extends LecPanel {
 	private JLabel loginNameLbl;
 	private JButton logoutBtn;
 	private JButton exitBtn;
+	
+	private CardPanelInterface cardPanel;
 
-	public CardPanel(MainGUI frame) {
+	public CardPanel(MainGUI frame, CardPanelInterface cardPanelmpl) {
 		super(frame);
 
 		loginNameLbl = new JLabel();
@@ -28,6 +30,8 @@ public class CardPanel extends LecPanel{
 		exitBtn.addActionListener(exitListener);
 
 		initLayout();
+		
+		cardPanel = cardPanelmpl;
 	}
 
 	private void initLayout() {
@@ -43,7 +47,7 @@ public class CardPanel extends LecPanel{
 	protected void setPanel(Component component) {
 		add(component, BorderLayout.CENTER);
 	}
-
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -64,6 +68,7 @@ public class CardPanel extends LecPanel{
 		public void actionPerformed(ActionEvent e) {
 			if (auth.logout()) {
 				showMessageBox("로그아웃 성공");
+				cardPanel.initView();
 				frame.changeLoginTab();
 			} else
 				showMessageBox("로그아웃 실패");

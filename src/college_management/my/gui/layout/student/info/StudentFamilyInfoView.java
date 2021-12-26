@@ -26,7 +26,7 @@ public class StudentFamilyInfoView  extends LecView{
 		setLayout(new GridBagLayout());
 		
 		int row = 0;
-		addTxtField("가족관계", relationTxtField, row++, true);
+		addTxtField("가족관계", relationTxtField, row++, false);
 		addTxtField("가족성함", nameTxtField, row++, true);
 		addTxtField("가족전화번호", phoneNumberTxtField, row++, true);
 	}

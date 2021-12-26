@@ -29,32 +29,38 @@ public class StudentScheduleLayout extends JPanel{
 	private JLabel label = new JLabel("강의 코드 입력");
 	
 	public StudentScheduleLayout() {
+		initLayout();
+	}
+	
+	public void initLayout() {
 		lectureInfo = new StduentScheduleInfoView();
 		lectureInfo.setPreferredSize(new Dimension(400, 400));
-
+		
 		// 사용자 리스트
 		list = new LecTableView(lectureInfo);
 		list.setAutoCreateRowSorter(true);
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(list.getModel());
 		list.setRowSorter(sorter);
-		
+						
 		scrollPane = new JScrollPane(list);
 		scrollPane.setPreferredSize(new Dimension(400, 400));
 
 		loadBtn = (new JButton("새로고침"));
 		loadBtn.setPreferredSize(new Dimension(200, 30));
-		
+						
 		label.setPreferredSize(new Dimension(100, 30));
-		
+						
 		searchBtn = (new JButton("검색"));
 		searchBtn.setPreferredSize(new Dimension(60, 30));
-		
+						
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
-		
-		initLayout();
+				
+		removeAll();
+		setlayout();
+						
 	}
 	
-	private void initLayout() {
+	public void setlayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 

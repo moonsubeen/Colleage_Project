@@ -29,6 +29,10 @@ public class StudentAttendanceLayout extends JPanel{
 	private JLabel label = new JLabel("강의 코드 입력");
 	
 	public StudentAttendanceLayout() {
+		initLayout();
+	}
+	
+	public void initLayout() {
 		attendanceInfo = new StudentAttendanceInfoView();
 		attendanceInfo.setPreferredSize(new Dimension(400, 400));
 		
@@ -50,10 +54,11 @@ public class StudentAttendanceLayout extends JPanel{
 	
 		searchTxtField.setPreferredSize(new Dimension(200, 30));
 		
-		initLayout();
+		removeAll();
+		setLayout();
 	}
 	
-	private void initLayout() {
+	private void setLayout() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
