@@ -4,7 +4,6 @@
 - admin, 교수. 학생별로 각각의 시나리오가 존재한다.
 - CLI의 기능을 만들고 더욱 알아보기 쉽게하기 위해 GUI 기능을 사용하여 학점 관리 프로그램을 만들었다.
 - CLI에서 없던 기능이 GUI로 만들면서 추가되었다
-
 ----------------------------------------------------------------------
 ### 사용 Library 및 개발환경
 ----------------------------------------------------------------------
@@ -14,14 +13,18 @@ DateBase
 - Querydsl
 - MySQL
 - Java Persistence API
+
 CLI
 -Picocli
 -Jansi
+
 GUI
 -Javax Swing
 -Apache Poi
+
 Tool
 -Ecipse
+
 Language
 -java
 ### HOW to use
