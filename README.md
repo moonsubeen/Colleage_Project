@@ -197,4 +197,9 @@ Login
 	```
 ### Logout
 	> logout
->>>>>>> f20831e61e36821ab56a7d650ca9931741b4c902
+=========================================================
+# Swing 시나리오
+- 위 CLI형식의 시나리오를 Swing을 이용해 보기 쉬운 웹 형식으로 만든 시나리오입니다.
+
+### 1.Login image
+![login](https://user-images.githubusercontent.com/47254827/148678715-29bb6590-0dae-470a-9c39-259e0104a5f7.png)
