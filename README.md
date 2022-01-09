@@ -1,3 +1,8 @@
+### 프로젝트의 목적
+------------------------------
+- 현재 만들고 있는 프로젝트의 목적은 CLI 와 Swing을 사용하여 대학 학점 관리 프로그램을 생성하는 것이다.
+- admin, 교수. 학생 계정별로의 시나리오가 있으며 CLI에서는 없는 기능이 Swing에 추가되는 등의 과정이 있다.
+
 ### HOW to use
 ----------------------------
 Login
@@ -212,7 +217,7 @@ Login
 ![user_register](https://user-images.githubusercontent.com/47254827/148678865-717d5071-4081-465a-9364-174f35121697.png)
 
 ### 4.Admin user_family register
-!{family_register}(https://user-images.githubusercontent.com/47254827/148678882-3619cbc9-e345-4961-9ef5-6f99df5e41cc.png)
+![family_register](https://user-images.githubusercontent.com/47254827/148678882-3619cbc9-e345-4961-9ef5-6f99df5e41cc.png)
 
 ### 5.Admin lecture register
 ![lecture](https://user-images.githubusercontent.com/47254827/148678893-00f6f61d-5ce9-4184-b865-5aca1bf08259.png)
