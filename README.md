@@ -242,11 +242,11 @@ Login
 - 학생들의 기본정보 화면이다
 
 ### 10.Student addtional information
-![information](https://user-images.githubusercontent.com/47254827/148679065-aea49ebe-84bc-4e8d-8787-19070e6fe04d.png)
+![information](https://user-images.githubusercontent.com/47254827/148680583-aea93fd5-6c62-4273-abd9-3a3ae81a9c48.png)
 - 학생들의 추가 정보 화면으로 군정보, 병여부, 가족관계가 있다.
 
 ### 11.Student lecture list
-![list](https://user-images.githubusercontent.com/47254827/148679172-67050b8c-f5b4-4412-ac48-7b57c90b09f2.png)
+![list](https://user-images.githubusercontent.com/47254827/148680607-b9d8e310-0e42-400c-8f03-9e1b4d7c3604.png)
 - 모든 강의 목록이 나오며 강의를 클릭하여 신청하기 버튼을 눌러 강의를 신청한다
 
 ### 12.Student my lecture list
