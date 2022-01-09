@@ -7,26 +7,22 @@
 ----------------------------------------------------------------------
 ### 사용 Library 및 개발환경
 ----------------------------------------------------------------------
-DateBase
+DataBase
 - Hibernate
 - H2
 - Querydsl
 - MySQL
 - Java Persistence API
-
 CLI
--Picocli
--Jansi
-
+- Picocli
+- Jansi
 GUI
--Javax Swing
--Apache Poi
-
+- Javax Swing
+- Apache Poi
 Tool
--Ecipse
-
+- Ecipse
 Language
--java
+- java
 ### HOW to use
 ----------------------------------------------------------------------
 Login
