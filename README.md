@@ -201,5 +201,56 @@ Login
 # Swing 시나리오
 - 위 CLI형식의 시나리오를 Swing을 이용해 보기 쉬운 웹 형식으로 만든 시나리오입니다.
 
-### 1.Login image
+### 1.Login
 ![login](https://user-images.githubusercontent.com/47254827/148678715-29bb6590-0dae-470a-9c39-259e0104a5f7.png)
+- 위 시나리오랑 아이디가 처음 생성 시 비밀번호는 0000으로 생성됩니다.
+
+### 2.Admin main
+![admin](https://user-images.githubusercontent.com/47254827/148678851-58d56226-8896-4945-801b-5c5fcae759d5.png)
+-Admin page의 처음 화면입니다. 각종 유저들의 정보를 확인하고 버튼을 눌러 위 시나리오의 행동을 할 수 있습니다.
+
+### 3.Admin user register
+![user_register](https://user-images.githubusercontent.com/47254827/148678865-717d5071-4081-465a-9364-174f35121697.png)
+
+### 4.Admin user_family register
+!{family_register}(https://user-images.githubusercontent.com/47254827/148678882-3619cbc9-e345-4961-9ef5-6f99df5e41cc.png)
+
+### 5.Admin lecture register
+![lecture](https://user-images.githubusercontent.com/47254827/148678893-00f6f61d-5ce9-4184-b865-5aca1bf08259.png)
+- 이 강의 이미지는 교수의 강의 생성 시의 이미지와 비슷하며 차이점은 교수 아이디 입력의 유무 차이이며 admin 계정은 모든 강의를 생성 및 확인이 가능하나 교수는 자신의 강의만 가능하다.
+
+### 6.Professor main
+![professor](https://user-images.githubusercontent.com/47254827/148679035-2842ba11-3e3c-449a-bd92-a90888eef7bc.png)
+- 강사의 처음 화면이며 각종 기본 정보가 들어가 있다.
+
+### 7.Professor lecture score input
+![score_input](https://user-images.githubusercontent.com/47254827/148678935-d9739c75-fcbe-42fd-a602-a878bf94718d.png)
+- 강의를 듣고 있는 학생을 클릭 후 점수칸을 수정하여 점수를 입력하면 등급이 자동으로 생성된다.
+
+### 8.Professor attendance input
+![attendance_input](https://user-images.githubusercontent.com/47254827/148679002-d38bd062-bfe2-4a80-a057-8717c44a655f.png)
+- 자기 강의에 몇월 몇일에 어느 학생이 강의를 출석했는지 입력하는 화면이다.
+
+### 9.Student main
+![student](https://user-images.githubusercontent.com/47254827/148679047-fe479487-1bef-437a-bd40-67decc9f919e.png)
+- 학생들의 기본정보 화면이다
+
+### 10.Student addtional information
+![information](https://user-images.githubusercontent.com/47254827/148679065-aea49ebe-84bc-4e8d-8787-19070e6fe04d.png)
+- 학생들의 추가 정보 화면으로 군정보, 병여부, 가족관계가 있다.
+
+### 11.Student lecture list
+![list](https://user-images.githubusercontent.com/47254827/148679172-67050b8c-f5b4-4412-ac48-7b57c90b09f2.png)
+- 모든 강의 목록이 나오며 강의를 클릭하여 신청하기 버튼을 눌러 강의를 신청한다
+
+### 12.Student my lecture list
+![mylist](https://user-images.githubusercontent.com/47254827/148679184-3605812a-5b56-46a4-afaf-4cffb45c27b2.png)
+- 내가 듣고 있는 강의 목록을 확인하는 화면이다.
+
+### 13.Student lecture score confirm
+![confirm](https://user-images.githubusercontent.com/47254827/148679149-6cbf4698-ba5e-46ab-ad5c-01f0245c7c15.png)
+- 학생들의 듣고 있는 강의의 점수 확인과 문제제기 및 강의평가를 하는 화면이다.
+
+### 14.Student attendance confirm
+![attendance_confirm](https://user-images.githubusercontent.com/47254827/148679215-8ec148d5-fe51-4296-9fdf-bc2c74f4a3a8.png)
+- 학생들이 듣고 있는 강의의 출석 확인 화면이다.
