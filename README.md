@@ -13,14 +13,18 @@ DataBase
 - Querydsl
 - MySQL
 - Java Persistence API
+
 CLI
 - Picocli
 - Jansi
+
 GUI
 - Javax Swing
 - Apache Poi
+
 Tool
 - Ecipse
+
 Language
 - java
 ### HOW to use
