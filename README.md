@@ -219,7 +219,7 @@ Login
 ![user_register](https://user-images.githubusercontent.com/47254827/148678865-717d5071-4081-465a-9364-174f35121697.png)
 
 ### 4.Admin user_family register
-![family_register](https://user-images.githubusercontent.com/47254827/148678882-3619cbc9-e345-4961-9ef5-6f99df5e41cc.png)
+![family_register](https://user-images.githubusercontent.com/47254827/148680512-3703fccf-6584-4ba1-8bb1-af0ba8856b7a.png)
 
 ### 5.Admin lecture register
 ![lecture](https://user-images.githubusercontent.com/47254827/148678893-00f6f61d-5ce9-4184-b865-5aca1bf08259.png)
